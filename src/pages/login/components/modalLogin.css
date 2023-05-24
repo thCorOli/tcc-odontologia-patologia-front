@@ -1,0 +1,11 @@
+.modalLogin {
+    display: flex;
+    align-items: center ; 
+    justify-content: center;
+}
+
+.backModal {
+    background-color:#eaeaea;
+    padding: 2%;
+    width: 40%;
+}

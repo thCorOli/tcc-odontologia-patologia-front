@@ -1,0 +1,17 @@
+:root {
+  --primary-blue: #417cb4;
+  --active-color: #2f5880;
+  --secundary-blue: #6cb3f7;
+  --terciary-blue: #8fb3d4;
+  --fourth-blue: #80aedb;
+  --background: #eaeaea;
+  --font-input: #5e5e5e;
+  --white: #ffffff;
+  --black: #333333;
+  --gray: #f4f4f4;
+  --second-gray: #e2e2e2;
+  --errors: #ff3d40;
+  --input: #f7f7f7;
+  --confirm: #92db80;
+  --recuse: #db8080;
+}
