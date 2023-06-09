@@ -1,14 +1,14 @@
 import React, { useState } from "react";
+import Background from "../../components/background";
 import ButtonPage from "../../components/button/index";
 import FormField from "../../components/formfield/index";
-import LogoFull from "../../assets/imgs/logos/logoFull.svg";
+import LogoFull from "../../assets/imgs/icon_provisorio.png";
 import "../../constants/colors.css";
 import useForm from "../../hooks/useForm/index";
 import { LoginPanel, LogoFullLogin } from "./components/index";
 import styled, { css } from "styled-components";
 import { Link, useHistory } from "react-router-dom";
 import {Text} from "../../components/texts"
-import { loginPatient } from "../../services/index";
 import "../../components/loader/loader.css";
 import "./components/modalLogin.css";
 import Button from "@material-ui/core/Button";
@@ -17,22 +17,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
-
-const Background = styled.div`
-  ${({ backgroundColor }) => css`
-    background-color: ${backgroundColor};
-  `};
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  @media screen and (max-width: 900px) {
-    overflow: auto;
-  }
-`;
+import {hasEmptyFields,hasSqlStrings} from '../../services/general/security'
 
 const ContentContainer = styled.div`
   width: 100%;
@@ -41,7 +26,6 @@ const ContentContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex: 1;
   ${({ backgroundColor }) => css`
     background-color: ${backgroundColor};
   `};
@@ -66,6 +50,7 @@ const ResendEmail = styled.a`
 `;
 
 
+
 const Login = () => {
 
   const [modal, setModal] = useState(false);
@@ -75,7 +60,6 @@ const Login = () => {
   const { value, onChangeHandler } = useForm({
     email: "",
     password: "",
-    emailToResend: "",
   });
 
   const history = useHistory();
@@ -100,9 +84,22 @@ const Login = () => {
     setModal(true);
   }
   
+const  loginPatient = (email,resp) => {
+  if (resp.status >= 200 && resp.status <= 299) {
+    setTitle("Email reenviado com sucesso!");
+    handleClickOpen();
+    setAnimationData(false);
+  } else {
+    setAnimationData(false);
+    setTitle(`${resp.data.errors[0]},${resp.data.errors[1]}`);
+    handleClickOpen();
+  }
+};
+
   return (
     <Background backgroundColor={"var(--background)"}>
       <LoginPanel>
+       
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -119,24 +116,12 @@ const Login = () => {
             <Text>Digite Seu email:</Text>
             <form  onSubmit={(e) => {
               e.preventDefault();
-              if (!(value.emailToResend)) {
-                setTitle("Digite um email para ser confirmado");
-                handleClickOpen();
-              } else {
                 setAnimationData(true);
-                loginPatient({ email: value.emailToResend }, (resp) => {
-                  if (resp.status >= 200 && resp.status <= 299) {
-                    setTitle("Email reenviado com sucesso!");
-                    handleClickOpen();
-                    setAnimationData(false);
-                  } else {
-                    setAnimationData(false);
-                    setTitle(`${resp.data.errors[0]},${resp.data.errors[1]}`);
-                    handleClickOpen();
-                  }
-                });
+                console.log("Email ja confirmado");
+               
+                
               }
-            }}>
+            }>
               <FormField
               label={"Email"}
               onChange={onChangeHandler}
@@ -156,6 +141,7 @@ const Login = () => {
           borderRadius={"10px"}
           style={{ padding: "30px 0" }}
         >
+         {/*
           <LinkLogo as={Link} to="/">
             <LogoFullLogin src={LogoFull}></LogoFullLogin>
           </LinkLogo>
@@ -170,21 +156,14 @@ const Login = () => {
             }}
             onSubmit={(e) => {
               e.preventDefault();
-              if (value.email === "" || value.password === "") {
-                setTitle("Campos vazios!");
+              if (hasEmptyFields(value)) {
+                setTitle("1 ou mais campos se encontram vazios!");
                 handleClickOpen();
               } else {
                 setAnimationData(true);
-                loginPatient({patient:value}, (resp) => {
-                  if (resp.status >= 200 && resp.status <= 299) {
-                    history.push("/home/patient");
-                  } else {
-                    setAnimationData(false);
-                    setTitle(`${resp.data.errors[0]},${resp.data.errors[1]}`);
-                    handleClickOpen();
-                  }
-                });
+                console.log("Passei pela segurança front");
               }
+              console.log(hasEmptyFields(value));
             }}
           >
             <FormField
@@ -225,14 +204,16 @@ const Login = () => {
               as={Link}
               to="/cadastro"
               style={{
-                backgroundColor: "var(--background)",
-                color: "var(--primary-blue)",
+                backgroundColor: "var(--black)",
+                color: "var(--gray)",
               }}
             >
               Cadastrar
             </ButtonPage>
           </form>
+          */}
         </ContentContainer>
+        
       </LoginPanel>
       <Dialog
         open={open}
@@ -247,6 +228,7 @@ const Login = () => {
           </Button>
         </DialogActions>
       </Dialog>
+
     </Background>
   );
 };

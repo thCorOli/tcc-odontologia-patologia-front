@@ -3,7 +3,7 @@ import { MainContainer } from "../../constants/containers/index";
 import styled from "styled-components";
 import "../../constants/colors.css";
 import IMG404 from "../../assets/imgs/404/404.svg";
-import Logo from "../../assets/imgs/logos/logoFull.svg";
+import Logo from "../../assets/imgs/icon_provisorio.png";
 import { Link } from "react-router-dom";
 
 const H1404 = styled.h1`

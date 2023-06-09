@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import "../../constants/colors.css";
 
-export const Button = styled.button`
-  background-color: var(--primary-blue);
+export const Button = styled.button `
+  background-color: ${props => props.backgroundColor};
   border: none;
   border-radius: 10px;
   height: 60px;
-  color: var(--white);
+  color: ${props => props.color};
   font-family: "Roboto Condensed";
   font-size: 2em;
   font-weight: bold;
