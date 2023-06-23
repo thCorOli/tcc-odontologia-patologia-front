@@ -12,7 +12,6 @@ export const Button = styled.button `
   font-weight: bold;
   line-height: 47px;
   width: 80%;
-  margin: 0 auto;
   text-decoration: none;
   display: flex;
   justify-content: center;

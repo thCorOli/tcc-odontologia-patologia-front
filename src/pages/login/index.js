@@ -5,8 +5,7 @@ import FormField from "../../components/formfield/index";
 import LogoFull from "../../assets/imgs/icon_provisorio.png";
 import "../../constants/colors.css";
 import useForm from "../../hooks/useForm/index";
-import { LoginPanel, LogoFullLogin } from "./components/index";
-import styled, { css } from "styled-components";
+import { LoginPanel, LogoFullLogin, ContentContainer,LinkLogo,ResendEmail } from "./components/index";
 import { Link, useHistory } from "react-router-dom";
 import {Text} from "../../components/texts"
 import "../../components/loader/loader.css";
@@ -18,37 +17,6 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import {hasEmptyFields,hasSqlStrings} from '../../services/general/security'
-
-const ContentContainer = styled.div`
-  width: 100%;
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  ${({ backgroundColor }) => css`
-    background-color: ${backgroundColor};
-  `};
-  ${({ borderRadius }) => css`
-    border-radius: ${borderRadius};
-  `};
-`;
-
-const LinkLogo = styled.div`
-  height: 50%;
-  display: flex;
-  justify-content: center;
-`;
-
-const ResendEmail = styled.a`
-  align-self: flex-start;
-  margin: -35px 0 45px 0;
-  text-decoration: none;
-  color: var(--black);
-  font-family: "Roboto Condensed";
-  cursor: pointer;
-`;
-
 
 
 const Login = () => {
@@ -141,10 +109,11 @@ const  loginPatient = (email,resp) => {
           borderRadius={"10px"}
           style={{ padding: "30px 0" }}
         >
-         {/*
+         
           <LinkLogo as={Link} to="/">
             <LogoFullLogin src={LogoFull}></LogoFullLogin>
           </LinkLogo>
+          
           <form
             style={{
               width: "80%",
@@ -179,27 +148,21 @@ const  loginPatient = (email,resp) => {
               value={value.password}
               type={"password"}
             />
-            <Link
-              style={{
-                alignSelf: "flex-start",
-                margin: "-35px 0 45px 0",
-                textDecoration: "none",
-                color: "var(--black)",
-                fontFamily: "Roboto Condensed",
-              }}
-              to="/forgot"
-            >
-              Esqueci minha senha
-            </Link>
+            
+            <ResendEmail as={Link} to="/forgot">
+                Esqueci minha senha
+            </ResendEmail>
             <ResendEmail onClick={handleOpenModal}>Reenviar Email</ResendEmail>
             {animationData === true ? (
               <div className="loader"></div>
             ) : (
                 <div></div>
               )}
-            <ButtonPage style={{ marginBottom: "20px" }} type={"submit"}>
+               
+            <ButtonPage style={{ marginBottom: "2%" }} type={"submit"}>
               Entrar
             </ButtonPage>
+             
             <ButtonPage
               as={Link}
               to="/cadastro"
@@ -210,8 +173,10 @@ const  loginPatient = (email,resp) => {
             >
               Cadastrar
             </ButtonPage>
+            
           </form>
-          */}
+        
+          
         </ContentContainer>
         
       </LoginPanel>

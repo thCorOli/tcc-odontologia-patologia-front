@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const LoginPanel = styled.div`
   width: 50%;
@@ -19,4 +19,38 @@ export const LogoFullLogin = styled.img`
   width: 80%;
   margin-bottom: 45px;
   object-fit: contain;
+`;
+
+export const ContentContainer = styled.div`
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  ${({ backgroundColor }) => css`
+    background-color: ${backgroundColor};
+  `};
+  ${({ borderRadius }) => css`
+    border-radius: ${borderRadius};
+  `};
+`;
+
+export const LinkLogo = styled.div`
+  height: 50%;
+  display: flex;
+  justify-content: center;
+`;
+
+export const ResendEmail = styled.a`
+  align-self: flex-start;
+  margin: -35px 0 50px 0;
+  text-decoration: none;
+  color: var(--black);
+  font-family: "Roboto Condensed";
+  cursor: pointer;
+
+  :hover {
+    color: var(--errors)
+  }
 `;
