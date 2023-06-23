@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-export const LoginPanel = styled.div`
+export const Panel = styled.div`
   width: 50%;
   height: 80vh;
   margin: 0 auto 45px auto;
@@ -15,7 +15,7 @@ export const LoginPanel = styled.div`
   }
 `;
 
-export const LogoFullLogin = styled.img`
+export const Logo = styled.img`
   width: 80%;
   margin-bottom: 45px;
   object-fit: contain;

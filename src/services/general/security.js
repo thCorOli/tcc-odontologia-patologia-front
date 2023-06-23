@@ -1,5 +1,4 @@
 export const hasEmptyFields = (obj) =>{
-    console.log(obj);
     for (let key in obj) {
       if (!obj[key]) {
         return true;

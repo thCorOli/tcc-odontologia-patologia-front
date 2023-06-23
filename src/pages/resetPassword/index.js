@@ -12,44 +12,6 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-const Background = styled.div`
-  ${({ backgroundColor }) => css`
-    background-color: ${backgroundColor};
-  `};
-  height: 100vh;
-  overflow: hidden;
-`;
-
-const ContentContainer = styled.div`
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
-  position: relative;
-  top: 20%;
-  padding: 45px 0;
-  flex: 1;
-  ${({ backgroundColor }) => css`
-    background-color: ${backgroundColor};
-  `};
-  ${({ borderRadius }) => css`
-    border-radius: ${borderRadius};
-  `};
-`;
-
-export const LogoFullForm = styled.img`
-  width: 80%;
-  margin-bottom: 45px;
-  object-fit: contain;
-`;
-
-const LinkLogo = styled.div`
-  height: 50%;
-  display: flex;
-  justify-content: center;
-`;
 
 const ResetPassword = () => {
   const history = useHistory();

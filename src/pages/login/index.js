@@ -5,7 +5,7 @@ import FormField from "../../components/formfield/index";
 import LogoFull from "../../assets/imgs/icon_provisorio.png";
 import "../../constants/colors.css";
 import useForm from "../../hooks/useForm/index";
-import { LoginPanel, LogoFullLogin, ContentContainer,LinkLogo,ResendEmail } from "./components/index";
+import { Panel, Logo, ContentContainer,LinkLogo,ResendEmail } from "../../components/formInfoUsuario/index.js";
 import { Link, useHistory } from "react-router-dom";
 import {Text} from "../../components/texts"
 import "../../components/loader/loader.css";
@@ -66,7 +66,7 @@ const  loginPatient = (email,resp) => {
 
   return (
     <Background backgroundColor={"var(--background)"}>
-      <LoginPanel>
+      <Panel>
        
       <Modal
         aria-labelledby="transition-modal-title"
@@ -111,7 +111,7 @@ const  loginPatient = (email,resp) => {
         >
          
           <LinkLogo as={Link} to="/">
-            <LogoFullLogin src={LogoFull}></LogoFullLogin>
+            <Logo src={LogoFull}></Logo>
           </LinkLogo>
           
           <form
@@ -179,7 +179,7 @@ const  loginPatient = (email,resp) => {
           
         </ContentContainer>
         
-      </LoginPanel>
+      </Panel>
       <Dialog
         open={open}
         onClose={handleClose}
