@@ -85,9 +85,7 @@ const  loginPatient = (email,resp) => {
             <form  onSubmit={(e) => {
               e.preventDefault();
                 setAnimationData(true);
-                console.log("Email ja confirmado");
-               
-                
+                console.log("Email ja confirmado"); 
               }
             }>
               <FormField
@@ -107,7 +105,7 @@ const  loginPatient = (email,resp) => {
         <ContentContainer
           backgroundColor={"var(--white)"}
           borderRadius={"10px"}
-          style={{ padding: "30px 0" }}
+          style={{ padding: "30px 0"}}
         >
          
           <LinkLogo as={Link} to="/">
