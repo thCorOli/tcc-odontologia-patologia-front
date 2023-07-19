@@ -110,3 +110,15 @@ export const WrapperFormField = styled.div`
   }
   margin-bottom: 45px;
 `;
+
+export const Linked = styled.a`
+align-self: center;
+text-decoration: none;
+color: var(--black);
+font-family: "Roboto Condensed";
+cursor: pointer;
+
+:hover {
+  color: var(--errors)
+}
+`;

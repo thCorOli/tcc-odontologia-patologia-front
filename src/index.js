@@ -4,6 +4,7 @@ import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import "./assets/css/reset.css";
 import Login from "./pages/login/index";
+import Cadastro from "./pages/cadastro/index"
 import NotFound from "./pages/404/index";
 import ResetPassword from "./pages/resetPassword/index"
 
@@ -11,7 +12,7 @@ import ResetPassword from "./pages/resetPassword/index"
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
-      <Route path={"/"} component={ResetPassword} exact />
+      <Route path={"/"} component={Cadastro} exact />
       
       <Route component={NotFound} />
     </Switch>

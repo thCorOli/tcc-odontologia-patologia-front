@@ -33,7 +33,7 @@ const ResetPassword = () => {
   };
 
   return (
-    <Background style={{overflow:"hidden"}} backgroundColor={"var(--background)"}>
+    <Background backgroundColor={"var(--background)"}>
       <Panel style={{width:"80%"}}>
         <ContentContainer
           backgroundColor={"var(--white)"}

@@ -160,7 +160,7 @@ const  loginPatient = (email,resp) => {
             <ButtonPage style={{ marginBottom: "2%" }} type={"submit"}>
               Entrar
             </ButtonPage>
-             
+          
             <ButtonPage
               as={Link}
               to="/cadastro"

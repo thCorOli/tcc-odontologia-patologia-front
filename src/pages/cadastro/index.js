@@ -5,25 +5,24 @@ import FormField from "../../components/formfield/index";
 import useForm from "../../hooks/useForm/index";
 import "../../constants/colors.css";
 import "./components/form.css";
-import { registerUser } from "../../services/index";
 import {
   Background,
   ContentContainer,
   LinkLogo,
-  LogoFullLogin,
   Text,
   TextContainer,
   Input,
-  WrapperFormField
+  WrapperFormField,
+  Linked
 } from "./components/style";
 import { useHistory, Link } from "react-router-dom";
-import LogoFull from "../../assets/imgs/logos/logoFull.svg";
 import "../../components/loader/loader.css";
 import InputMask from 'react-input-mask';
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import LogoFull from "../../assets/imgs/icon_provisorio.png";
 
 const Cadastro = () => {
   const { value, onChangeHandler } = useForm({
@@ -35,7 +34,8 @@ const Cadastro = () => {
     password_confirmation: "",
   });
 
-  
+
+
 
   const history = useHistory();
 
@@ -149,7 +149,7 @@ const Cadastro = () => {
       
       <MainContainer>
         <LinkLogo as={Link} to="/">
-            <LogoFullLogin src={LogoFull}></LogoFullLogin>
+          
           </LinkLogo>
           <ContentContainer
           backgroundColor={"var(--white)"}
@@ -167,7 +167,7 @@ const Cadastro = () => {
                 isDateValid(value.birthday)
               ) {
                 setAnimationData(true);
-                registerUser({ patient: value }, (response) => {
+                /*registerUser({ patient: value }, (response) => {
                   if (response.status >= 200 && response.status <= 299) {
                     setTitle("Confirme o seu email para finalizar o cadastro!");
                     handleClickOpen();
@@ -176,7 +176,7 @@ const Cadastro = () => {
                     handleClickOpen();
                     setAnimationData(false);
                   }
-                });
+                });*/
               }
             }}
           >
@@ -238,17 +238,13 @@ const Cadastro = () => {
               <div></div>
             )}
             <ButtonPage>Cadastrar</ButtonPage>
-            <ButtonPage
+            <Linked
               as={Link}
               to="/login"
-              style={{
-                backgroundColor: "var(--background)",
-                color: "var(--primary-blue)",
-                margin: "20px 0",
-              }}
+              style={{margin:'5% 0 0 0',textalign:'center'}}
             >
               Já é Cadastrado?
-            </ButtonPage>
+            </Linked>
           </form>
         </ContentContainer>
       </MainContainer>
