@@ -1,11 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import Icon from "../../assets/imgs/logos/logo.svg";
-import Export1 from "../../assets/imgs/incosSideMenus/exportar 1.svg";
-import Group4 from "../../assets/imgs/incosSideMenus/Group 4.svg";
-import Medico from "../../assets/imgs/incosSideMenus/medico 1.svg";
-import { logout } from "../../services/index";
+import { logout } from "../../services/general/acess";
 import { useHistory } from "react-router-dom";
 import "../../constants/colors.css";
 import ReactTooltip from "react-tooltip";
@@ -73,16 +69,16 @@ const SideMenuAdmin = () => {
     <SideMenuUser>
       <ReactTooltip place="right" type="dark" effect="solid" />
       <ItensSideMenu as={Link} to="/home/admin" style={{ flex: 0.5 }}>
-        <Logo src={Icon} />
+        <Logo  />
       </ItensSideMenu>
       <ItensSideMenu data-tip="Medico" as={Link} to={"/admin/confirmMedic"}>
-        <Img src={Medico} />
+        <Img  />
       </ItensSideMenu>
       <ItensSideMenu data-tip="Exportar" as={Link} to={"/admin/exportar"}>
-        <Img src={Export1} />
+        <Img />
       </ItensSideMenu>
       <ItensSideMenu onClick={logoutAdmin} data-tip="Sair" style={{ flex: 0.5 }}>
-        <Img src={Group4} />
+        <Img  />
       </ItensSideMenu>
     </SideMenuUser>
   );

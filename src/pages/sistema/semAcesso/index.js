@@ -1,5 +1,4 @@
 import React from "react";
-import LogoFull from "../../../assets/imgs/logos/logoFull.svg";
 import { MainContainer } from "../../../constants/containers/index";
 import { Text } from "../../../components/texts/index";
 import "../../../constants/colors.css";
@@ -43,7 +42,7 @@ const SemAcesso = () => {
     <Background onLoad={TimeOut}>
       <MainContainer>
         <LogoContainer>
-          <Logo src={LogoFull} />
+          <Logo />
         </LogoContainer>
         <Centralized>
           <Text>

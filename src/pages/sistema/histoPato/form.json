@@ -1,0 +1,52 @@
+{
+    "Form" :{ 
+        "0":{ 
+            "title": "Tipo Material A",
+            "options":["Biópsia incisional","Biópsia excisional","Curetagem","Exodontia","Raspado","Outro"]
+        },
+        "1":{
+            "title":"Tipo Material B",
+            "options":["Mucosa","Semimucosa","Intraósseo","Dente","Glândulas salivares labiais","Outro"]
+        },
+        "2":{
+            "title":"Lado",
+            "options":["direito","esquerdo"]
+        },
+        "3":{
+            "title": "Número",
+            "options":["unica","dupla","multipla"]
+        },
+        "4":{
+            "title": "Lesão",
+            "options":["mácula","placa","pápula","nódulo","vesícula","bolha","úlcera","crosta"]
+        },
+        "5":{
+            "title":"Base",
+            "options":["séssil","pediculada"]
+        },
+        "6":{
+            "title":"Formato",
+            "options":["irregular","esférico","oval","Outro"]
+        },
+        "7":{
+            "title":"Consistência",
+            "options":["firme","pétrea","mole","borrachoide"]
+        },
+        "8":{
+            "title":"Cor",
+            "options":["rósea/normal","branca","preta","vermelha","amarela","Outro"]
+        },
+        "9":{
+            "title":"Limites",
+            "options":["precisos","imprecisos","circinado"]
+        },
+        "10":{
+            "title":"Superfície",
+            "options":["lisa","ulcerada","lobulada","irregular","Outro"]
+        },
+        "11":{
+            "title":"Sintoma",
+            "options":["ausente","com dor","com ardor","Outro"]
+        }
+    }
+}

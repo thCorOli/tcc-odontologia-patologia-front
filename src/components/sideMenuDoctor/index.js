@@ -1,13 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { Link, useHistory } from "react-router-dom";
-import Icon from "../../assets/imgs/logos/logo.svg";
-import Pills from "../../assets/imgs/incosSideMenus/comprimidos 1.svg";
-import Group4 from "../../assets/imgs/incosSideMenus/Group 4.svg";
-import Pressao from "../../assets/imgs/incosSideMenus/pressao-sanguinea 1.svg";
-import Graphic from "../../assets/imgs/incosSideMenus/lucros 1.svg";
 import "../../constants/colors.css";
-import { logout } from "../../services/index";
+import { logout } from "../../services/general/acess";
 import ReactTooltip from "react-tooltip";
 
 import Button from "@material-ui/core/Button";
@@ -98,19 +93,19 @@ const SideMenuDoctor = () => {
     <SideMenuMedic>
       <ReactTooltip place="right" type="dark" effect="solid" />
       <ItensSideMenu as={Link} to="/homeMedic" style={{ flex: 0.5 }}>
-        <Logo src={Icon} />
+        <Logo />
       </ItensSideMenu>
       <ItensSideMenu as={Link} to="/acompanhamento" data-tip="Histórico Medição">
-        <Img src={Pressao} />
+        <Img  />
       </ItensSideMenu>
       <ItensSideMenu as={Link} to="/acompanhamentoMedicacao" data-tip="Histórico Medicação">
-        <Img src={Pills} />
+        <Img  />
       </ItensSideMenu>
       <ItensSideMenu data-tip="Gráfico Paciente" as={Link} to="/graficoDoctor">
-        <Img src={Graphic} />
+        <Img  />
       </ItensSideMenu>
       <ItensSideMenu onClick={handleClickOpen} data-tip="Sair" style={{ flex: 0.5 }}>
-        <Img src={Group4} />
+        <Img  />
       </ItensSideMenu>
       <Dialog
         open={open}

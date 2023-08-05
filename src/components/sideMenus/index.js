@@ -1,15 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { Link, useHistory } from "react-router-dom";
-import Icon from "../../assets/imgs/logos/logo.svg";
-import Pills from "../../assets/imgs/incosSideMenus/comprimidos 1.svg";
-import Group4 from "../../assets/imgs/incosSideMenus/Group 4.svg";
-import Medico from "../../assets/imgs/incosSideMenus/medico 1.svg";
-import Relatorio from "../../assets/imgs/incosSideMenus/pasta 1.svg";
-import Pressao from "../../assets/imgs/incosSideMenus/pressao-sanguinea 1.svg";
-import Graphic from "../../assets/imgs/incosSideMenus/lucros 1.svg";
 import "../../constants/colors.css";
-import { logout } from "../../services/index";
+import { logout } from "../../services/general/acess";
 import ReactTooltip from "react-tooltip";
 
 import Button from "@material-ui/core/Button";
@@ -100,29 +93,29 @@ const SideMenu = () => {
     <SideMenuUser>
       <ReactTooltip place="right" type="dark" effect="solid" />
       <ItensSideMenu as={Link} to="/home/patient">
-        <Logo src={Icon} />
+        <Logo  />
       </ItensSideMenu>
       <ItensSideMenu as={Link} to="/user/medicao" data-tip="Exames e Medidas">
-        <Img src={Pressao} />
+        <Img  />
       </ItensSideMenu>
       <ItensSideMenu as={Link} to="/user/medicacao" data-tip="Medicação">
-        <Img src={Pills} />
+        <Img  />
       </ItensSideMenu>
       <ItensSideMenu
         data-tip="Selecionar Médico"
         as={Link}
         to={"/user/selecionarMedico"}
       >
-        <Img src={Medico} />
+        <Img />
       </ItensSideMenu>
       <ItensSideMenu data-tip="Histórico Médico" as={Link} to="/user/historico">
-        <Img src={Relatorio} />
+        <Img  />
       </ItensSideMenu>
       <ItensSideMenu data-tip="Gráfico" as={Link} to="/user/grafico">
-        <Img src={Graphic} />
+        <Img  />
       </ItensSideMenu>
       <ItensSideMenu onClick={handleClickOpen} data-tip="Sair">
-        <Img src={Group4} />
+        <Img />
       </ItensSideMenu>
       <Dialog
         open={open}

@@ -5,7 +5,6 @@ import SideMenu from "../sideMenus/index";
 import SideMenuAdmin from "../sideMenuAdmin/index";
 import SideMenuDoctor from "../sideMenuDoctor/index";
 import jwt_decode from "jwt-decode";
-import { logout } from "../../services/index";
 import { useHistory } from "react-router-dom";
 import SemAcesso from '../../pages/sistema/semAcesso/index';
 
@@ -23,7 +22,7 @@ const Layout = (props) => {
       if(user) token = user.token;
       else if(admin) token = admin.token;
       if (jwt_decode(token).exp < Date.now() / 1000) {
-        logout();
+
         history.push("/");
       }
     }
