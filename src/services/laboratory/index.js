@@ -1,7 +1,7 @@
 import axios from "axios";
 import { saveAs } from "file-saver";
 
-const URL = "";
+const URL = "/laboratory";
 
 const api = axios.create({
   baseURL: URL,
@@ -16,7 +16,7 @@ const config = {
 
 export const register = (User, _callback) => {
     api
-    .post(`/patients`, User, config)
+    .post(User, config)
     .then((response) => {
       _callback(response);
     })
@@ -24,6 +24,20 @@ export const register = (User, _callback) => {
       _callback(errors.response);
     });
 }
+
+export const login = (Patient, _callback) => {
+  api
+    .post(`/login`, Patient, config)
+    .then((response) => {
+      logout();
+      localStorage.setItem("user", JSON.stringify(response.data));
+      localStorage.setItem("admin", JSON.stringify(response.data));
+      _callback(response);
+    })
+    .catch((err) => {
+      _callback(err.response);
+    });
+};
 
 export const listSelectPatient = (_callback) => {
   const listPatienConfig = {
@@ -35,44 +49,13 @@ export const listSelectPatient = (_callback) => {
   };
 
   return api
-    .get("/doctors/patient_list", listPatienConfig)
+    .get("/patient_list", listPatienConfig)
     .then((response) => response.data)
     .catch((err) => {
       _callback(err.response);
     });
 };
 
-export const login = (Patient, _callback) => {
-    api
-      .post(`/patients/login`, Patient, config)
-      .then((response) => {
-        logout();
-        localStorage.setItem("user", JSON.stringify(response.data));
-        localStorage.setItem("admin", JSON.stringify(response.data));
-        _callback(response);
-      })
-      .catch((err) => {
-        _callback(err.response);
-      });
-};
-
-export const submitForm = (FormAnswer, _callback) => {
-    const submitMedicationConfig = {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        Authorization: `Bearer ${user().token}`,
-      },
-    };
-  
-    api
-      .post("/medications", FormAnswer, submitMedicationConfig)
-      .then((response) => {
-        _callback(response);
-      })
-      .catch((err) => {
-        _callback(err.response);
-      });
-  };
 
 export const resendEmail = (email,_callback) => {
     const config = {
@@ -82,30 +65,13 @@ export const resendEmail = (email,_callback) => {
         },
     };
     api
-        .post(`patients/resend_email_confirmation`, email, config)
+        .post(`/resend_email_confirmation`, email, config)
         .then(_callback)
         .catch((err) => {
         _callback(err); //ver tratamento de erro
         });
 
-}
-
-export const history = (_callback) => {
-    const measurementsConfig = {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${user().token}`,
-      },
-    };
-    return api
-      .get('/patients/history_measurements', measurementsConfig)
-      .then((response) => _callback(response))
-      .catch((err) => {
-        _callback(err.response);
-      });
-  };
-  
+} 
 
   function deleteCookie() {
     var today = new Date();
@@ -123,7 +89,7 @@ export const history = (_callback) => {
   };
   
 
-  
+/*  
 export const downloadMeasurements = (_callback) => {
   const measurementsConfig = {
     headers: {
@@ -148,3 +114,22 @@ export const downloadMeasurements = (_callback) => {
     })
     .catch((err) => _callback(err.response));
 };
+
+export const history = (_callback) => {
+    const measurementsConfig = {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user().token}`,
+      },
+    };
+    return api
+      .get('/patients/history_measurements', measurementsConfig)
+      .then((response) => _callback(response))
+      .catch((err) => {
+        _callback(err.response);
+      });
+  };
+
+
+*/

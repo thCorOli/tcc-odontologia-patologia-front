@@ -17,7 +17,6 @@ export const hasSqlStrings = (obj) => {
     for (let key in obj) {
         if (obj.hasOwnProperty(key)){
             if(typeof obj[key]  === 'string'){
-                console.log(obj[key]);
                 blockSQLInjection(obj[key]);
             }
         }

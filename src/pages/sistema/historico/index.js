@@ -15,10 +15,6 @@ const History = () => {
 
   const user = JSON.parse(localStorage.getItem("user"));
 
-
-  // useEffect(() => {
-    
-  // }, []);
   useEffect(() => {
     MeasurementsHistory((response) => {
       //let graphData = response.data.user.forEach( (val) => Object.entries(val).forEach( (pair) => `${pair[0]}` in graph ? graph[`${pair[0]}`].push(pair[1]) : graph[`${pair[0]}`] = [pair[1]]) )
@@ -26,6 +22,8 @@ const History = () => {
     
     });
   }, []);
+
+  
   if (user && user.allowed !==false) {
     return (
       <Layout titlePage="Histórico">

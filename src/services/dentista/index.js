@@ -1,7 +1,7 @@
 import axios from "axios";
 import { saveAs } from "file-saver";
 
-const URL = "";
+const URL = "/dentist";
 
 const api = axios.create({
   baseURL: URL,
@@ -16,7 +16,7 @@ const config = {
 
 export const register = (User, _callback) => {
     api
-    .post(`/patients`, User, config)
+    .post(`/`, User, config)
     .then((response) => {
       _callback(response);
     })
@@ -27,7 +27,7 @@ export const register = (User, _callback) => {
 
 export const login = (Patient, _callback) => {
     api
-      .post(`/patients/login`, Patient, config)
+      .post(`/login`, Patient, config)
       .then((response) => {
         logout();
         localStorage.setItem("user", JSON.stringify(response.data));
@@ -50,7 +50,7 @@ export const MeasurementsHistory = (_callback) => {
     };
   
     return api
-      .get('/patients/history_measurements', measurementsConfig)
+      .get('/history_measurements', measurementsConfig)
       .then((response) => _callback(response))
       .catch((err) => {
         _callback(err.response);
@@ -67,7 +67,7 @@ export const MedicationHistoryById = (id, _callback) => {
     };
   
     return api
-      .get(`/patients/history_medications/${id}`, measurementsConfig)
+      .get(`/history_medications/${id}`, measurementsConfig)
       .then((response) => response.data)
       .catch((err) => {
         _callback(err.response);

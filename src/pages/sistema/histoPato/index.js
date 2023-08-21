@@ -16,6 +16,7 @@ const FormHistoPato = () => {
         e.preventDefault();
         console.log(value);
       }}>
+        <h3>Tipo Material:</h3>
         {Object.values(form.Form).map(field => (
           <div key={field.title}>
             <label>{field.title}: </label>
