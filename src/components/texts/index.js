@@ -43,7 +43,7 @@ export const TextCard = styled.p`
 
 export const Option = styled.p`
   font-family: "Roboto Condensed";
-  font-size: 1.2em;
+  font-size: 0.95em;
   color: var(--black);
 
   @media only screen and (max-width: 640px) {
@@ -74,6 +74,19 @@ export const TitleSectionForm = styled.h3`
   }  
   
 `;
+
+export const SubtitleSection = styled.p`
+  font-family: "Roboto Condensed";
+  font-size: 1em;
+  color: var(--black);
+  margin-bottom: 0.5%;
+  font-weight: bold;
+
+  @media only screen and (max-width: 640px) {
+    font-size: 0.75em;
+  }
+`;
+
 
 
 export const Errors = styled.p`

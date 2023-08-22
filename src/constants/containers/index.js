@@ -58,3 +58,11 @@ export const AlignContentHistory = styled.div`
   align-items: center;
   width: 100%;
 `;
+
+export const MakeSideContainer = styled.div`
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 0.5rem;
+`;
+

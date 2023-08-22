@@ -2,8 +2,8 @@ import React , {useState} from "react";
 import Button from "../../components/button/index";
 import form from "./form.json"
 import useFormOptions from "../../hooks/useFormOptions/index"
-import {Option, Subtitle, TitleSectionForm} from "../../components/texts/index"
-import { MakeSide } from "../../components/layout/style";
+import {Option, SubtitleSection, TitleSectionForm} from "../../components/texts/index"
+import { MakeSideContainer } from "../../constants/containers/index";
 import Layout from "../../components/layout";
 import InputFile from "../../components/inputFile";
 
@@ -29,10 +29,10 @@ const FormHistoPato = () => {
         <TitleSectionForm>Tipo Material:</TitleSectionForm>
         {Object.values(form.Form).map(field => (
           <div key={field.title}>
-            <Subtitle>{field.title}: </Subtitle>
-            <MakeSide>
+            <SubtitleSection>{field.title}: </SubtitleSection>
+            <MakeSideContainer>
             {field.options.map(option => (
-              <MakeSide key={option}>
+              <MakeSideContainer key={option}>
                 <input
                   type="checkbox"
                   name={field.title}
@@ -41,9 +41,9 @@ const FormHistoPato = () => {
                   onChange={onChangeHandler}
                   />
                 <Option> {option} </Option> 
-              </MakeSide>
+              </MakeSideContainer>
             ))}
-          </MakeSide>
+          </MakeSideContainer>
           </div>
         ))}
         <InputFile onChange={handleFileChange}/>
