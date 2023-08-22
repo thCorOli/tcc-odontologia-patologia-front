@@ -14,7 +14,7 @@ const FormHistoPato = () => {
     const { value, onChangeHandler } = useFormOptions(initialValues);
   
     return (
-      <Layout>
+      <Layout titlePage="Formulário HistoPatologico">
 
       <form onSubmit={(e) => {
         e.preventDefault();

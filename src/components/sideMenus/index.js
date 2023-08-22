@@ -95,10 +95,10 @@ const SideMenu = () => {
       <ItensSideMenu as={Link} to="/home/patient">
         <Logo  />
       </ItensSideMenu>
-      <ItensSideMenu as={Link} to="/user/medicao" data-tip="Exames e Medidas">
+      <ItensSideMenu as={Link} to="/user/medicao" data-tip="Formulário HistoPatologico">
         <Img  />
       </ItensSideMenu>
-      <ItensSideMenu as={Link} to="/user/medicacao" data-tip="Medicação">
+      <ItensSideMenu as={Link} to="/user/medicacao" data-tip="Historico">
         <Img  />
       </ItensSideMenu>
       <ItensSideMenu
@@ -108,10 +108,7 @@ const SideMenu = () => {
       >
         <Img />
       </ItensSideMenu>
-      <ItensSideMenu data-tip="Histórico Médico" as={Link} to="/user/historico">
-        <Img  />
-      </ItensSideMenu>
-      <ItensSideMenu data-tip="Gráfico" as={Link} to="/user/grafico">
+      <ItensSideMenu data-tip="Meus Exames" as={Link} to="/user/historico">
         <Img  />
       </ItensSideMenu>
       <ItensSideMenu onClick={handleClickOpen} data-tip="Sair">

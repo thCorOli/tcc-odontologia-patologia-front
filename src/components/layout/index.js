@@ -6,7 +6,6 @@ import SideMenuAdmin from "../sideMenuAdmin/index";
 import SideMenuDoctor from "../sideMenuDoctor/index";
 import jwt_decode from "jwt-decode";
 import { useHistory } from "react-router-dom";
-import SemAcesso from '../../pages/sistema/semAcesso/index';
 
 const Layout = (props) => {
 
