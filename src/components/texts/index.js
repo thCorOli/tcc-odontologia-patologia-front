@@ -41,6 +41,16 @@ export const TextCard = styled.p`
   }
 `;
 
+export const Option = styled.p`
+  font-family: "Roboto Condensed";
+  font-size: 1.2em;
+  color: var(--black);
+
+  @media only screen and (max-width: 640px) {
+    font-size: 0.25em;
+  }
+`;
+
 export const Errors = styled.p`
   font-family: "Roboto Condensed";
   font-size: 1.5em;
@@ -59,5 +69,4 @@ export const Subtitle = styled.p`
   @media only screen and (max-width: 640px) {
     font-size: 0.75em;
   }
-
 `;

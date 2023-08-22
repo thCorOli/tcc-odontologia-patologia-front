@@ -14,7 +14,7 @@ const Layout = (props) => {
   const admin = JSON.parse(localStorage.getItem("admin"));
   const history = useHistory();
 
-  if (user || admin) {
+  /*if (user || admin) {
 
     function TokenVerify() {
 
@@ -26,20 +26,23 @@ const Layout = (props) => {
         history.push("/");
       }
     }
-
     TokenVerify();
+    
+    // {admin.admin ? (
+             // <SideMenuAdmin />
+            //) : user.doctor ? (
+            //  <SideMenuDoctor />
+            //) : (
+            //      <SideMenu />
+                //)}
+    */
+
 
     return (
       <React.Fragment>
         <div>
           <MakeSide>
-            {admin.admin ? (
-              <SideMenuAdmin />
-            ) : user.doctor ? (
-              <SideMenuDoctor />
-            ) : (
-                  <SideMenu />
-                )}
+          <SideMenu />
             <H1sistem>{props.titlePage}</H1sistem>
           </MakeSide>
           <Content>{props.children} </Content>
@@ -47,7 +50,7 @@ const Layout = (props) => {
       </React.Fragment>
     );
   }
-  else return <SemAcesso />;
-};
+  //else return <SemAcesso />;
+//};
 
 export default Layout;

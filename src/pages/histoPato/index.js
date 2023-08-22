@@ -1,8 +1,10 @@
 import React , {useState} from "react";
-import Layout from "../../../components/layout/index";
-import Button from "../../../components/button/index";
+import Button from "../../components/button/index";
 import form from "./form.json"
-import useFormOptions from "../../../hooks/useFormOptions/index";
+import useFormOptions from "../../hooks/useFormOptions/index"
+import {Option} from "../../components/texts/index"
+import { MakeSide } from "../../components/layout/style";
+import Layout from "../../components/layout";
 
 const FormHistoPato = () => {
     const initialValues = Object.values(form.Form).reduce((acc, field) => {
@@ -12,6 +14,8 @@ const FormHistoPato = () => {
     const { value, onChangeHandler } = useFormOptions(initialValues);
   
     return (
+      <Layout>
+
       <form onSubmit={(e) => {
         e.preventDefault();
         console.log(value);
@@ -20,22 +24,26 @@ const FormHistoPato = () => {
         {Object.values(form.Form).map(field => (
           <div key={field.title}>
             <label>{field.title}: </label>
+            <MakeSide>
             {field.options.map(option => (
-              <label key={option}>
+              <MakeSide key={option}>
                 <input
                   type="checkbox"
                   name={field.title}
                   value={option}
                   checked={value[field.title].includes(option)}
                   onChange={onChangeHandler}
-                />
-                {option}
-              </label>
+                  />
+                <Option> {option} </Option> 
+              </MakeSide>
             ))}
+          </MakeSide>
           </div>
         ))}
-        <Button type={"submit"}>Teste</Button>
+        <input type="file"/>
+        <Button type={"submit"}>Enviar</Button>
       </form>
+      </Layout>
     );
   }
   

@@ -7,13 +7,15 @@ import Login from "./pages/login/index";
 import Cadastro from "./pages/cadastro/index"
 import NotFound from "./pages/404/index";
 import ResetPassword from "./pages/resetPassword/index"
-import FormHistoPato  from "./pages/sistema/histoPato";
+import FormHistoPato  from "./pages/histoPato";
 
 
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
-      <Route path={"/"} component={FormHistoPato} exact />
+      <Route path={"/"} component={Login} exact />
+      <Route path={"/cadastro"} component={Cadastro} exact />
+      <Route path={"/cistoPatologico"} component={FormHistoPato} exact />
     </Switch>
   </BrowserRouter>,
   document.getElementById("root")
