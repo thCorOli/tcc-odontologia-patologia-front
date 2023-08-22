@@ -51,6 +51,31 @@ export const Option = styled.p`
   }
 `;
 
+export const TitleSectionForm = styled.h3`
+  font-family: "Roboto Condensed";
+  font-size: 1.25em;
+  line-height: 50px;
+  color: var(--black);
+  margin-bottom: 2%;
+  position: relative;
+
+  @media only screen and (max-width: 640px) {
+    font-size: 0.75em;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px; /* Ajuste conforme necessário */
+    width: 100%;
+    height: 1px;
+    background-color: #000; /* Cor da linha */
+  }  
+  
+`;
+
+
 export const Errors = styled.p`
   font-family: "Roboto Condensed";
   font-size: 1.5em;
