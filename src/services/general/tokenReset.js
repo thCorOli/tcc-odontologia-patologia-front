@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL = "https://club4care-api-teste.herokuapp.com";
+const URL = "//127.0.0.1:3001";
 
 const api = axios.create({
   baseURL: URL,
