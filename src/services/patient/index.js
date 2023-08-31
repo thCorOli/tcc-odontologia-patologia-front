@@ -1,7 +1,7 @@
 import axios from "axios";
 import { saveAs } from "file-saver";
 
-const URL = "//127.0.0.1:3001";
+const URL = "http://127.0.0.1:3001/api";
 
 const api = axios.create({
   baseURL: URL,
@@ -9,14 +9,19 @@ const api = axios.create({
 
 const config = {
     headers: {
-      "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods":"*", 
+        "Access-Control-Allow-Headers":"*"
     },
   };
 
+const user = () => {
+    return JSON.parse(localStorage.getItem("user"));
+};
 
 export const register = (User, _callback) => {
     api
-    .post(`/`, User, config)
+    .post(`/patients`, User, config)
     .then((response) => {
       _callback(response);
     })
@@ -29,7 +34,7 @@ export const login = (Patient, _callback) => {
     api
       .post(`/login`, Patient, config)
       .then((response) => {
-        logout();
+        //logout();
         localStorage.setItem("user", JSON.stringify(response.data));
         localStorage.setItem("admin", JSON.stringify(response.data));
         _callback(response);

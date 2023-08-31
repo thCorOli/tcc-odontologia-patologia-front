@@ -23,6 +23,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import LogoFull from "../../assets/imgs/icon_provisorio.png";
+import { register } from "../../services/patient";
 
 const Cadastro = () => {
   const { value, onChangeHandler } = useForm({
@@ -141,7 +142,7 @@ const Cadastro = () => {
 
   const handleSuccess = () => {
     handleClose();
-    history.push("/login");
+    history.push("/");
   };
 
   return (
@@ -167,7 +168,7 @@ const Cadastro = () => {
                 isDateValid(value.birthday)
               ) {
                 setAnimationData(true);
-                /*registerUser({ patient: value }, (response) => {
+                register({ patient: value }, (response) => {
                   if (response.status >= 200 && response.status <= 299) {
                     setTitle("Confirme o seu email para finalizar o cadastro!");
                     handleClickOpen();
@@ -176,7 +177,7 @@ const Cadastro = () => {
                     handleClickOpen();
                     setAnimationData(false);
                   }
-                });*/
+                });
               }
             }}
           >
@@ -240,7 +241,7 @@ const Cadastro = () => {
             <ButtonPage>Cadastrar</ButtonPage>
             <Linked
               as={Link}
-              to="/login"
+              to="/"
               style={{margin:'5% 0 0 0',textalign:'center'}}
             >
               Já é Cadastrado?
