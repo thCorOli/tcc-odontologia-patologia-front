@@ -24,6 +24,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import LogoFull from "../../assets/imgs/icon_provisorio.png";
 import { register } from "../../services/patient";
+import { hasEmptyFields,isCpfValid,isDateValid,isEqual } from "../../services/general/security";
 
 const Cadastro = () => {
   const { value, onChangeHandler } = useForm({
@@ -35,95 +36,20 @@ const Cadastro = () => {
     password_confirmation: "",
   });
 
-
-
-
   const history = useHistory();
 
-  const validateCpf = (cpf) => {
-    if (typeof cpf !== "string") return false;
-    cpf = cpf.replace(/[\s.-]*/gim, "");
-    if (
-      !cpf ||
-      cpf.length !== 11 ||
-      cpf === "00000000000" ||
-      cpf === "11111111111" ||
-      cpf === "22222222222" ||
-      cpf === "33333333333" ||
-      cpf === "44444444444" ||
-      cpf === "55555555555" ||
-      cpf === "66666666666" ||
-      cpf === "77777777777" ||
-      cpf === "88888888888" ||
-      cpf === "99999999999"
-    ) {
-      setTitle("Digite um CPF válido!");
-      handleClickOpen();
-      return false;
-    }
-    var soma = 0;
-    var resto;
-    for (var i = 1; i <= 9; i++)
-      soma = soma + parseInt(cpf.substring(i - 1, i)) * (11 - i);
-    resto = (soma * 10) % 11;
-    if (resto === 10 || resto === 11) resto = 0;
-    if (resto !== parseInt(cpf.substring(9, 10))) {
-      setTitle("Digite um CPF válido!");
-      handleClickOpen();
-      return false;
-    }
-    soma = 0;
-    for (let i = 1; i <= 10; i++)
-      soma = soma + parseInt(cpf.substring(i - 1, i)) * (12 - i);
-    resto = (soma * 10) % 11;
-    if (resto === 10 || resto === 11) resto = 0;
-    if (resto !== parseInt(cpf.substring(10, 11))) {
-      setTitle("Digite um CPF válido!");
-      handleClickOpen();
-      return false;
-    }
-    return true;
-  };
 
-  const isEqual = (password, password_confirmation) => {
-    if (password === password_confirmation) return true;
-    else {
-      setTitle("Senhas não coincidem!");
-      handleClickOpen();
-      return false;
-    }
-  };
-
-  const isEmpty = (value) => {
-    if (
-      value.name === "" ||
-      value.email === "" ||
-      value.birthday === "" ||
-      value.cpf === "" ||
-      value.password === "" ||
-      value.password_confirmation === ""
-    ) {
-      setTitle("Preencha todos os campos!");
-      handleClickOpen();
-      return false;
-    } else return true;
-  };
-
-  const isDateValid = (date) => {
-    let today = new Date();
-    let fildDate = new Date(date.split('/').reverse());
-    if(date === ""){
-      setTitle("Preencha o campo da data");
-      return false
-    }
-    
-    if(fildDate.getTime() >= today.getTime()){
-      setTitle("Digite uma Data Valida!");
-      handleClickOpen();
-      return false;
-    }
-    value.birthday = date.split('/').reverse().join('-');
-    return true;
+const performValidation = (user) => {
+  console.log(user)
+  if(hasEmptyFields(user))
+    return 'isEmpty'
+  if(!isCpfValid(user.cpf))
+    return 'CpfInvalid'
+  if(!isDateValid(user.birthday))
+    return 'DateInvalid'
+  if(!isEqual(user.password,user.password_confirmation))
+    return'NotEqual'
+  return "valid"
 }
 
   const [animationData, setAnimationData] = useState(false);
@@ -161,12 +87,9 @@ const Cadastro = () => {
             className="form"
             onSubmit={(e) => {
               e.preventDefault();
-              if (
-                isEmpty(value) &&
-                isEqual(value.password, value.password_confirmation) &&
-                validateCpf(value.cpf) &&
-                isDateValid(value.birthday)
-              ) {
+             switch (performValidation(value)) {
+              case "valid":
+                value.birthday = value.birthday.split('/').reverse().join('-');
                 setAnimationData(true);
                 register({ patient: value }, (response) => {
                   if (response.status >= 200 && response.status <= 299) {
@@ -178,7 +101,28 @@ const Cadastro = () => {
                     setAnimationData(false);
                   }
                 });
-              }
+                break;
+              case "isEmpty":
+                setTitle("Preencha todos os campos");
+                handleClickOpen();
+                break;
+              case "CpfInvalid":
+                setTitle("CPF Inválido!");
+                handleClickOpen();
+                break;
+              case "DateInvalid":
+                setTitle("Data Inválida!");
+                handleClickOpen();
+                break;
+              case "NotEqual":
+                setTitle("Senhas divergentes!");
+                handleClickOpen();
+                break;
+              default:
+                setTitle("Erro inesperado");
+                handleClickOpen();
+                break;
+             }
             }}
           >
             <FormField
