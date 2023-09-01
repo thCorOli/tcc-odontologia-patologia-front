@@ -1,4 +1,5 @@
 import axios from "axios";
+import {logout} from "../general/acess";
 import { saveAs } from "file-saver";
 
 const URL = "http://127.0.0.1:3001/api";
@@ -32,9 +33,9 @@ export const register = (User, _callback) => {
 
 export const login = (Patient, _callback) => {
     api
-      .post(`/login`, Patient, config)
+      .post(`/patients/login`, Patient, config)
       .then((response) => {
-        //logout();
+        logout();
         localStorage.setItem("user", JSON.stringify(response.data));
         localStorage.setItem("admin", JSON.stringify(response.data));
         _callback(response);
@@ -45,36 +46,21 @@ export const login = (Patient, _callback) => {
 };
 
 
-export const MeasurementsHistory = (_callback) => {
-    const measurementsConfig = {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${user().token}`,
-      },
-    };
-  
-    return api
-      .get('/history_measurements', measurementsConfig)
-      .then((response) => _callback(response))
-      .catch((err) => {
-        _callback(err.response);
-      });
-};
-  
-export const MedicationHistoryById = (id, _callback) => {
-    const measurementsConfig = {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${user().token}`,
-      },
-    };
-  
-    return api
-      .get(`/history_medications/${id}`, measurementsConfig)
-      .then((response) => response.data)
-      .catch((err) => {
-        _callback(err.response);
-      });
+export const submitExam = (FormAnswer, _callback) => {
+  const submitMedicationConfig = {
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${user().token}`,
+    },
+  };
+  console.log(FormAnswer);
+  api
+    .post("/medications", FormAnswer, submitMedicationConfig)
+    .then((response) => {
+      _callback(response);
+    })
+    .catch((err) => {
+      _callback(err.response);
+    });
 };

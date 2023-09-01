@@ -6,7 +6,7 @@ function deleteCookie() {
     document.cookie = "isAdmin=" + cvalue + ";" + expire + ";path=/";
   }
   
-  export const logout = () => {
+export const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     localStorage.removeItem("admin");

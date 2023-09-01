@@ -17,7 +17,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import {hasEmptyFields,hasSqlStrings} from '../../services/general/security'
-
+import { login } from "../../services/patient";
 
 const Login = () => {
 
@@ -52,7 +52,7 @@ const Login = () => {
     setModal(true);
   }
   
-const  loginPatient = (email,resp) => {
+const  ResendEmailF = (email,resp) => {
   if (resp.status >= 200 && resp.status <= 299) {
     setTitle("Email reenviado com sucesso!");
     handleClickOpen();
@@ -63,6 +63,9 @@ const  loginPatient = (email,resp) => {
     handleClickOpen();
   }
 };
+
+
+
 
   return (
     <Background backgroundColor={"var(--background)"}>
@@ -123,21 +126,30 @@ const  loginPatient = (email,resp) => {
             }}
             onSubmit={(e) => {
               e.preventDefault();
-              if (hasEmptyFields(value)) {
-                setTitle("1 ou mais campos se encontram vazios!");
-                handleClickOpen();
-              } else {
-                setAnimationData(true);
-                console.log("Passei pela segurança front");
+              if(!hasEmptyFields(value)){
+                login({ patient: value },(response)=>{
+                  if(response.status >= 200 && response.status <= 299){
+                    setTitle("Logado com sucesso!");
+                    handleClickOpen();
+                    history.push("/cistoPatologico")
+                  }  
+                  else{
+                    setAnimationData(false);
+                    setTitle(`${response.data.errors[0]},${response.data.errors[1]}`);
+                    handleClickOpen();
+                  }
+                });
               }
-              console.log(hasEmptyFields(value));
-            }}
+            }
+          }
           >
             <FormField
               label={"E-mail"}
               onChange={onChangeHandler}
               name={"email"}
+              type={"email"}
               value={value.email}
+
             />
             <FormField
               label={"Senha"}

@@ -6,6 +6,10 @@ import {Option, SubtitleSection, TitleSectionForm} from "../../components/texts/
 import { MakeSideContainer } from "../../constants/containers/index";
 import Layout from "../../components/layout";
 import InputFile from "../../components/inputFile";
+import {submitExam} from "../../services/patient/index"
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogTitle from "@material-ui/core/DialogTitle";
 
 const FormHistoPato = () => {
     const initialValues = Object.values(form.Form).reduce((acc, field) => {
@@ -17,14 +21,42 @@ const FormHistoPato = () => {
     };
   
 
-    const { value, onChangeHandler } = useFormOptions(initialValues);
+    const { value, onChangeHandler,clearForm } = useFormOptions(initialValues);
+    const [open, setOpen] = React.useState(false);
+    const [modal, setModal] = useState(false);
+    const [title, setTitle] = React.useState(false);
+
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
   
+    const handleClose = () => {
+      setOpen(false);
+    };
+  
+    const handleCloseModal = () => {
+      setModal(false);
+    }
+  
+    const handleOpenModal = () => {
+      setModal(true);
+    }
+
     return (
       <Layout titlePage="Formulário HistoPatologico">
 
       <form onSubmit={(e) => {
         e.preventDefault();
-        console.log(value,file);
+        submitExam({ formAnswer: value },(response)=>{
+          if (response.status >= 200 && response.status <= 299) {
+            setTitle("Formulário enviado com sucesso");
+            handleClickOpen();
+            clearForm();
+          } else {
+            setTitle(response.data.errors);
+            handleClickOpen();
+          }
+        })
       }}>
         <TitleSectionForm>Tipo Material:</TitleSectionForm>
         {Object.values(form.Form).map(field => (
@@ -49,6 +81,19 @@ const FormHistoPato = () => {
         <InputFile onChange={handleFileChange}/>
         <Button type={"submit"}>Enviar</Button>
       </form>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
+        <DialogActions>
+         <button onClick={handleClose} color="primary" autoFocus>
+            Ok
+          </button>
+        </DialogActions>
+      </Dialog>
       </Layout>
     );
   }
