@@ -54,9 +54,8 @@ export const submitExam = (FormAnswer, _callback) => {
       Authorization: `Bearer ${user().token}`,
     },
   };
-  console.log(FormAnswer);
   api
-    .post("/medications", FormAnswer, submitMedicationConfig)
+    .post("/measurements", FormAnswer, submitMedicationConfig)
     .then((response) => {
       _callback(response);
     })

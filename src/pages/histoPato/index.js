@@ -10,6 +10,7 @@ import {submitExam} from "../../services/patient/index"
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import {isObjectEmpty} from '../../services/general/security'
 
 const FormHistoPato = () => {
     const initialValues = Object.values(form.Form).reduce((acc, field) => {
@@ -47,16 +48,23 @@ const FormHistoPato = () => {
 
       <form onSubmit={(e) => {
         e.preventDefault();
-        submitExam({ formAnswer: value },(response)=>{
-          if (response.status >= 200 && response.status <= 299) {
-            setTitle("Formulário enviado com sucesso");
-            handleClickOpen();
-            clearForm();
-          } else {
-            setTitle(response.data.errors);
-            handleClickOpen();
-          }
-        })
+        if(!isObjectEmpty(value)){
+          console.log(value)
+          submitExam({ form_measurement: value, file },(response)=>{
+            if (response.status >= 200 && response.status <= 299) {
+              setTitle("Formulário enviado com sucesso");
+              handleClickOpen();
+              clearForm();
+            } else {
+              setTitle(response.data.errors);
+              handleClickOpen();
+            }
+          })
+        } else {
+          setTitle("Erro: Formulário vazio!");
+          handleClickOpen();
+          console.log(value)
+        }
       }}>
         <TitleSectionForm>Tipo Material:</TitleSectionForm>
         {Object.values(form.Form).map(field => (

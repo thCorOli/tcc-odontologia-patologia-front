@@ -7,6 +7,16 @@ export const hasEmptyFields = (obj) =>{
     return false;
 }
 
+export const isObjectEmpty = (obj) => {
+  for (const key in obj) {
+    if (obj[key].length > 0) {
+      return false; 
+    }
+  }
+  return true; 
+}
+
+
 function blockSQLInjection(input) {
     const sqlKeywords = ["SELECT", "UPDATE", "INSERT", "DELETE", "DROP", "ALTER"];
     const regex = new RegExp(sqlKeywords.join("|"), "i");

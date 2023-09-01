@@ -139,6 +139,9 @@ const  ResendEmailF = (email,resp) => {
                     handleClickOpen();
                   }
                 });
+              } else {
+                setTitle("Preencha os campos!");
+                handleClickOpen();
               }
             }
           }
