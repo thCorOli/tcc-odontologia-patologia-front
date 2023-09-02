@@ -74,6 +74,8 @@ const Input = styled.input`
 const Alert = styled.p`
   margin: 5px 5px 0 0;
   font-family: "Roboto Condensed";
+  color:var(--black);
+  font-weight: bold;
 `;
 
 function FormField({
@@ -108,9 +110,8 @@ function FormField({
           minLength={minLength}
           pattern={pattern}
           onInput={onInputHandler}
-          autoComplete={"off"}
+          autoComplete="off"
           max={max}
-
         />
         <Label.Text>{label}</Label.Text>
       </Label>

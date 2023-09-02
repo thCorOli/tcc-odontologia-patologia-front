@@ -66,6 +66,27 @@ const  ResendEmailF = (email,resp) => {
 };
 
 
+const handleSubmit = (e) => { 
+  e.preventDefault();
+    if(!hasEmptyFields(value)){
+      login({ patient: value },(response)=>{
+        if(response.status >= 200 && response.status <= 299){
+          setTitle("Logado com sucesso!");
+          handleClickOpen();
+          history.push("/cistoPatologico")
+        }  
+        else{
+          setAnimationData(false);
+          setTitle(`${response.data.errors[0]},${response.data.errors[1]}`);
+          handleClickOpen();
+        }
+      });
+    } else {
+      setTitle("Preencha os campos!");
+      handleClickOpen();
+    }
+}
+
 
 
   return (
@@ -123,27 +144,7 @@ const  ResendEmailF = (email,resp) => {
               justifyContent: "space-around",
               alignItems: "center"
             }}
-            onSubmit={(e) => {
-              e.preventDefault();
-              if(!hasEmptyFields(value)){
-                login({ patient: value },(response)=>{
-                  if(response.status >= 200 && response.status <= 299){
-                    setTitle("Logado com sucesso!");
-                    handleClickOpen();
-                    history.push("/cistoPatologico")
-                  }  
-                  else{
-                    setAnimationData(false);
-                    setTitle(`${response.data.errors[0]},${response.data.errors[1]}`);
-                    handleClickOpen();
-                  }
-                });
-              } else {
-                setTitle("Preencha os campos!");
-                handleClickOpen();
-              }
-            }
-          }
+            onSubmit={handleSubmit}
           >
             <FormField
               label={"E-mail"}
@@ -172,7 +173,8 @@ const  ResendEmailF = (email,resp) => {
                
             <ButtonPage 
             style={{ marginBottom: "2%"}} 
-            color="var(--medium-purple)" 
+            color="var(--medium-purple)"
+            backgroundColor="var(--white)"
             hoverColor="var(--white)" 
             hoverBackGround="var(--medium-purple)" 
             >
@@ -182,6 +184,7 @@ const  ResendEmailF = (email,resp) => {
             <ButtonPage
               as={Link}
               to="/cadastro"
+              style={{ marginBottom: "2%"}} 
               color="var(--medium-purple)"
               hoverColor="var(--white)"
               hoverBackGround="var(--medium-purple)"

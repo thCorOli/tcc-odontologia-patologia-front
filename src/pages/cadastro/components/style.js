@@ -112,13 +112,17 @@ export const WrapperFormField = styled.div`
 `;
 
 export const Linked = styled.a`
-align-self: center;
-text-decoration: none;
-color: var(--black);
-font-family: "Roboto Condensed";
-cursor: pointer;
+  align-self: center;
+  text-decoration: none;
+  color: var(--black);
+  font-family: "Roboto Condensed";
+  cursor: pointer;
+  transition: 0.4s;
+  font-size: 1em;
 
-:hover {
-  color: var(--errors)
-}
+  :hover {
+    color: var(--medium-green);
+    transition: 0.4s;
+    font-size: 1.2em;
+  }
 `;

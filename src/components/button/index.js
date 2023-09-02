@@ -5,6 +5,7 @@ export const Button = styled.button `
   border: none;
   border-radius: 10px;
   height: 60px;
+  background-color: ${props => props.backgroundColor};
   color: ${props => props.color};
   font-family: "Roboto Condensed";
   font-size: 1em;

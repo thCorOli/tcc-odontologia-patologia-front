@@ -12,6 +12,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import {isObjectEmpty} from '../../services/general/security'
 
+
 const FormHistoPato = () => {
     const initialValues = Object.values(form.Form).reduce((acc, field) => {
       return { ...acc, [field.title]: [] };
@@ -87,7 +88,14 @@ const FormHistoPato = () => {
           </div>
         ))}
         <InputFile onChange={handleFileChange}/>
-        <Button type={"submit"}>Enviar</Button>
+        <Button 
+          style={{ marginBottom: "2%"}} 
+          color="var(--medium-purple)"
+          backgroundColor="var(--background)"
+          hoverColor="var(--white)" 
+          hoverBackGround="var(--medium-purple)" >
+            Enviar
+        </Button>
       </form>
       <Dialog
         open={open}

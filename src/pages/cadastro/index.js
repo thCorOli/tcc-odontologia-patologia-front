@@ -71,12 +71,52 @@ const performValidation = (user) => {
     history.push("/");
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    switch (performValidation(value)) {
+     case "valid":
+       value.birthday = value.birthday.split('/').reverse().join('-');
+       setAnimationData(true);
+       register({ patient: value }, (response) => {
+         if (response.status >= 200 && response.status <= 299) {
+           setTitle("Confirme o seu email para finalizar o cadastro!");
+           handleClickOpen();
+         } else {
+           setTitle(response.data.errors);
+           handleClickOpen();
+           setAnimationData(false);
+         }
+       });
+       break;
+     case "isEmpty":
+       setTitle("Preencha todos os campos");
+       handleClickOpen();
+       break;
+     case "CpfInvalid":
+       setTitle("CPF Inválido!");
+       handleClickOpen();
+       break;
+     case "DateInvalid":
+       setTitle("Data Inválida!");
+       handleClickOpen();
+       break;
+     case "NotEqual":
+       setTitle("Senhas divergentes!");
+       handleClickOpen();
+       break;
+     default:
+       setTitle("Erro inesperado");
+       handleClickOpen();
+       break;
+    }
+  }
+
   return (
     <Background backgroundColor={"var(--background)"}>
       
       <MainContainer>
         <LinkLogo as={Link} to="/">
-          
+          <img src={LogoFull}></img>
           </LinkLogo>
           <ContentContainer
           backgroundColor={"var(--white)"}
@@ -84,46 +124,9 @@ const performValidation = (user) => {
           style={{ padding: "30px 0" }}
         >
           <form
+            autoComplete="off"
             className="form"
-            onSubmit={(e) => {
-              e.preventDefault();
-             switch (performValidation(value)) {
-              case "valid":
-                value.birthday = value.birthday.split('/').reverse().join('-');
-                setAnimationData(true);
-                register({ patient: value }, (response) => {
-                  if (response.status >= 200 && response.status <= 299) {
-                    setTitle("Confirme o seu email para finalizar o cadastro!");
-                    handleClickOpen();
-                  } else {
-                    setTitle(response.data.errors);
-                    handleClickOpen();
-                    setAnimationData(false);
-                  }
-                });
-                break;
-              case "isEmpty":
-                setTitle("Preencha todos os campos");
-                handleClickOpen();
-                break;
-              case "CpfInvalid":
-                setTitle("CPF Inválido!");
-                handleClickOpen();
-                break;
-              case "DateInvalid":
-                setTitle("Data Inválida!");
-                handleClickOpen();
-                break;
-              case "NotEqual":
-                setTitle("Senhas divergentes!");
-                handleClickOpen();
-                break;
-              default:
-                setTitle("Erro inesperado");
-                handleClickOpen();
-                break;
-             }
-            }}
+            onSubmit={handleSubmit}
           >
             <FormField
               label={"Nome:"}
@@ -182,7 +185,12 @@ const performValidation = (user) => {
             ) : (
               <div></div>
             )}
-            <ButtonPage>Cadastrar</ButtonPage>
+            <ButtonPage
+            style={{ marginBottom: "2%"}} 
+            color="var(--medium-purple)" 
+            hoverColor="var(--white)" 
+            hoverBackGround="var(--medium-purple)" 
+            >Cadastrar</ButtonPage>
             <Linked
               as={Link}
               to="/"

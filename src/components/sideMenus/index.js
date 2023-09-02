@@ -4,7 +4,11 @@ import { Link, useHistory } from "react-router-dom";
 import "../../constants/colors.css";
 import { logout } from "../../services/general/acess";
 import ReactTooltip from "react-tooltip";
-
+import MedicIcon from "../../assets/imgs/medicIcon.png";
+import FormIcon from "../../assets/imgs/formIcon.png";
+import ExamsIcon from "../../assets/imgs/examsIcon.png";
+import HistoryIcon from "../../assets/imgs/historyIcon.png";
+import ExitIcon from "../../assets/imgs/exitIcon.png";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -43,9 +47,34 @@ const ItensSideMenu = styled.div`
   justify-content: center;
   cursor: pointer;
   flex: 1 1;
+  background-color: ${props => props.backgroundColor};
+  filter: grayscale(100%) ;
+  transition: 0.5s;
 
   @media only screen and (max-width: 640px) {
     height: 100%;
+  }
+
+  &:hover {
+    filter: grayscale(0%);
+  }
+
+  &:hover img {
+    filter: grayscale(100%) sepia(100%) hue-rotate(270deg) saturate(500%) brightness(100%);
+    backgroud-color: red;
+    height: 70%; /* Adjust the height as needed */
+    transition: 0.5s;
+  }
+ 
+`;
+
+const Img = styled.img`
+  max-width: 100%;
+  height: 50%;
+  transition: filter 0.5s ease, height 0.5s ease;
+
+  @media only screen and (max-width: 640px) {
+    height: 25px;
   }
 `;
 
@@ -54,22 +83,6 @@ const Logo = styled.img`
   height: 50px;
 `;
 
-const Img = styled.img`
-  width: 40px;
-  height: 50px;
-  filter: grayscale(100%);
-  transition: 0.5s;
-  &:focus {
-    filter: grayscale(0%);
-  }
-  &:hover {
-    filter: grayscale(0%);
-    transition: 0.5s;
-  }
-  @media only screen and (max-width: 640px) {
-    height: 25px;
-  }
-`;
 
 const SideMenu = () => {
   const [open, setOpen] = React.useState(false);
@@ -96,24 +109,26 @@ const SideMenu = () => {
         <Logo  />
       </ItensSideMenu>
       <ItensSideMenu as={Link} to="/user/medicao" data-tip="Formulário HistoPatologico">
-        <Img  />
+        <Img  src={FormIcon} />
       </ItensSideMenu>
       <ItensSideMenu as={Link} to="/user/medicacao" data-tip="Historico">
-        <Img  />
+        <Img src={HistoryIcon}/>
       </ItensSideMenu>
-      <ItensSideMenu
-        data-tip="Selecionar Médico"
-        as={Link}
-        to={"/user/selecionarMedico"}
-      >
-        <Img />
+      <ItensSideMenu data-tip="Selecionar Médico" as={Link}  to={"/user/selecionarMedico"}>
+        <Img src={MedicIcon}/>
       </ItensSideMenu>
       <ItensSideMenu data-tip="Meus Exames" as={Link} to="/user/historico">
-        <Img  />
+        <Img src={ExamsIcon} />
       </ItensSideMenu>
-      <ItensSideMenu onClick={handleClickOpen} data-tip="Sair">
-        <Img />
+
+      <ItensSideMenu 
+      backgroundColor ="var(--recuse)"
+      hoverColor = "var(--recuse)"
+      onClick={handleClickOpen} 
+      data-tip="Sair">
+        <Img src={ExitIcon}/>
       </ItensSideMenu>
+
       <Dialog
         open={open}
         onClose={handleClose}
