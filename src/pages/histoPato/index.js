@@ -11,6 +11,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import {isObjectEmpty} from '../../services/general/security'
+import {CheckBox} from "../../components/inputs/index";
 
 
 const FormHistoPato = () => {
@@ -78,7 +79,7 @@ const FormHistoPato = () => {
                 <MakeSideContainer>
                 {field.options.map(option => (
                   <MakeSideContainer key={option}>
-                    <input
+                    <CheckBox
                       type="checkbox"
                       name={field.title}
                       value={option}
