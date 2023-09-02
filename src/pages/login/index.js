@@ -18,6 +18,7 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import {hasEmptyFields,hasSqlStrings} from '../../services/general/security'
 import { login } from "../../services/patient";
+import "../../constants/colors.css"
 
 const Login = () => {
 
@@ -88,27 +89,26 @@ const  ResendEmailF = (email,resp) => {
             <form  onSubmit={(e) => {
               e.preventDefault();
                 setAnimationData(true);
-                console.log("Email ja confirmado"); 
               }
             }>
-              <FormField
-              label={"Email"}
-              onChange={onChangeHandler}
-              name={"emailToResend"}
-              value={value.emailToResend}
-              type={"email"}
-              />
-              <ButtonPage type={"submit"}>
-                Enviar
-            </ButtonPage>
-              </form>
+                <FormField
+                label={"Email"}
+                onChange={onChangeHandler}
+                name={"emailToResend"}
+                value={value.emailToResend}
+                type={"email"}
+                />
+                <ButtonPage type={"submit"}>
+                  Enviar
+              </ButtonPage>
+            </form>
       </div>
           
       </Modal>
         <ContentContainer
           backgroundColor={"var(--white)"}
-          borderRadius={"10px"}
-          style={{ padding: "30px 0"}}
+          borderRadius={"2%"}
+          style={{ padding: "10px 0"}}
         >
          
           <LinkLogo as={Link} to="/">
@@ -121,8 +121,7 @@ const  ResendEmailF = (email,resp) => {
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-around",
-              alignItems: "center",
-              marginBottom: "10px",
+              alignItems: "center"
             }}
             onSubmit={(e) => {
               e.preventDefault();
@@ -152,7 +151,6 @@ const  ResendEmailF = (email,resp) => {
               name={"email"}
               type={"email"}
               value={value.email}
-
             />
             <FormField
               label={"Senha"}
@@ -172,17 +170,21 @@ const  ResendEmailF = (email,resp) => {
                 <div></div>
               )}
                
-            <ButtonPage style={{ marginBottom: "2%" }} type={"submit"}>
+            <ButtonPage 
+            style={{ marginBottom: "2%"}} 
+            color="var(--medium-purple)" 
+            hoverColor="var(--white)" 
+            hoverBackGround="var(--medium-purple)" 
+            >
               Entrar
             </ButtonPage>
-          
+        
             <ButtonPage
               as={Link}
               to="/cadastro"
-              style={{
-                backgroundColor: "var(--black)",
-                color: "var(--gray)",
-              }}
+              color="var(--medium-purple)"
+              hoverColor="var(--white)"
+              hoverBackGround="var(--medium-purple)"
             >
               Cadastrar
             </ButtonPage>

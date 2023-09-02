@@ -49,8 +49,10 @@ export const ResendEmail = styled.a`
   color: var(--black);
   font-family: "Roboto Condensed";
   cursor: pointer;
-
+  transition: 0.3s;
+  
   :hover {
-    color: var(--errors)
+    color: var(--medium-purple);
+    transition: 0.3s;
   }
 `;
