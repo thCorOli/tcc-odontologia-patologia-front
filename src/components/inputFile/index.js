@@ -4,11 +4,11 @@ import {FileInputLabel, FileInput, MakeSide} from './style'
 
 const InputFile = ({ onChange }) => {
 
-    const [fileName, setFileName] = useState('');
+    const [selectedFiles, setSelectedFiles] = useState([]);
 
     const handleFileChange = (event) => {
-      const selectedFile = event.target.files[0];
-      setFileName(selectedFile ? selectedFile.name : '');
+      const files = event.target.files;
+      setSelectedFiles(Array.from(files));
       onChange(event);
     };
 
@@ -16,10 +16,13 @@ const InputFile = ({ onChange }) => {
     <div>
         <MakeSide>
             <FileInputLabel>
-            <FileInput type="file" onChange={handleFileChange} />
+            <FileInput type="file" multiple onChange={handleFileChange} />
               Escolha um arquivo
             </FileInputLabel>
-            {fileName && <Subtitle style={{marginLeft:"2%"}}> Arquivo selecionado: {fileName}</Subtitle>}
+            <Subtitle style={{ marginLeft: "2%" }}> Arquivo(s) selecionado(s):</Subtitle>
+            {selectedFiles.map((item, index) => (
+                <li key={index}>{item.name}</li>
+            ))}
         </MakeSide>
     </div>
     

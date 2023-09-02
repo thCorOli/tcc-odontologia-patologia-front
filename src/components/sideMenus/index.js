@@ -110,19 +110,19 @@ const SideMenu = () => {
   return (
     <SideMenuUser>
       <ReactTooltip place="right" type="dark" effect="solid" />
-      <ItensSideMenu as={Link} to="/home/patient">
+      <ItensSideMenu as={Link} to="/home">
         <Logo  />
       </ItensSideMenu>
-      <ItensSideMenu as={Link} to="/user/medicao" data-tip="Formulário HistoPatologico">
+      <ItensSideMenu as={Link}  data-tip="Formulário HistoPatologico" to="/cistoPatologico">
         <Img  src={FormIcon} />
       </ItensSideMenu>
-      <ItensSideMenu as={Link} to="/user/medicacao" data-tip="Historico">
+      <ItensSideMenu as={Link}  data-tip="Historico" to="/historicoMedico">
         <Img src={HistoryIcon}/>
       </ItensSideMenu>
-      <ItensSideMenu data-tip="Selecionar Médico" as={Link}  to={"/user/selecionarMedico"}>
+      <ItensSideMenu data-tip="Selecionar Médico" as={Link} to={"/selecionarMedico"}>
         <Img src={MedicIcon}/>
       </ItensSideMenu>
-      <ItensSideMenu data-tip="Meus Exames" as={Link} to="/user/historico">
+      <ItensSideMenu data-tip="Meus Exames" as={Link} to="/meusExames">
         <Img src={ExamsIcon} />
       </ItensSideMenu>
 
