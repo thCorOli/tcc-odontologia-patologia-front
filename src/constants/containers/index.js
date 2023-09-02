@@ -66,3 +66,16 @@ export const MakeSideContainer = styled.div`
   padding: 0.5rem;
 `;
 
+export const Card = styled.div`
+  background-color: var(--white);
+  border-radius: 10px;
+  width: 750px;
+  height: 545px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  @media screen and (max-width: 640px) {
+    width: 90%;
+  }
+`;

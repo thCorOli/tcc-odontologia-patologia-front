@@ -8,14 +8,16 @@ export const Button = styled.button `
   background-color: ${props => props.backgroundColor};
   color: ${props => props.color};
   font-family: "Roboto Condensed";
-  font-size: 1em;
+  font-size: 1.2em;
   width: 100%;
   text-decoration: none;
   display: flex;
   justify-content: center;
   align-items: center;
   outline: none;
-  transition: 0.3s;
+  transition: 0.2s; 
+  text-transform: capitalize;
+
   @media screen and (max-width: 960px) {
     font-size: 1em;
     height: 30px;
@@ -25,11 +27,13 @@ export const Button = styled.button `
     border: none;
   }
   :hover {
-    transition: 0.3s;
+    transition: 0.4s;
     cursor: pointer;
     background-color: ${(props) => props.hoverBackGround };
     color:  ${(props) => props.hoverColor};
-    font-size:1.2em;
+    font-size:1.45em;
+    text-transform: uppercase;
+    font-weight: bold;
   }
 `;
 

@@ -17,7 +17,7 @@ const InputFile = ({ onChange }) => {
         <MakeSide>
             <FileInputLabel>
             <FileInput type="file" onChange={handleFileChange} />
-            Escolha um arquivo
+              Escolha um arquivo
             </FileInputLabel>
             {fileName && <Subtitle style={{marginLeft:"2%"}}> Arquivo selecionado: {fileName}</Subtitle>}
         </MakeSide>

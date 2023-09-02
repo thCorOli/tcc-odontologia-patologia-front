@@ -57,11 +57,16 @@ const ItensSideMenu = styled.div`
 
   &:hover {
     filter: grayscale(0%);
+    background-color:${props => props.backgroundColor || "var(--ligth-purple)"};
+  }
+
+  &:focus {
+    filter: grayscale(0%);
+    background-color:"var(--ligth-purple)";
   }
 
   &:hover img {
-    filter: grayscale(100%) sepia(100%) hue-rotate(270deg) saturate(500%) brightness(100%);
-    backgroud-color: red;
+    filter: hue-rotate(0deg);
     height: 70%; /* Adjust the height as needed */
     transition: 0.5s;
   }
