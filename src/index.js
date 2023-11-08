@@ -13,7 +13,7 @@ import FormHistoPato  from "./pages/histoPato";
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
-      <Route path={"/"} component={Login} exact />
+      <Route path={"/login"} component={Login} exact />
       <Route path={"/cadastro"} component={Cadastro} exact />
       <Route path={"/cistoPatologico"} component={FormHistoPato} exact />
       <Route component={NotFound} />
