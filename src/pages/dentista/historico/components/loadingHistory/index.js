@@ -1,13 +1,13 @@
 import React from "react";
 import { AlignContent } from "../../../../constants/containers/index";
 import { Text } from "../../../../components/texts";
-import "../../../../../components/loader/loader.css";
+import Loader from "../../../../components/loader/index";
 
 const LoadingHistory = () => {
   return (
     <AlignContent>
       <Text>Carregando...</Text>
-      <div className="loader" />
+      <Loader/>
     </AlignContent>
   );
 };

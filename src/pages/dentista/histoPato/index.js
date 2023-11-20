@@ -1,17 +1,17 @@
 import React , {useState} from "react";
-import Button from "../../components/button/index";
+import Button from "../../../components/button/index";
 import form from "./form.json"
-import useFormOptions from "../../hooks/useFormOptions/index"
-import {Option, SubtitleSection, TitleSectionForm} from "../../components/texts/index"
-import { MakeSideContainer, ContentContainer } from "../../constants/containers/index";
-import Layout from "../../components/layout";
-import InputFile from "../../components/inputFile";
-import {submitExam} from "../../services/patient/index"
+import useFormOptions from "../../../hooks/useFormOptions/index"
+import {Option, SubtitleSection, TitleSectionForm} from "../../../components/texts/index"
+import { MakeSideContainer, ContentContainer } from "../../../constants/containers/index";
+import Layout from "../../../components/layout";
+import InputFile from "../../../components/inputFile";
+import {submitExam} from "../../../services/patient/index"
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import {isObjectEmpty} from '../../services/general/security'
-import {CheckBox} from "../../components/inputs/index";
+import {isObjectEmpty} from '../../../services/general/security'
+import {CheckBox} from "../../../components/inputs/index";
 
 
 const FormHistoPato = () => {

@@ -27,7 +27,7 @@ export const register = (User, _callback) => {
 
 export const login = (Patient, _callback) => {
   api
-    .post(`/login`, Patient, config)
+    .post(`/logiLaboratoy`, Patient, config)
     .then((response) => {
       logout();
       localStorage.setItem("user", JSON.stringify(response.data));

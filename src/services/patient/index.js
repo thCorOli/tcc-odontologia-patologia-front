@@ -63,3 +63,20 @@ export const submitExam = (FormAnswer, _callback) => {
       _callback(err.response);
     });
 };
+
+export const formHistoryCistoPat = (_callback) => {
+  const measurementsConfig = {
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${user().token}`,
+    },
+  };
+
+  return api
+    .get('/history_measurements', measurementsConfig)
+    .then((response) => _callback(response))
+    .catch((err) => {
+      _callback(err.response);
+    });
+};

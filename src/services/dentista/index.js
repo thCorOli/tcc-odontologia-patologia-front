@@ -39,24 +39,6 @@ export const login = (Patient, _callback) => {
       });
 };
 
-
-export const MeasurementsHistory = (_callback) => {
-    const measurementsConfig = {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${user().token}`,
-      },
-    };
-  
-    return api
-      .get('/history_measurements', measurementsConfig)
-      .then((response) => _callback(response))
-      .catch((err) => {
-        _callback(err.response);
-      });
-};
-  
 export const MedicationHistoryById = (id, _callback) => {
     const measurementsConfig = {
       headers: {

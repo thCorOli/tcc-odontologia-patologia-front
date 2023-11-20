@@ -1,10 +1,10 @@
 import React from "react";
-import ButtonPage from "../../components/button/index";
-import FormField from "../../components/formfield/index";
+import ButtonPage from "../../../components/button/index";
+import FormField from "../../../components/formfield/index";
 import LogoFull from "../../assets/imgs/logos/logoFull.svg";
 import "../../constants/colors.css";
 import styled, { css } from "styled-components";
-import useForm from "../../hooks/useForm/index";
+import useForm from "../../../hooks/useForm/index";
 import { ResetPasswordTokenRequest } from "../../services/tokenReset";
 import { useHistory } from "react-router-dom";
 import Button from '@material-ui/core/Button';

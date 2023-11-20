@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { MainContainer } from "../../constants/containers/index";
+import { MainContainer } from "../../../constants/containers/index";
 import styled from "styled-components";
 import "../../constants/colors.css";
 import Logo from "../../assets/imgs/logos/logoFull.svg";
@@ -35,15 +35,14 @@ const ImageContainer = styled.div`
   margin-bottom: 135px;
 `;
 
-const ConfirmarEmail = (props) => {
+const ConfirmarEmailDoctor = (props) => {
   const search = props.location.search;
   const params = new URLSearchParams(search);
   const token = params.get("token");
   const [confirmingEmail, setConfirmingEmail] = useState(true);
-
   useEffect(() => {
     fetch(
-      `https://club4care.com.br/api/patients/${token}/confirm_email`
+      `https://club4care.com.br/api/doctors/${token}/confirm_email`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -51,6 +50,8 @@ const ConfirmarEmail = (props) => {
       })
       .catch((err) => console.log(err));
   });
+
+  
   
 
   return (
@@ -73,4 +74,4 @@ const ConfirmarEmail = (props) => {
   );
 };
 
-export default ConfirmarEmail;
+export default ConfirmarEmailDoctor;

@@ -116,7 +116,7 @@ const SideMenu = () => {
       <ItensSideMenu as={Link}  data-tip="Formulário HistoPatologico" to="/cistoPatologico">
         <Img  src={FormIcon} />
       </ItensSideMenu>
-      <ItensSideMenu as={Link}  data-tip="Historico" to="/historicoMedico">
+      <ItensSideMenu as={Link}  data-tip="Historico" to="/historico">
         <Img src={HistoryIcon}/>
       </ItensSideMenu>
       <ItensSideMenu data-tip="Selecionar Médico" as={Link} to={"/selecionarMedico"}>

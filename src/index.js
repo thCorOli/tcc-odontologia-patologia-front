@@ -6,8 +6,9 @@ import "./assets/css/reset.css";
 import Login from "./pages/login/index";
 import Cadastro from "./pages/cadastro/index"
 import NotFound from "./pages/404/index";
-import ResetPassword from "./pages/resetPassword/index"
-import FormHistoPato  from "./pages/histoPato";
+import ResetPassword from "./pages/dentista/resetPassword/index"
+import FormHistoPato  from "./pages/dentista/histoPato";
+import  History from "./pages/historico"
 
 
 ReactDOM.render(
@@ -16,6 +17,8 @@ ReactDOM.render(
       <Route path={"/login"} component={Login} exact />
       <Route path={"/cadastro"} component={Cadastro} exact />
       <Route path={"/cistoPatologico"} component={FormHistoPato} exact />
+      <Route path={"/historico"} component={History} exact/>
+      <Route path={"/loginLaboratio"} component={LoginLaboratory} exact />
       <Route component={NotFound} />
     </Switch>
   </BrowserRouter>,

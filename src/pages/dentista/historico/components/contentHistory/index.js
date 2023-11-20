@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import {
   ListCardContainer,
   AlignContent,
-} from "../../../../../constants/containers/index";
-import { TextCard } from "../../../../../components/texts";
+} from "../../../../constants/containers/index";
+import { TextCard } from "../../../../components/texts";
 import { Accordion, AccordionSummary, Typography } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import styled from "styled-components";
-import "../../../../../constants/colors.css";
-import Pagination from "../../../../../components/pagination/index";
+import "../../../../constants/colors.css";
+import Pagination from "../../../../components/pagination/index";
 
 const SizeAccordion = styled.div`
   width: 50%;
