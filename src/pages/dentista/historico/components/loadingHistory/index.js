@@ -1,7 +1,7 @@
 import React from "react";
-import { AlignContent } from "../../../../constants/containers/index";
-import { Text } from "../../../../components/texts";
-import Loader from "../../../../components/loader/index";
+import { AlignContent } from "../../../../../constants/containers/index";
+import { Text } from "../../../../../components/texts";
+import Loader from "../../../../../components/loader/index";
 
 const LoadingHistory = () => {
   return (

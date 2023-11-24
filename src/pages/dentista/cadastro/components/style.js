@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import "../../../constants/colors.css";
+import "../../../../constants/colors.css";
 
 export const SideBySide = styled.div`
   display: flex;

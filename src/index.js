@@ -3,13 +3,15 @@ import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import "./assets/css/reset.css";
-import Login from "./pages/login/index";
-import Cadastro from "./pages/cadastro/index"
-import NotFound from "./pages/404/index";
-import ResetPassword from "./pages/dentista/resetPassword/index"
-import FormHistoPato  from "./pages/dentista/histoPato";
-import  History from "./pages/historico"
+import NotFound from "./pages/general/404/index";
 
+import Login from "./pages/dentista/login/index";
+import Cadastro from "./pages/dentista/cadastro/index"
+import ResetPassword from "./pages/dentista/resetPassword/index";
+import FormHistoPato  from "./pages/dentista/histoPato/index";
+import  History from "./pages/dentista/historico/index";
+
+import LoginLaboratory from "./pages/laboratory/loginLaboratorio/index";
 
 ReactDOM.render(
   <BrowserRouter>

@@ -1,18 +1,18 @@
 import React from "react";
-import ButtonPage from "../../components/button/index";
-import FormField from "../../components/formfield/index";
-import "../../constants/colors.css";
-import useForm from "../../hooks/useForm/index";
-import { ResetPasswordRequest } from "../../services/general/reset";
+import ButtonPage from "../../../components/button/index";
+import FormField from "../../../components/formfield/index";
+import "../../../constants/colors.css";
+import useForm from "../../../hooks/useForm/index";
+import { ResetPasswordRequest } from "../../../services/general/reset";
+import Background from "../../../components/background";
+import { Panel, Logo, ContentContainer, LinkLogo } from "../../../components/formInfoUsuario/index.js";
+import { hasEmptyFields, hasSqlStrings } from '../../../services/general/security'
+
 import { useHistory, Link } from "react-router-dom";
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Background from "../../components/background";
-import { Panel, Logo, ContentContainer, LinkLogo } from "../../components/formInfoUsuario/index.js";
-import { hasEmptyFields, hasSqlStrings } from '../../services/general/security'
-
 
 const ResetPassword = () => {
   const history = useHistory();

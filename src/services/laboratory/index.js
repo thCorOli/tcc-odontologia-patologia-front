@@ -1,4 +1,5 @@
 import axios from "axios";
+import {logout} from "../general/acess";
 import { saveAs } from "file-saver";
 
 const URL = "/laboratory";
@@ -13,6 +14,10 @@ const config = {
       "Content-Type": "application/json",
     },
   };
+
+const user = () => {
+    return JSON.parse(localStorage.getItem("user"));
+};
 
 export const register = (User, _callback) => {
     api

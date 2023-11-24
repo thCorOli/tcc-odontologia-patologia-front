@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import Layout from "../../components/layout/index";
-import "../../constants/colors.css";
-import { formHistoryCistoPat } from "../../services/patient/index";
+import Layout from "../../../components/layout/index";
+import "../../../constants/colors.css";
+import { formHistoryCistoPat } from "../../../services/patient/index";
 import EmptyHistory from "./components/emptyHistory/index";
 import ContentHistory from "./components/contentHistory/index";
 import LoadingHistory from "./components/loadingHistory/index";
 //import FirstLogin from "../firstLogin/index";
 //import SemAcesso from "../semAcesso/index";
-import { Subtitle } from "../../components/texts";
+import { Subtitle } from "../../../components/texts";
 
 
 const History = () => {

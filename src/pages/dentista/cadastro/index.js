@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import ButtonPage from "../../components/button/index";
-import { MainContainer } from "../../constants/containers/index";
-import FormField from "../../components/formfield/index";
-import useForm from "../../hooks/useForm/index";
-import "../../constants/colors.css";
+import ButtonPage from "../../../components/button/index";
+import { MainContainer } from "../../../constants/containers/index";
+import FormField from "../../../components/formfield/index";
+import useForm from "../../../hooks/useForm/index";
+import "../../../constants/colors.css";
 import "./components/form.css";
 import {
   Background,
@@ -16,15 +16,15 @@ import {
   Linked
 } from "./components/style";
 import { useHistory, Link } from "react-router-dom";
-import "../../components/loader/loader.css";
+import "../../../components/loader/loader.css";
 import InputMask from 'react-input-mask';
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import LogoFull from "../../assets/imgs/icon_provisorio.png";
-import { register } from "../../services/patient";
-import { hasEmptyFields,isCpfValid,isDateValid,isEqual } from "../../services/general/security";
+import LogoFull from "../../../assets/imgs/icon_provisorio.png";
+import { register } from "../../../services/patient";
+import { hasEmptyFields,isCpfValid,isDateValid,isEqual } from "../../../services/general/security";
 
 const Cadastro = () => {
   const { value, onChangeHandler } = useForm({

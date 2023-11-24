@@ -13,7 +13,6 @@ const config = {
     },
   };
 
-
 export const register = (User, _callback) => {
     api
     .post(`/`, User, config)

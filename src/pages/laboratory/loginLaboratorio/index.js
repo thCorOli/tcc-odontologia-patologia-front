@@ -1,26 +1,27 @@
 import React, { useState } from "react";
-import Background from "../../components/background";
-import ButtonPage from "../../components/button/index";
-import FormField from "../../components/formfield/index";
-import LogoFull from "../../assets/imgs/icon_provisorio.png";
-import "../../constants/colors.css";
-import useForm from "../../hooks/useForm/index";
-import { Panel, Logo, ContentContainer,LinkLogo,ResendEmail } from "../../components/formInfoUsuario/index.js";
+import Background from "../../../components/background";
+import ButtonPage from "../../../components/button/index";
+import FormField from "../../../components/formfield/index";
+import LogoFull from "../../../assets/imgs/icon_provisorio.png";
+import "../../../constants/colors.css";
+import useForm from "../../../hooks/useForm/index";
+import { Panel, Logo, ContentContainer,LinkLogo,ResendEmail } from "../../../components/formInfoUsuario/index.js";
 import { Link, useHistory } from "react-router-dom";
-import {Text} from "../../components/texts"
-import "../../components/loader/loader.css";
+import {Text} from "../../../components/texts"
+import "../../../components/loader/loader.css";
 import "./components/modalLogin.css";
+import {hasEmptyFields,hasSqlStrings} from '../../../services/general/security'
+import { login } from "../../../services/laboratory/index.js";
+import "../../../constants/colors.css"
+
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
-import {hasEmptyFields,hasSqlStrings} from '../../services/general/security'
-import { login } from "../../../services/laboratory/index.js";
-import "../../constants/colors.css"
 
-const Login = () => {
+const LoginLaboratory = () => {
 
   const [modal, setModal] = useState(false);
 
@@ -199,4 +200,4 @@ const handleSubmit = (e) => {
   );
 };
 
-export default Login;
+export default LoginLaboratory;
