@@ -25,3 +25,20 @@ export const CheckBox = styled.input.attrs({ type: 'checkbox' })`
     }
 `;
 
+export const TextArea = styled.textarea`
+    resize: none;
+    width: 100%;
+    height: 100px;
+    font-size: 18px;
+    background-color: var(--input);
+    border-radius: 5px;
+    font-family: "Roboto Condensed";
+    outline:none;
+    padding: 16px 16px;
+    
+    &: focus {
+        border-color:  var(--dark-purple);
+    }
+    
+`;
+

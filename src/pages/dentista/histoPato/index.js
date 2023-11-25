@@ -11,7 +11,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import {isObjectEmpty} from '../../../services/general/security'
-import {CheckBox} from "../../../components/inputs/index";
+import {CheckBox, TextArea} from "../../../components/inputs/index";
 
 
 const FormHistoPato = () => {
@@ -81,8 +81,8 @@ const FormHistoPato = () => {
     <SubtitleSection>{field.title}:</SubtitleSection>
     <MakeSideContainer>
       {field.textarea ? (
-        <MakeSideContainer>
-          <textarea
+        <MakeSideContainer style={{width:"100%"}}>
+          <TextArea
             name={field.title}
             value={value[field.title] || ''} 
             onChange={onChangeHandlerTextArea}
