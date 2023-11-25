@@ -6,7 +6,7 @@ import { Option, SubtitleSection, TitleSectionForm } from "../../../components/t
 import { MakeSideContainer, ContentContainer } from "../../../constants/containers/index";
 import Layout from "../../../components/layout";
 import InputFile from "../../../components/inputFile";
-import { submitExam } from "../../../services/patient/index"
+import { submitExam } from "../../../services/dentista/index"
 import Dialog from "@material-ui/core/Dialog";
 import Button from "@material-ui/core/Button";
 import DialogActions from "@material-ui/core/DialogActions";

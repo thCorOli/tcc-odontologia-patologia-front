@@ -1,5 +1,6 @@
 import axios from "axios";
 import { saveAs } from "file-saver";
+import {logout} from "../general/acess"
 
 const URL = "/dentist";
 
@@ -12,6 +13,11 @@ const config = {
       "Access-Control-Allow-Origin": "*",
     },
   };
+
+const user = () => {
+    return JSON.parse(localStorage.getItem("user"));
+};
+
 
 export const register = (User, _callback) => {
     api
@@ -53,4 +59,43 @@ export const MedicationHistoryById = (id, _callback) => {
       .catch((err) => {
         _callback(err.response);
       });
+};
+
+export const listPatient = (_callback) => {
+
+}
+
+export const submitExam = (FormAnswer, _callback) => {
+  const submitMedicationConfig = {
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${user().token}`,
+    },
+  };
+  api
+    .post("/measurements", FormAnswer, submitMedicationConfig)
+    .then((response) => {
+      _callback(response);
+    })
+    .catch((err) => {
+      _callback(err.response);
+    });
+};
+
+export const formHistoryCistoPat = (_callback) => {
+  const measurementsConfig = {
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${user().token}`,
+    },
+  };
+
+  return api
+    .get('/history_measurements', measurementsConfig)
+    .then((response) => _callback(response))
+    .catch((err) => {
+      _callback(err.response);
+    });
 };

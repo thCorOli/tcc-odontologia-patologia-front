@@ -4,7 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import "../../constants/colors.css";
 import { logout } from "../../services/general/acess";
 import ReactTooltip from "react-tooltip";
-import MedicIcon from "../../assets/imgs/medicIcon.png";
+import PatientIcon from "../../assets/imgs/patientIcon.png"
 import FormIcon from "../../assets/imgs/formIcon.png";
 import ExamsIcon from "../../assets/imgs/examsIcon.png";
 import HistoryIcon from "../../assets/imgs/historyIcon.png";
@@ -116,11 +116,11 @@ const SideMenu = () => {
       <ItensSideMenu as={Link}  data-tip="Formulário HistoPatologico" to="/dentista/cistoPatologico">
         <Img  src={FormIcon} />
       </ItensSideMenu>
-      <ItensSideMenu as={Link}  data-tip="Histórico de submissão" to="/dentitsta/historico">
+      <ItensSideMenu as={Link}  data-tip="Histórico de submissão" to="/dentista/historico">
         <Img src={HistoryIcon}/>
       </ItensSideMenu>
       <ItensSideMenu data-tip="Meus Pacientes" as={Link} to="/dentista/meusPacientes">
-        <Img src={ExamsIcon} />
+        <Img src={PatientIcon} />
       </ItensSideMenu>
 
       <ItensSideMenu 

@@ -6,10 +6,12 @@ import "./assets/css/reset.css";
 import NotFound from "./pages/general/404/index";
 
 import Login from "./pages/dentista/login/index";
+import Patients from "./pages/dentista/patients";
 import Cadastro from "./pages/dentista/cadastro/index"
-import ResetPassword from "./pages/dentista/resetPassword/index";
-import FormHistoPato  from "./pages/dentista/histoPato/index";
 import  History from "./pages/dentista/historico/index";
+import FormHistoPato  from "./pages/dentista/histoPato/index";
+import ResetPassword from "./pages/dentista/resetPassword/index";
+
 
 import LoginLaboratory from "./pages/laboratory/loginLaboratorio/index";
 
@@ -18,11 +20,11 @@ ReactDOM.render(
     <Switch>
       <Route path={"/login"} component={Login} exact />
       <Route path={"/cadastro"} component={Cadastro} exact />
-      <Route path={"/cistoPatologico"} component={FormHistoPato} exact />
+      <Route path={"/dentista/cistoPatologico"} component={FormHistoPato} exact />
       <Route path={"/dentista/historico"} component={History} exact/>
-
+      <Route path={"/dentista/meusPacientes"} component={Patients} exact/>
       <Route path={"/loginLaboratio"} component={LoginLaboratory} exact />
-      <Redirect from="/" to="/login" />
+      <Redirect from="/" to="/login" exact/>
       <Route component={NotFound} />
     </Switch>
   </BrowserRouter>,
