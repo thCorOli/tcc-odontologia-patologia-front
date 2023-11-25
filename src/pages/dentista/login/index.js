@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Background from "../../../components/background";
 import ButtonPage from "../../../components/button/index";
 import FormField from "../../../components/formfield/index";
 import LogoFull from "../../../assets/imgs/icon_provisorio.png";
 import "../../../constants/colors.css";
 import useForm from "../../../hooks/useForm/index";
-import { Panel, Logo, ContentContainer,LinkLogo,ResendEmail } from "../../../components/formInfoUsuario/index.js";
+import { Panel, Logo, ContentContainer,LinkLogo,LinksOtherPages, TextWithLink, CentralizedLinks } from "../../../components/formInfoUsuario/index.js";
 import { Link, useHistory } from "react-router-dom";
 import {Text} from "../../../components/texts"
 import "../../../components/loader/loader.css";
@@ -27,6 +27,12 @@ const Login = () => {
 
   const [animationData, setAnimationData] = useState(false);
 
+  const [shouldAnimate, setShouldAnimate] = useState(false);
+
+  useEffect(() => {
+    setShouldAnimate(true);
+  }, []);
+  
   const { value, onChangeHandler } = useForm({
     email: "",
     password: "",
@@ -54,7 +60,7 @@ const Login = () => {
     setModal(true);
   }
   
-const  ResendEmailF = (email,resp) => {
+const  LinksOtherPagesF = (email,resp) => {
   if (resp.status >= 200 && resp.status <= 299) {
     setTitle("Email reenviado com sucesso!");
     handleClickOpen();
@@ -131,6 +137,7 @@ const handleSubmit = (e) => {
           backgroundColor={"var(--white)"}
           borderRadius={"2%"}
           style={{ padding: "10px 0"}}
+          className={shouldAnimate ? 'animate' : ''}
         >
          
           <LinkLogo as={Link} to="/">
@@ -162,10 +169,10 @@ const handleSubmit = (e) => {
               type={"password"}
             />
             
-            <ResendEmail as={Link} to="/forgot">
+            <LinksOtherPages as={Link} to="/forgot">
                 Esqueci minha senha
-            </ResendEmail>
-            <ResendEmail onClick={handleOpenModal}>Reenviar Email</ResendEmail>
+            </LinksOtherPages>
+            <LinksOtherPages onClick={handleOpenModal}>Reenviar Email</LinksOtherPages>
             {animationData === true ? (
               <div className="loader"></div>
             ) : (
@@ -192,12 +199,11 @@ const handleSubmit = (e) => {
             >
               Cadastrar
             </ButtonPage>
-            
           </form>
-        
-          
         </ContentContainer>
-        
+        <CentralizedLinks  className={shouldAnimate ? 'animate' : ''}>
+          <TextWithLink>É um labratório? Para mudar de sessão </TextWithLink><LinksOtherPages as={Link} to="/loginLaboratory" style={{ margin: "0 0.5%"}} >clique aqui</LinksOtherPages>        
+        </CentralizedLinks>
       </Panel>
       <Dialog
         open={open}

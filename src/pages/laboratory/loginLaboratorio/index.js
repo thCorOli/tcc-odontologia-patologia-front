@@ -5,7 +5,7 @@ import FormField from "../../../components/formfield/index";
 import LogoFull from "../../../assets/imgs/icon_provisorio.png";
 import "../../../constants/colors.css";
 import useForm from "../../../hooks/useForm/index";
-import { Panel, Logo, ContentContainer,LinkLogo,ResendEmail } from "../../../components/formInfoUsuario/index.js";
+import { Panel, Logo, ContentContainer,LinkLogo,LinksOtherPages } from "../../../components/formInfoUsuario/index.js";
 import { Link, useHistory } from "react-router-dom";
 import {Text} from "../../../components/texts"
 import "../../../components/loader/loader.css";
@@ -161,10 +161,10 @@ const handleSubmit = (e) => {
               value={value.password}
               type={"password"}
             />
-            <ResendEmail as={Link} to="/forgot">
+            <LinksOtherPages as={Link} to="/forgot">
                 Esqueci minha senha
-            </ResendEmail>
-            <ResendEmail onClick={handleOpenModal}>Reenviar Email</ResendEmail>
+            </LinksOtherPages>
+            <LinksOtherPages onClick={handleOpenModal}>Reenviar Email</LinksOtherPages>
             {animationData === true ? (
               <div className="loader"></div>
             ) : (

@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import "./assets/css/reset.css";
 import NotFound from "./pages/general/404/index";
 
@@ -20,7 +20,9 @@ ReactDOM.render(
       <Route path={"/cadastro"} component={Cadastro} exact />
       <Route path={"/cistoPatologico"} component={FormHistoPato} exact />
       <Route path={"/historico"} component={History} exact/>
+
       <Route path={"/loginLaboratio"} component={LoginLaboratory} exact />
+      <Redirect from="/" to="/login" />
       <Route component={NotFound} />
     </Switch>
   </BrowserRouter>,

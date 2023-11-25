@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 
 const Background = styled.div`
   height: 100vh;
-  padding: 10% 0;
+  overflow: hidden;
   ${({ backgroundColor }) => css`
     background-color: ${backgroundColor};
   `};
