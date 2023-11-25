@@ -85,7 +85,7 @@ const Login = () => {
   };
 
   return (
-    <Background backgroundColor={"var(--background)"}>
+    <Background>
       <Panel>
         <Modal
           aria-labelledby="transition-modal-title"

@@ -11,22 +11,16 @@ export const SideBySide = styled.div`
   }
 `;
 
-export const Background = styled.div`
-  /* overflow: hidden; */
-  height: 100%;
-  padding-top: 50px;
-  ${({ backgroundColor }) => css`
-    background-color: ${backgroundColor};
-  `};
-  @media only screen and (max-width: 640px) {
-    overflow: auto;
-  }
-`;
-
 export const LinkLogo = styled.div`
-  height: 50%;
+  height: 20%;
   display: flex;
   justify-content: center;
+  opacity: 0;
+  
+  transition: opacity 1s ease, transform 1s ease;
+  &.animate {
+    opacity: 1;
+  }
 `;
 
 export const LogoFullLogin = styled.img`
@@ -36,14 +30,15 @@ export const LogoFullLogin = styled.img`
 `;
 
 export const ContentContainer = styled.div`
-  padding: 20px;
   width: 70%;
+  height: 85%;
   margin: 0 auto;
-  height: 100%;
+  padding: 0.1% 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: 1;
+  
+
   ${({ backgroundColor }) => css`
     background-color: ${backgroundColor};
   `};
@@ -54,6 +49,22 @@ export const ContentContainer = styled.div`
     width: 90%;
     padding: 50px;
     margin: 0 auto;
+  }
+
+  ${({ backgroundColor }) => css`
+    background-color: ${backgroundColor};
+  `};
+  ${({ borderRadius }) => css`
+    border-radius: ${borderRadius};
+  `};
+
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease, transform 1s ease;
+
+  &.animate {
+    opacity: 1;
+    transform: translateY(0);
   }
 `;
 

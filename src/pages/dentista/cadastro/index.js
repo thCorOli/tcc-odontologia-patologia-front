@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ButtonPage from "../../../components/button/index";
 import { MainContainer } from "../../../constants/containers/index";
 import FormField from "../../../components/formfield/index";
@@ -6,7 +6,6 @@ import useForm from "../../../hooks/useForm/index";
 import "../../../constants/colors.css";
 import "./components/form.css";
 import {
-  Background,
   ContentContainer,
   LinkLogo,
   Text,
@@ -15,6 +14,8 @@ import {
   WrapperFormField,
   Linked
 } from "./components/style";
+import {LinksOtherPages, TextWithLink, CentralizedLinks } from "../../../components/formInfoUsuario/index.js";
+import Background from "../../../components/background";
 import { useHistory, Link } from "react-router-dom";
 import "../../../components/loader/loader.css";
 import InputMask from 'react-input-mask';
@@ -27,7 +28,7 @@ import { register } from "../../../services/patient";
 import { hasEmptyFields,isCpfValid,isDateValid,isEqual } from "../../../services/general/security";
 
 const Cadastro = () => {
-  const { value, onChangeHandler } = useForm({
+  const { value, onChangeHandler, filterText, cpfMask  } = useForm({
     name: "",
     email: "",
     birthday: "",
@@ -37,10 +38,15 @@ const Cadastro = () => {
   });
 
   const history = useHistory();
+  
+  const [shouldAnimate, setShouldAnimate] = useState(false);
+
+  useEffect(() => {
+    setShouldAnimate(true);
+  }, []);
 
 
 const performValidation = (user) => {
-  console.log(user)
   if(hasEmptyFields(user))
     return 'isEmpty'
   if(!isCpfValid(user.cpf))
@@ -112,16 +118,15 @@ const performValidation = (user) => {
   }
 
   return (
-    <Background backgroundColor={"var(--background)"}>
-      
+    <Background overflow={"auto"}>
       <MainContainer>
-        <LinkLogo as={Link} to="/">
+        <LinkLogo as={Link} to="/" className={shouldAnimate ? 'animate' : ''}>
           <img src={LogoFull}></img>
           </LinkLogo>
           <ContentContainer
           backgroundColor={"var(--white)"}
           borderRadius={"10px"}
-          style={{ padding: "30px 0" }}
+          className={shouldAnimate ? 'animate' : ''}
         >
           <form
             autoComplete="off"
@@ -155,12 +160,11 @@ const performValidation = (user) => {
               <FormField
                 label={"CPF:"}
                 name={"cpf"}
-                value={value.cpf}
-                maxLength={11}
-                minLength={11}
+                value={cpfMask(value.cpf)}
+                maxLength={14}
+                minLength={14}
                 type={"text"}
-                onChange={onChangeHandler}
-                pattern={"[0-9]*"}
+                onChange={(e) => filterText("cpf", e.target.value)}
                 alert={"Somente números"}
               />
             </div>
@@ -171,6 +175,7 @@ const performValidation = (user) => {
               value={value.password}
               onChange={onChangeHandler}
               minLength={6}
+              autoComplete="off"
             />
             <FormField
               label={"Confirmar Senha:"}
@@ -179,6 +184,7 @@ const performValidation = (user) => {
               onChange={onChangeHandler}
               value={value.password_confirmation}
               minLength={6}
+              autoComplete="off"
             />
             {animationData === true ? (
               <div className="loader"></div>
@@ -186,20 +192,16 @@ const performValidation = (user) => {
               <div></div>
             )}
             <ButtonPage
-            style={{ marginBottom: "2%"}} 
             color="var(--medium-purple)" 
             hoverColor="var(--white)" 
             hoverBackGround="var(--medium-purple)" 
             >Cadastrar</ButtonPage>
-            <Linked
-              as={Link}
-              to="/"
-              style={{margin:'5% 0 0 0',textalign:'center'}}
-            >
-              Já é Cadastrado?
-            </Linked>
           </form>
         </ContentContainer>
+        <CentralizedLinks className={shouldAnimate ? 'animate' : ''} style={{marginBottom: "2%"}}>
+          <TextWithLink>Já possui cadastro?</TextWithLink>
+          <LinksOtherPages as={Link} to="/login" style={{ margin: "0 0.5%" }} >Clique aqui para acessar.</LinksOtherPages>
+        </CentralizedLinks>
       </MainContainer>
       <Dialog
         open={open}

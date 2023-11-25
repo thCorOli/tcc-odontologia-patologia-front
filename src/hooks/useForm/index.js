@@ -19,11 +19,12 @@ export default function useForm(defaultCategoryValues) {
     setValue(defaultCategoryValues);
   };
 
-  const filterText = (text) => {
-    this.setState({
-      text: text.replace(/([^\d\s/-])/g, ""),
-    });
-  };
+  const filterText = (key,text) => {
+    setValue((prevValue) => ({
+      ...prevValue,
+      [key]: text.replace(/\D/g, ''),
+    }));
+};
 
   const cpfMask = (value) => {
     return value
@@ -33,6 +34,7 @@ export default function useForm(defaultCategoryValues) {
       .replace(/(\d{3})(\d{1,2})/, "$1-$2")
       .replace(/(-\d{2})\d+?$/, "$1"); // captura 2 numeros seguidos de um traço e não deixa ser digitado mais nada
   };
+
 
   return {
     onChangeHandler,
