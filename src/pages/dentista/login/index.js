@@ -1,18 +1,15 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { login } from "../../../services/patient";
+import {hasEmptyFields, hasSqlStrings} from '../../../services/general/security';
+import { Link, useHistory } from "react-router-dom";
+
+import useForm from "../../../hooks/useForm/index";
 import Background from "../../../components/background";
 import ButtonPage from "../../../components/button/index";
 import FormField from "../../../components/formfield/index";
 import LogoFull from "../../../assets/imgs/icon_provisorio.png";
-import "../../../constants/colors.css";
-import useForm from "../../../hooks/useForm/index";
-import { Panel, Logo, ContentContainer,LinkLogo,LinksOtherPages, TextWithLink, CentralizedLinks } from "../../../components/formInfoUsuario/index.js";
-import { Link, useHistory } from "react-router-dom";
-import {Text} from "../../../components/texts"
-import "../../../components/loader/loader.css";
-import "./components/modalLogin.css";
-import {hasEmptyFields,hasSqlStrings} from '../../../services/general/security'
-import { login } from "../../../services/patient";
-import "../../../constants/colors.css"
+import { Text } from "../../../components/texts";
+import { Panel, Logo, ContentContainer, LinkLogo, LinksOtherPages, TextWithLink, CentralizedLinks } from "../../../components/formInfoUsuario/index.js";
 
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -22,26 +19,21 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 
 const Login = () => {
-
   const [modal, setModal] = useState(false);
-
   const [animationData, setAnimationData] = useState(false);
-
   const [shouldAnimate, setShouldAnimate] = useState(false);
 
   useEffect(() => {
     setShouldAnimate(true);
   }, []);
-  
+
   const { value, onChangeHandler } = useForm({
     email: "",
     password: "",
   });
 
   const history = useHistory();
-
   const [open, setOpen] = React.useState(false);
-
   const [title, setTitle] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -54,37 +46,35 @@ const Login = () => {
 
   const handleCloseModal = () => {
     setModal(false);
-  }
+  };
 
   const handleOpenModal = () => {
     setModal(true);
-  }
-  
-const  LinksOtherPagesF = (email,resp) => {
-  if (resp.status >= 200 && resp.status <= 299) {
-    setTitle("Email reenviado com sucesso!");
-    handleClickOpen();
-    setAnimationData(false);
-  } else {
-    setAnimationData(false);
-    setTitle(`${resp.data.errors[0]},${resp.data.errors[1]}`);
-    handleClickOpen();
-  }
-};
+  };
 
+  const LinksOtherPagesF = (email, resp) => {
+    if (resp.status >= 200 && resp.status <= 299) {
+      setTitle("Email reenviado com sucesso!");
+      handleClickOpen();
+      setAnimationData(false);
+    } else {
+      setAnimationData(false);
+      setTitle(`${resp.data.errors[0]}, ${resp.data.errors[1]}`);
+      handleClickOpen();
+    }
+  };
 
-const handleSubmit = (e) => { 
-  e.preventDefault();
-    if(!hasEmptyFields(value)){
-      login({ patient: value },(response)=>{
-        if(response.status >= 200 && response.status <= 299){
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!hasEmptyFields(value) && !hasSqlStrings(value)) {
+      login({ patient: value }, (response) => {
+        if (response.status >= 200 && response.status <= 299) {
           setTitle("Logado com sucesso!");
           handleClickOpen();
-          history.push("/cistoPatologico")
-        }  
-        else{
+          history.push("/cistoPatologico");
+        } else {
           setAnimationData(false);
-          setTitle(`${response.data.errors[0]},${response.data.errors[1]}`);
+          setTitle("Erro ao efetuar login. Verifique suas credenciais.");
           handleClickOpen();
         }
       });
@@ -92,58 +82,51 @@ const handleSubmit = (e) => {
       setTitle("Preencha os campos!");
       handleClickOpen();
     }
-}
-
-
+  };
 
   return (
     <Background backgroundColor={"var(--background)"}>
       <Panel>
-       
-      <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        open={modal}
-        onClose={handleCloseModal}
-        closeAfterTransition
-        className={"modalLogin"}
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-     <div className="backModal">
+        <Modal
+          aria-labelledby="transition-modal-title"
+          aria-describedby="transition-modal-description"
+          open={modal}
+          onClose={handleCloseModal}
+          closeAfterTransition
+          className={"modalLogin"}
+          BackdropComponent={Backdrop}
+          BackdropProps={{
+            timeout: 500,
+          }}
+        >
+          <div className="backModal">
             <Text>Digite Seu email:</Text>
-            <form  onSubmit={(e) => {
-              e.preventDefault();
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
                 setAnimationData(true);
-              }
-            }>
-                <FormField
+              }}
+            >
+              <FormField
                 label={"Email"}
                 onChange={onChangeHandler}
                 name={"emailToResend"}
                 value={value.emailToResend}
                 type={"email"}
-                />
-                <ButtonPage type={"submit"}>
-                  Enviar
-              </ButtonPage>
+              />
+              <ButtonPage type={"submit"}>Enviar</ButtonPage>
             </form>
-      </div>
-          
-      </Modal>
+          </div>
+        </Modal>
         <ContentContainer
           backgroundColor={"var(--white)"}
           borderRadius={"2%"}
-          style={{ padding: "10px 0"}}
+          style={{ padding: "10px 0" }}
           className={shouldAnimate ? 'animate' : ''}
         >
-         
           <LinkLogo as={Link} to="/">
             <Logo src={LogoFull}></Logo>
           </LinkLogo>
-          
           <form
             style={{
               width: "80%",
@@ -168,9 +151,8 @@ const handleSubmit = (e) => {
               value={value.password}
               type={"password"}
             />
-            
             <LinksOtherPages as={Link} to="/forgot">
-                Esqueci minha senha
+              Esqueci minha senha
             </LinksOtherPages>
             <LinksOtherPages onClick={handleOpenModal}>Reenviar Email</LinksOtherPages>
             {animationData === true ? (
@@ -178,21 +160,19 @@ const handleSubmit = (e) => {
             ) : (
                 <div></div>
               )}
-               
-            <ButtonPage 
-            style={{ marginBottom: "2%"}} 
-            color="var(--medium-purple)"
-            backgroundColor="var(--white)"
-            hoverColor="var(--white)" 
-            hoverBackGround="var(--medium-purple)" 
+            <ButtonPage
+              style={{ marginBottom: "2%" }}
+              color="var(--medium-purple)"
+              backgroundColor="var(--white)"
+              hoverColor="var(--white)"
+              hoverBackGround="var(--medium-purple)"
             >
               Entrar
             </ButtonPage>
-        
             <ButtonPage
               as={Link}
               to="/cadastro"
-              style={{ marginBottom: "2%"}} 
+              style={{ marginBottom: "2%" }}
               color="var(--medium-purple)"
               hoverColor="var(--white)"
               hoverBackGround="var(--medium-purple)"
@@ -201,8 +181,9 @@ const handleSubmit = (e) => {
             </ButtonPage>
           </form>
         </ContentContainer>
-        <CentralizedLinks  className={shouldAnimate ? 'animate' : ''}>
-          <TextWithLink>É um labratório? Para mudar de sessão </TextWithLink><LinksOtherPages as={Link} to="/loginLaboratory" style={{ margin: "0 0.5%"}} >clique aqui</LinksOtherPages>        
+        <CentralizedLinks className={shouldAnimate ? 'animate' : ''}>
+          <TextWithLink>É um laboratório? Para mudar de sessão </TextWithLink>
+          <LinksOtherPages as={Link} to="/loginLaboratory" style={{ margin: "0 0.5%" }} >clique aqui</LinksOtherPages>
         </CentralizedLinks>
       </Panel>
       <Dialog
@@ -218,7 +199,6 @@ const handleSubmit = (e) => {
           </Button>
         </DialogActions>
       </Dialog>
-
     </Background>
   );
 };
