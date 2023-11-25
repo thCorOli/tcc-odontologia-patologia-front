@@ -32,9 +32,14 @@ export default function useFormOptions(defaultCategoryValues) {
     setValue(defaultCategoryValues);
   };
 
+  const onChangeHandlerTextArea = (eventName) => {
+    setValues(eventName.target.getAttribute("name"), eventName.target.value);
+  }
+
   return {
     onChangeHandler,
     value,
     clearForm,
+    onChangeHandlerTextArea
   };
 }

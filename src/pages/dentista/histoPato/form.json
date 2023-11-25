@@ -47,6 +47,10 @@
         "11": {
             "title": "Sintoma",
             "options": ["Ausente", "Com dor", "Com ardor", "Outro"]
-        }
+        },
+        "12": {
+            "title": "Observações",
+            "textarea": true
+          }
     }
 }

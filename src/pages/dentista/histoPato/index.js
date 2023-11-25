@@ -24,7 +24,7 @@ const FormHistoPato = () => {
     };
   
 
-    const { value, onChangeHandler,clearForm } = useFormOptions(initialValues);
+    const { value, onChangeHandler,clearForm, onChangeHandlerTextArea } = useFormOptions(initialValues);
     const [open, setOpen] = React.useState(false);
     const [modal, setModal] = useState(false);
     const [title, setTitle] = React.useState(false);
@@ -47,16 +47,18 @@ const FormHistoPato = () => {
 
     return (
       <Layout titlePage="Formulário HistoPatologico">
-         <ContentContainer
-          backgroundColor={"var(--white)"}
-          borderRadius={"2%"}
-          style={{ padding: "2%", width: "70%"}}
-        >
-          <form onSubmit={(e) => {
+      <ContentContainer
+        backgroundColor={"var(--white)"}
+        borderRadius={"2%"}
+        style={{ padding: "2%", width: "70%" }}
+      >
+        <form
+          onSubmit={(e) => {
             e.preventDefault();
-            if(!isObjectEmpty(value)){
-              console.log(value)
-              submitExam({ form_measurement: value, file },(response)=>{
+            console.log(value);
+            clearForm();
+            /*if (!isObjectEmpty(value)) {
+              submitExam({ form_measurement: value, file }, (response) => {
                 if (response.status >= 200 && response.status <= 299) {
                   setTitle("Formulário enviado com sucesso");
                   handleClickOpen();
@@ -65,33 +67,46 @@ const FormHistoPato = () => {
                   setTitle(response.data.errors);
                   handleClickOpen();
                 }
-              })
+              });
             } else {
               setTitle("Erro: Formulário vazio!");
               handleClickOpen();
-              console.log(value)
-            }
-          }}>
-            <TitleSectionForm>Tipo Material:</TitleSectionForm>
-            {Object.values(form.Form).map(field => (
-              <div key={field.title}>
-                <SubtitleSection>{field.title}: </SubtitleSection>
-                <MakeSideContainer>
-                {field.options.map(option => (
-                  <MakeSideContainer key={option}>
-                    <CheckBox
-                      type="checkbox"
-                      name={field.title}
-                      value={option}
-                      checked={value[field.title].includes(option)}
-                      onChange={onChangeHandler}
-                      />
-                    <Option> {option} </Option> 
-                  </MakeSideContainer>
-                ))}
-              </MakeSideContainer>
-              </div>
-            ))}
+              console.log(value);
+            }*/
+          }}
+        >
+          <TitleSectionForm>Tipo Material:</TitleSectionForm>
+          {Object.values(form.Form).map((field) => (
+  <div key={field.title}>
+    <SubtitleSection>{field.title}:</SubtitleSection>
+    <MakeSideContainer>
+      {field.textarea ? (
+        <MakeSideContainer>
+          <textarea
+            name={field.title}
+            value={value[field.title] || ''} 
+            onChange={onChangeHandlerTextArea}
+          />
+        </MakeSideContainer>
+      ) : (
+        field.options.map((option) => (
+          <MakeSideContainer key={option}>
+            <CheckBox
+              type="checkbox"
+              name={field.title}
+              value={option}
+              checked={value[field.title]?.includes(option) || false} 
+              onChange={onChangeHandler}
+            />
+            <Option> {option} </Option>
+          </MakeSideContainer>
+        ))
+      )}
+    </MakeSideContainer>
+  </div>
+))}
+
+            
             <InputFile onChange={handleFileChange}/>
             <Button 
               style={{ marginBottom: "2%"}} 

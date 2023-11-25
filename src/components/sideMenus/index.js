@@ -67,7 +67,7 @@ const ItensSideMenu = styled.div`
 
   &:hover img {
     filter: hue-rotate(0deg);
-    height: 70%; /* Adjust the height as needed */
+    height: 55%; /* Adjust the height as needed */
     transition: 0.5s;
   }
  
@@ -110,19 +110,16 @@ const SideMenu = () => {
   return (
     <SideMenuUser>
       <ReactTooltip place="right" type="dark" effect="solid" />
-      <ItensSideMenu as={Link} to="/home">
+      <ItensSideMenu >
         <Logo  />
       </ItensSideMenu>
-      <ItensSideMenu as={Link}  data-tip="Formulário HistoPatologico" to="/cistoPatologico">
+      <ItensSideMenu as={Link}  data-tip="Formulário HistoPatologico" to="/dentista/cistoPatologico">
         <Img  src={FormIcon} />
       </ItensSideMenu>
-      <ItensSideMenu as={Link}  data-tip="Historico" to="/historico">
+      <ItensSideMenu as={Link}  data-tip="Histórico de submissão" to="/dentitsta/historico">
         <Img src={HistoryIcon}/>
       </ItensSideMenu>
-      <ItensSideMenu data-tip="Selecionar Médico" as={Link} to={"/selecionarMedico"}>
-        <Img src={MedicIcon}/>
-      </ItensSideMenu>
-      <ItensSideMenu data-tip="Meus Exames" as={Link} to="/meusExames">
+      <ItensSideMenu data-tip="Meus Pacientes" as={Link} to="/dentista/meusPacientes">
         <Img src={ExamsIcon} />
       </ItensSideMenu>
 

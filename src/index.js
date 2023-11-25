@@ -19,7 +19,7 @@ ReactDOM.render(
       <Route path={"/login"} component={Login} exact />
       <Route path={"/cadastro"} component={Cadastro} exact />
       <Route path={"/cistoPatologico"} component={FormHistoPato} exact />
-      <Route path={"/historico"} component={History} exact/>
+      <Route path={"/dentista/historico"} component={History} exact/>
 
       <Route path={"/loginLaboratio"} component={LoginLaboratory} exact />
       <Redirect from="/" to="/login" />
