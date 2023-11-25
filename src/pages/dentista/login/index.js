@@ -183,7 +183,7 @@ const Login = () => {
         </ContentContainer>
         <CentralizedLinks className={shouldAnimate ? 'animate' : ''}>
           <TextWithLink>É um laboratório? Para mudar de sessão </TextWithLink>
-          <LinksOtherPages as={Link} to="/loginLaboratory" style={{ margin: "0 0.5%" }} >clique aqui</LinksOtherPages>
+          <LinksOtherPages as={Link} to="/loginLaboratio" style={{ margin: "0 0.5%" }} >clique aqui</LinksOtherPages>
         </CentralizedLinks>
       </Panel>
       <Dialog
