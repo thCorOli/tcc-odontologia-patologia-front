@@ -24,7 +24,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import LogoFull from "../../../assets/imgs/icon_provisorio.png";
-import { register } from "../../../services/patient";
+import { register } from "../../../services/dentista";
 import { hasEmptyFields,isCpfValid,isDateValid,isEqual } from "../../../services/general/security";
 
 const Cadastro = () => {
@@ -88,10 +88,16 @@ const performValidation = (user) => {
            setTitle("Confirme o seu email para finalizar o cadastro!");
            handleClickOpen();
          } else {
+          console.log(response);
            setTitle(response.data.errors);
            handleClickOpen();
            setAnimationData(false);
-         }
+          }
+        if(response.status >= 500){
+          setTitle(`Erro ${ response.status }:Erro Interno de Servidor` );
+          handleClickOpen();
+          setAnimationData(false);
+        }
        });
        break;
      case "isEmpty":

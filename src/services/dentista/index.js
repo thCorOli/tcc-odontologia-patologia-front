@@ -2,7 +2,7 @@ import axios from "axios";
 import { saveAs } from "file-saver";
 import {logout} from "../general/acess"
 
-const URL = "/dentist";
+const URL = "https://tcc-odontologia-back.onrender.com/api/patients";
 
 const api = axios.create({
   baseURL: URL,
