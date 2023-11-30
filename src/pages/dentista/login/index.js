@@ -66,6 +66,7 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setAnimationData(true);
     if (!hasEmptyFields(value) && !hasSqlStrings(value)) {
       login({ patient: value }, (response) => {
         if (response.status >= 200 && response.status <= 299) {
