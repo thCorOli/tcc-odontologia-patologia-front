@@ -71,7 +71,7 @@ const Login = () => {
         if (response.status >= 200 && response.status <= 299) {
           setTitle("Logado com sucesso!");
           handleClickOpen();
-          history.push("/cistoPatologico");
+          history.push("/dentista/cistoPatologico");
         } else {
           setAnimationData(false);
           setTitle("Erro ao efetuar login. Verifique suas credenciais.");
