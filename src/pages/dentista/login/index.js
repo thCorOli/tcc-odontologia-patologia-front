@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { login } from "../../../services/patient";
+import { login } from "../../../services/dentista";
 import {hasEmptyFields, hasSqlStrings} from '../../../services/general/security';
 import { Link, useHistory } from "react-router-dom";
 
