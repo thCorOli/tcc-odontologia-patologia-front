@@ -70,6 +70,7 @@ const Login = () => {
     if (!hasEmptyFields(value) && !hasSqlStrings(value)) {
       login({ patient: value }, (response) => {
         if (response.status >= 200 && response.status <= 299) {
+          setAnimationData(false);
           setTitle("Logado com sucesso!");
           handleClickOpen();
           history.push("/dentista/cistoPatologico");
@@ -81,6 +82,7 @@ const Login = () => {
       });
     } else {
       setTitle("Preencha os campos!");
+      setAnimationData(false);
       handleClickOpen();
     }
   };
