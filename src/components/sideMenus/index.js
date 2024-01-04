@@ -69,10 +69,18 @@ const ItensSideMenu = styled.div`
 
   &:hover img {
     filter: hue-rotate(0deg);
-    height: 55%; /* Adjust the height as needed */
+    height: 55%; 
     transition: 0.5s;
   }
  
+`;
+
+const ItensSideLogo = styled.div`
+  width: 100%;
+  height: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Img = styled.img`
@@ -86,7 +94,7 @@ const Img = styled.img`
 `;
 
 const Logo = styled.img`
-  width: 40px;
+  width: 50px;
   height: 50px;
 `;
 
@@ -112,9 +120,9 @@ const SideMenu = () => {
   return (
     <SideMenuUser>
       <ReactTooltip place="right" type="dark" effect="solid" />
-      <ItensSideMenu >
+      <ItensSideLogo >
         <Logo  src={LogoIcon}/>
-      </ItensSideMenu>
+      </ItensSideLogo>
       <ItensSideMenu as={Link}  data-tip="Formulário HistoPatologico" to="/dentista/cistoPatologico">
         <Img  src={FormIcon} />
       </ItensSideMenu>
