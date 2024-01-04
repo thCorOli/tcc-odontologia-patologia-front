@@ -7,7 +7,7 @@ import useForm from "../../../hooks/useForm/index";
 import Background from "../../../components/background";
 import ButtonPage from "../../../components/button/index";
 import FormField from "../../../components/formfield/index";
-import LogoFull from "../../../assets/imgs/icon_provisorio.png";
+import LogoFull from "../../../assets/imgs/logos/LogoFull.png";
 import { Text } from "../../../components/texts";
 import { Panel, Logo, ContentContainer, LinkLogo, LinksOtherPages, TextWithLink, CentralizedLinks } from "../../../components/formInfoUsuario/index.js";
 

@@ -4,11 +4,13 @@ import { Link, useHistory } from "react-router-dom";
 import "../../constants/colors.css";
 import { logout } from "../../services/general/acess";
 import ReactTooltip from "react-tooltip";
-import PatientIcon from "../../assets/imgs/patientIcon.png"
-import FormIcon from "../../assets/imgs/formIcon.png";
-import ExamsIcon from "../../assets/imgs/examsIcon.png";
-import HistoryIcon from "../../assets/imgs/historyIcon.png";
-import ExitIcon from "../../assets/imgs/exitIcon.png";
+import PatientIcon from "../../assets/imgs/incosSideMenus/patientIcon.png"
+import FormIcon from "../../assets/imgs/incosSideMenus/formIcon.png";
+import ExamsIcon from "../../assets/imgs/incosSideMenus/examsIcon.png";
+import HistoryIcon from "../../assets/imgs/incosSideMenus/historyIcon.png";
+import ExitIcon from "../../assets/imgs/incosSideMenus/exitIcon.png";
+import LogoIcon from "../../assets/imgs/logos/Logo.png";
+
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -111,7 +113,7 @@ const SideMenu = () => {
     <SideMenuUser>
       <ReactTooltip place="right" type="dark" effect="solid" />
       <ItensSideMenu >
-        <Logo  />
+        <Logo  src={LogoIcon}/>
       </ItensSideMenu>
       <ItensSideMenu as={Link}  data-tip="Formulário HistoPatologico" to="/dentista/cistoPatologico">
         <Img  src={FormIcon} />

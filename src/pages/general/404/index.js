@@ -1,8 +1,7 @@
 import React from "react";
 import { MainContainer } from "../../../constants/containers/index";
 import "../../../constants/colors.css";
-import IMG404 from "../../../assets/imgs/404/404.svg";
-import Logo from "../../../assets/imgs/icon_provisorio.png";
+import Logo from "../../../assets/imgs/logos/Logo.png";
 
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -58,7 +57,7 @@ const Pagina404 = () => {
           <LogoReducted src={Logo} />
         </ImageContainer>
         <SideSide>
-          <Img404 src={IMG404} />
+          <Img404  />
           <div>
             <H1404>404</H1404>
             <Text>Página não encontrada</Text>
