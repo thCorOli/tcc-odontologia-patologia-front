@@ -1,23 +1,13 @@
-import axios from "axios";
 import { saveAs } from "file-saver";
 import {logout} from "../general/acess"
-
-const URL = "https://tcc-odontologia-back.onrender.com/api/patients";
-
-const api = axios.create({
-  baseURL: URL,
-});
-
-const config = {
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-    },
-  };
+import api from "../general/utils/api";
+import { getTokenCookie } from "../general/utils/cookie";
 
 const user = () => {
     return JSON.parse(localStorage.getItem("user"));
 };
 
+console.log(getTokenCookie());
 
 export const register = (User, _callback) => {
     api
@@ -29,6 +19,8 @@ export const register = (User, _callback) => {
       _callback(errors.response);
     });
 }
+
+
 
 export const login = (Patient, _callback) => {
     api

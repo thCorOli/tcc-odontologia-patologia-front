@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Link, useHistory } from "react-router-dom";
 import "../../constants/colors.css";
-import { logout } from "../../services/general/acess";
+import { logout } from "../../services/general/auth/acess";
 import ReactTooltip from "react-tooltip";
 
 import Button from "@material-ui/core/Button";

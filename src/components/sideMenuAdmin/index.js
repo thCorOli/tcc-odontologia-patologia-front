@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { logout } from "../../services/general/acess";
+import { logout } from "../../services/general/auth/acess";
 import { useHistory } from "react-router-dom";
 import "../../constants/colors.css";
 import ReactTooltip from "react-tooltip";
