@@ -123,7 +123,7 @@ const SideMenu = () => {
       <ItensSideLogo >
         <Logo  src={LogoIcon}/>
       </ItensSideLogo>
-      <ItensSideMenu as={Link}  data-tip="Formulário HistoPatologico" to="/dentista/cistoPatologico">
+      <ItensSideMenu as={Link}  data-tip="Formulários" to="/dentista/formulários">
         <Img  src={FormIcon} />
       </ItensSideMenu>
       <ItensSideMenu as={Link}  data-tip="Histórico de submissão" to="/dentista/historico">
