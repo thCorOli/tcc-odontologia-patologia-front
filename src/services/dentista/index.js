@@ -1,17 +1,10 @@
 import { saveAs } from "file-saver";
-import {logout} from "../general/acess"
 import api from "../general/utils/api";
 import { getTokenCookie } from "../general/utils/cookie";
 
-const user = () => {
-    return JSON.parse(localStorage.getItem("user"));
-};
-
-console.log(getTokenCookie());
-
-export const register = (User, _callback) => {
+export const register = (credentials, _callback) => {
     api
-    .post(`/`, User, config)
+    .post(`/`, credentials)
     .then((response) => {
       _callback(response);
     })
@@ -21,32 +14,9 @@ export const register = (User, _callback) => {
 }
 
 
-
-export const login = (Patient, _callback) => {
-    api
-      .post(`/login`, Patient, config)
-      .then((response) => {
-        logout();
-        localStorage.setItem("user", JSON.stringify(response.data));
-        localStorage.setItem("admin", JSON.stringify(response.data));
-        _callback(response);
-      })
-      .catch((err) => {
-        _callback(err.response);
-      });
-};
-
 export const MedicationHistoryById = (id, _callback) => {
-    const measurementsConfig = {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${user().token}`,
-      },
-    };
-  
-    return api
-      .get(`/history_medications/${id}`, measurementsConfig)
+    api
+      .get(`patients/history_medications/${id}`)
       .then((response) => response.data)
       .catch((err) => {
         _callback(err.response);
@@ -58,15 +28,8 @@ export const listPatient = (_callback) => {
 }
 
 export const submitExam = (FormAnswer, _callback) => {
-  const submitMedicationConfig = {
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${user().token}`,
-    },
-  };
-  api
-    .post("/measurements", FormAnswer, submitMedicationConfig)
+   api
+    .post("patients/measurements", FormAnswer)
     .then((response) => {
       _callback(response);
     })
@@ -76,16 +39,8 @@ export const submitExam = (FormAnswer, _callback) => {
 };
 
 export const formHistoryCistoPat = (_callback) => {
-  const measurementsConfig = {
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${user().token}`,
-    },
-  };
-
   return api
-    .get('/history_measurements', measurementsConfig)
+    .get('patients/history_measurements')
     .then((response) => _callback(response))
     .catch((err) => {
       _callback(err.response);

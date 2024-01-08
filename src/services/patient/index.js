@@ -1,5 +1,5 @@
 import axios from "axios";
-import {logout} from "../general/acess";
+import {logout} from "../general/auth/acess"
 import { saveAs } from "file-saver";
 
 const URL = "http://127.0.0.1:3001/api";
