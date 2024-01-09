@@ -1,6 +1,6 @@
 import { saveAs } from "file-saver";
 import api from "../general/utils/api";
-import { getTokenCookie } from "../general/utils/cookie";
+import {} from "../general/auth/index";
 
 export const register = (credentials, _callback) => {
     api
@@ -29,7 +29,7 @@ export const listPatient = (_callback) => {
 
 export const submitExam = (FormAnswer, _callback) => {
    api
-    .post("patients/measurements", FormAnswer)
+    .post("measurements", FormAnswer)
     .then((response) => {
       _callback(response);
     })
@@ -40,7 +40,7 @@ export const submitExam = (FormAnswer, _callback) => {
 
 export const formHistoryCistoPat = (_callback) => {
   return api
-    .get('patients/history_measurements')
+    .get("patients/history_measurements")
     .then((response) => _callback(response))
     .catch((err) => {
       _callback(err.response);

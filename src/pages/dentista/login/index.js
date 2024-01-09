@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { login } from "../../../services/general/auth/acess.js";
+import { login } from "../../../services/general/auth/index.js";
 import {hasEmptyFields, hasSqlStrings} from '../../../services/general/security';
 import { Link, useHistory } from "react-router-dom";
 

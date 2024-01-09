@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Link, useHistory } from "react-router-dom";
 import "../../constants/colors.css";
-import { logout } from "../../services/general/auth/acess";
+import { logout } from "../../services/general/auth";
 import ReactTooltip from "react-tooltip";
 import PatientIcon from "../../assets/imgs/incosSideMenus/patientIcon.png"
 import FormIcon from "../../assets/imgs/incosSideMenus/formIcon.png";

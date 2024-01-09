@@ -1,5 +1,5 @@
 import api from "../utils/api";
-import { setTokenCookie, removeTokenCookie } from "../utils/cookie";
+import { setTokenCookie, removeTokenCookie, getTokenCookie } from "../utils/cookie";
 
 export const login = async (credentials, _callback) => {
     api
@@ -17,3 +17,7 @@ export const login = async (credentials, _callback) => {
 export const logout = () => {
   removeTokenCookie();
 };
+
+export const isAuthenticated = () => {
+  return !!getTokenCookie();
+}
