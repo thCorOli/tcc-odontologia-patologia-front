@@ -73,7 +73,7 @@ const Login = () => {
           setAnimationData(false);
           setTitle("Logado com sucesso!");
           handleClickOpen();
-          history.push("/dentista/cistoPatologico");
+          history.push("/dentista/formulários");
         } else {
           setAnimationData(false);
           setTitle("Erro ao efetuar login. Verifique suas credenciais.");

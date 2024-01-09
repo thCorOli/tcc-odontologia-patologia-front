@@ -1,52 +1,52 @@
 {
     "Form": {
         "0": {
-            "title": "Tipo Material A",
-            "options": ["Biópsia incisional", "Biópsia excisional", "Curetagem", "Exodontia", "Raspado", "Outro"]
+            "title": "Assimetria facial",
+            "options": ["Sim", "Não"]
         },
         "1": {
-            "title": "Tipo Material B",
-            "options": ["Mucosa", "Semimucosa", "Intraósseo", "Dente", "Glândulas salivares labiais", "Outro"]
+            "title": "Lado da assimetria",
+            "options": ["Direito", "Esquerdo", "Difuso"]
         },
         "2": {
+            "title": "Localização",
+            "options": ["Osso Maxilar", "Osso Mandibular", "Outro"]
+        },
+        "3": {
             "title": "Lado",
             "options": ["Direito", "Esquerdo"]
         },
-        "3": {
+        "4": {
             "title": "Número",
             "options": ["Única", "Dupla", "Múltipla"]
         },
-        "4": {
-            "title": "Lesão",
-            "options": ["Mácula", "Placa", "Pápula", "Nódulo", "Vesícula", "Bolha", "Úlcera", "Crosta"]
-        },
         "5": {
-            "title": "Base",
-            "options": ["Sésil", "Pediculada"]
+            "title": "Densidade",
+            "options": ["Radiolúcida", "Radiopaca","Mista"]
         },
         "6": {
-            "title": "Formato",
-            "options": ["Irregular", "Esférico", "Oval", "Outro"]
+            "title": "Loculação",
+            "options": ["Unilocular", "Multilocular"]
         },
         "7": {
-            "title": "Consistência",
-            "options": ["Firme", "Pétrea", "Mole", "Borrachoide"]
+            "title": "Aspecto",
+            "options": ["Bolhas de sabão", "Favos de mel", "Roído de traça", "Raios de sol","Outro"]
         },
         "8": {
-            "title": "Cor",
-            "options": ["Rosa/Normal", "Branca", "Preta", "Vermelha", "Amarela", "Outro"]
+            "title": "Limites",
+            "options": ["Precisos", "Imprecisos"]
         },
         "9": {
-            "title": "Limites",
-            "options": ["Precisos", "Imprecisos", "Circinado"]
+            "title": "Halo",
+            "options": ["Esclerótico", "Ausente"]
         },
         "10": {
             "title": "Superfície",
             "options": ["Lisa", "Ulcerada", "Lobulada", "Irregular", "Outro"]
         },
         "11": {
-            "title": "Sintoma",
-            "options": ["Ausente", "Com dor", "Com ardor", "Outro"]
+            "title": "Dente(s)",
+            "options": ["Ausente", "Periapical", "Reabsorção","Deslocamento", "Outro"]
         },
         "12": {
             "title": "Observações",

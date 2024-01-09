@@ -85,7 +85,7 @@ const FormOsseo = () => {
         style={{ padding: "2%", width: "70%" }}
       >
         <form onSubmit={handleSubmit}>
-          <TitleSectionForm>Tipo Material:</TitleSectionForm>
+          <TitleSectionForm>Questionário de lesão intra-óssea odontológico:</TitleSectionForm>
           {Object.values(form.Form).map((field) => (
             <div key={field.title}>
               <SubtitleSection>{field.title}:</SubtitleSection>
