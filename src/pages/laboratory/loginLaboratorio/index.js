@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { login } from "../../../services/patient";
+import { loginLaboratory } from "../../../services/general/auth/index.js";
 import {hasEmptyFields, hasSqlStrings} from '../../../services/general/security';
 import { Link, useHistory } from "react-router-dom";
 
@@ -67,7 +67,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!hasEmptyFields(value) && !hasSqlStrings(value)) {
-      login({ patient: value }, (response) => {
+      loginLaboratory({ patient: value }, (response) => {
         if (response.status >= 200 && response.status <= 299) {
           setTitle("Logado com sucesso!");
           handleClickOpen();

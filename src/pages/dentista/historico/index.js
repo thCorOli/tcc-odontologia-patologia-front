@@ -6,18 +6,20 @@ import EmptyHistory from "../patients/components/emptyPatient/index";
 import ContentHistory from "../patients/components/contentPatient/index";
 import LoadingHistory from "../patients/components/loadingPatient/index";
 //import FirstLogin from "../firstLogin/index";
-//import SemAcesso from "../semAcesso/index";
 import { Subtitle } from "../../../components/texts";
 
 
 const History = () => {
   const [History, setHistory] = useState([]);
-
+  
+  /*
     useEffect(() => {
       formHistoryCistoPat((response) => {
         setHistory(Array.from(response.data.user.reverse()));
       });
     }, []);
+
+    */
   return (
     <Layout titlePage="Histórico">
       {History === 0 ? (

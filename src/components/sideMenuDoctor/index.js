@@ -11,6 +11,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import ExitIcon from "../../assets/imgs/incosSideMenus/exitIcon.png";
 
 const SideMenuMedic = styled.div`
   width: 110px;
@@ -71,7 +72,7 @@ const Img = styled.img`
   }
 `;
 
-const SideMenuDoctor = () => {
+const SideMenuLaboratory= () => {
   const [open, setOpen] = React.useState(false);
 
   const history = useHistory();
@@ -84,7 +85,7 @@ const SideMenuDoctor = () => {
     setOpen(false);
   };
 
-  const logoutPatient = () => {
+  const logout = () => {
     logout();
     history.push("/");
   };
@@ -92,7 +93,7 @@ const SideMenuDoctor = () => {
   return (
     <SideMenuMedic>
       <ReactTooltip place="right" type="dark" effect="solid" />
-      <ItensSideMenu as={Link} to="/homeMedic" style={{ flex: 0.5 }}>
+      <ItensSideMenu style={{ flex: 0.5 }}>
         <Logo />
       </ItensSideMenu>
       <ItensSideMenu as={Link} to="/acompanhamento" data-tip="Histórico Medição">
@@ -101,12 +102,15 @@ const SideMenuDoctor = () => {
       <ItensSideMenu as={Link} to="/acompanhamentoMedicacao" data-tip="Histórico Medicação">
         <Img  />
       </ItensSideMenu>
-      <ItensSideMenu data-tip="Gráfico Paciente" as={Link} to="/graficoDoctor">
-        <Img  />
+      <ItensSideMenu 
+      backgroundColor ="var(--recuse)"
+      hoverColor = "var(--recuse)"
+      onClick={handleClickOpen} 
+      data-tip="Sair">
+        <Img src={ExitIcon}/>
       </ItensSideMenu>
-      <ItensSideMenu onClick={handleClickOpen} data-tip="Sair" style={{ flex: 0.5 }}>
-        <Img  />
-      </ItensSideMenu>
+
+
       <Dialog
         open={open}
         onClose={handleClose}
@@ -125,7 +129,7 @@ const SideMenuDoctor = () => {
           <Button onClick={handleClose} color="primary">
             Não
           </Button>
-          <Button onClick={logoutPatient} color="primary" autoFocus>
+          <Button onClick={logout} color="primary" autoFocus>
             Sim
           </Button>
         </DialogActions>
@@ -134,4 +138,4 @@ const SideMenuDoctor = () => {
   );
 };
 
-export default SideMenuDoctor;
+export default SideMenuLaboratory;

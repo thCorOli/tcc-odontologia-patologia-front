@@ -21,6 +21,7 @@ const Patients = () => {
         });
       }, []);
     */
+   
     return (
         <Layout titlePage="Lista de pacientes">
             {Patients === 0 ? (

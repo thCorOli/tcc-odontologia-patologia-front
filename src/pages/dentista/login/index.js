@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { login } from "../../../services/general/auth/index.js";
+import { loginDentist } from "../../../services/general/auth/index.js";
 import {hasEmptyFields, hasSqlStrings} from '../../../services/general/security';
 import { Link, useHistory } from "react-router-dom";
 
@@ -68,7 +68,7 @@ const Login = () => {
     e.preventDefault();
     setAnimationData(true);
     if (!hasEmptyFields(value) && !hasSqlStrings(value)) {
-      login({ patient: value }, (response) => {
+      loginDentist({ patient: value }, (response) => {
         if (response.status >= 200 && response.status <= 299) {
           setAnimationData(false);
           setTitle("Logado com sucesso!");

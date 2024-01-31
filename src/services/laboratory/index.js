@@ -30,19 +30,6 @@ export const register = (User, _callback) => {
     });
 }
 
-export const login = (Patient, _callback) => {
-  api
-    .post(`/logiLaboratoy`, Patient, config)
-    .then((response) => {
-      logout();
-      localStorage.setItem("user", JSON.stringify(response.data));
-      localStorage.setItem("admin", JSON.stringify(response.data));
-      _callback(response);
-    })
-    .catch((err) => {
-      _callback(err.response);
-    });
-};
 
 export const listSelectPatient = (_callback) => {
   const listPatienConfig = {

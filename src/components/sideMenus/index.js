@@ -6,7 +6,6 @@ import { logout } from "../../services/general/auth";
 import ReactTooltip from "react-tooltip";
 import PatientIcon from "../../assets/imgs/incosSideMenus/patientIcon.png"
 import FormIcon from "../../assets/imgs/incosSideMenus/formIcon.png";
-import ExamsIcon from "../../assets/imgs/incosSideMenus/examsIcon.png";
 import HistoryIcon from "../../assets/imgs/incosSideMenus/historyIcon.png";
 import ExitIcon from "../../assets/imgs/incosSideMenus/exitIcon.png";
 import LogoIcon from "../../assets/imgs/logos/Logo.png";
