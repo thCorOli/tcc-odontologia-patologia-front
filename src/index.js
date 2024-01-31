@@ -14,6 +14,8 @@ import ResetPassword from "./pages/dentista/resetPassword/index";
 import Forms from "./pages/dentista/forms/index";
 import FormOsseo from "./pages/dentista/formOsseo/index";
 
+import ReceiveForm from "./pages/laboratory/receiveForms/index";
+
 import LoginLaboratory from "./pages/laboratory/loginLaboratorio/index";
 
 ReactDOM.render(
@@ -25,8 +27,9 @@ ReactDOM.render(
       <Route path={"/dentista/historico"} component={History} exact/>
       <Route path={"/dentista/meusPacientes"} component={Patients} exact/>
       <Route path={"/dentista/formulários"} component={Forms} exact />
-      <Route path={"/loginLaboratio"} component={LoginLaboratory} exact />
       <Route path={"/dentista/odontoOsseo"} component={FormOsseo} exact/>
+      <Route path={"/loginLaboratio"} component={LoginLaboratory} exact />
+      <Route path={"/laboratorio/recebidos"} component={ReceiveForm} exact />
       <Redirect from="/" to="/login" exact/>
       <Route component={NotFound} />
     </Switch>
