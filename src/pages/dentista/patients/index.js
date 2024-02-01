@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Layout from "../../../components/layout/index";
 import "../../../constants/colors.css";
-import { Subtitle, Text, SubtitleSection} from "../../../components/texts";
+import { Subtitle, SubtitleSection} from "../../../components/texts";
 import { useHistory } from "react-router-dom";
 import { Card, Img, CardContainer } from "./components/index";
 import ListPatientsIcon from "../../../assets/imgs/icones/ListPatientsIcon.png";

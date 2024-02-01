@@ -13,6 +13,9 @@ export const register = (credentials, _callback) => {
     });
 }
 
+export const registerPatient = () => {
+  
+}
 
 export const MedicationHistoryById = (id, _callback) => {
     api
