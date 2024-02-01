@@ -11,9 +11,13 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import LogoIcon from "../../assets/imgs/logos/Logo.png";
+import ReceiveIcon from "../../assets/imgs/incosSideMenus/receiveIcon.png";
+import HistoryIcon from "../../assets/imgs/incosSideMenus/historyIcon.png";
 import ExitIcon from "../../assets/imgs/incosSideMenus/exitIcon.png";
 
-const SideMenuMedic = styled.div`
+
+const SideMenu = styled.div`
   width: 110px;
   height: 100vh;
   background-color: var(--white);
@@ -44,32 +48,53 @@ const ItensSideMenu = styled.div`
   justify-content: center;
   cursor: pointer;
   flex: 1 1;
+  background-color: ${props => props.backgroundColor};
+  filter: grayscale(100%) ;
+  transition: 0.5s;
 
   @media only screen and (max-width: 640px) {
     height: 100%;
   }
+
+  &:hover {
+    filter: grayscale(0%);
+    background-color:${props => props.backgroundColor || "var(--ligth-purple)"};
+  }
+
+  &:focus {
+    filter: grayscale(0%);
+    background-color:"var(--ligth-purple)";
+  }
+
+  &:hover img {
+    filter: hue-rotate(0deg);
+    height: 55%; 
+    transition: 0.5s;
+  }
+ 
 `;
 
-const Logo = styled.img`
-  width: 40px;
-  height: 50px;
+const ItensSideLogo = styled.div`
+  width: 100%;
+  height: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Img = styled.img`
-  width: 40px;
-  height: 50px;
-  filter: grayscale(100%);
-  transition: 0.5s;
-  &:focus {
-    filter: grayscale(0%);
-  }
-  &:hover {
-    filter: grayscale(0%);
-    transition: 0.5s;
-  }
+  max-width: 100%;
+  height: 50%;
+  transition: filter 0.5s ease, height 0.5s ease;
+
   @media only screen and (max-width: 640px) {
     height: 25px;
   }
+`;
+
+const Logo = styled.img`
+  width: 50px;
+  height: 50px;
 `;
 
 const SideMenuLaboratory= () => {
@@ -91,16 +116,16 @@ const SideMenuLaboratory= () => {
   };
 
   return (
-    <SideMenuMedic>
+    <SideMenu>
       <ReactTooltip place="right" type="dark" effect="solid" />
-      <ItensSideMenu style={{ flex: 0.5 }}>
-        <Logo />
+      <ItensSideLogo style={{ flex: 0.5 }}>
+        <Logo src={LogoIcon}/>
+      </ItensSideLogo>
+      <ItensSideMenu as={Link} to="laboratorio/recebidos" data-tip="Relatórios recebidos">
+        <Img  src={ReceiveIcon}/>
       </ItensSideMenu>
-      <ItensSideMenu as={Link} to="/acompanhamento" data-tip="Histórico Medição">
-        <Img  />
-      </ItensSideMenu>
-      <ItensSideMenu as={Link} to="/acompanhamentoMedicacao" data-tip="Histórico Medicação">
-        <Img  />
+      <ItensSideMenu as={Link} to="/acompanhamentoMedicacao" data-tip="Historico">
+        <Img src={HistoryIcon}/>
       </ItensSideMenu>
       <ItensSideMenu 
       backgroundColor ="var(--recuse)"
@@ -134,7 +159,7 @@ const SideMenuLaboratory= () => {
           </Button>
         </DialogActions>
       </Dialog>
-    </SideMenuMedic>
+    </SideMenu>
   );
 };
 

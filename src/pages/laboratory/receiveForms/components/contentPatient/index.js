@@ -11,9 +11,9 @@ import "../../../../../constants/colors.css";
 import Pagination from "../../../../../components/pagination/index";
 
 const SizeAccordion = styled.div`
-  width: 100%;
+  width: 400px;
   height: 20%;
-  margin-bottom: 2px;
+  margin-bottom: 3%;
   @media screen and (max-width: 640px) {
     width: 60%;
     font-size: 0.75em;
@@ -22,6 +22,13 @@ const SizeAccordion = styled.div`
 const ContentAccordion = styled.div`
   padding: 2% 5%;
   
+`;
+
+const AlignTitleAccordion = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column
 `;
 
 const EachElement = styled.div`
@@ -48,15 +55,12 @@ const ContentPatients = (props) => {
   const postPerPage = 8;
   const lastIndex = currentPage * postPerPage;
   const firstIndex = lastIndex - postPerPage;
-  const currentHistories = vector.slice(firstIndex, lastIndex);
-  const itemsCeil = Math.ceil(vector.length / postPerPage);
+  const currentHistories = vector.form_measurement.slice(firstIndex, lastIndex);
+  const itemsCeil = Math.ceil(vector.form_measurement.length / postPerPage);
 
   const paginationClick = (pg) => {
     setCurrentPage(pg);
-    
   };
-
-  console.log(vector);
 
   const arrowClick = (dir) => {
     if (dir === "left" && currentPage > 1) {
@@ -65,35 +69,44 @@ const ContentPatients = (props) => {
       setCurrentPage(currentPage + 1);
     }
   };
+
   return (
     <React.Fragment>
       <ListCardContainer id="seuhistorico">
         <AlignContent>
-          {currentHistories.map((eachHistory) => (
-            <SizeAccordion key={eachHistory.id}>
+          {currentHistories.map((eachMeasurement) => (
+            <SizeAccordion key={eachMeasurement.id}>
               <Accordion>
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls="panel1a-content"
                   id="panel1a-header"
                 >
-                  <Typography
-                    style={{
-                      fontWeight: "bold",
-                      fontFamily: "Roboto Condensed",
-                      fontSize: "1.5em",
-                    }}
-                  >
-                    {BdToDate(eachHistory.created_at)}
-                    
-                  </Typography>
+                  <AlignTitleAccordion>
+                    <Typography
+                      style={{
+                        fontWeight: "bold",
+                        fontFamily: "Roboto Condensed",
+                        fontSize: "1.5em",
+                        width:"50%"
+                      }}
+                    >
+                      {eachMeasurement.name}<br/>
+                    </Typography>
+                    <Typography
+                      style={{
+                        fontSize: "1.5em",
+                        width:"100%"
+                      }}
+                    >
+                      {BdToDate(eachMeasurement.date)}
+                    </Typography>
+                  </AlignTitleAccordion>
                 </AccordionSummary>
                 <ContentAccordion>
-                {eachHistory.form_measurement && eachHistory.form_measurement.map((eachMeasurement) => (
-                    <EachElement key={eachMeasurement.id}>
-                      <TextCard>{eachMeasurement.name}: {eachMeasurement.value} {eachMeasurement.unit}</TextCard>
-                    </EachElement>
-                  ))}   
+                  <EachElement key={eachMeasurement.id}>
+                    <TextCard>{eachMeasurement.value}</TextCard>
+                  </EachElement>
                 </ContentAccordion>
               </Accordion>
             </SizeAccordion>
@@ -110,7 +123,5 @@ const ContentPatients = (props) => {
     </React.Fragment>
   );
 };
-
-
 
 export default ContentPatients;

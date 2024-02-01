@@ -50,27 +50,22 @@ const ReceiveForms = () => {
   ]);
   }, []);
   
-  const novoVector = [
-    {
-      id: 1,
-      created_at: "2023-01-10T10:00:00Z",
+  const novoVector = {
       form_measurement: [
         {
           id: 1,
-          name: "Nome",
-          value: "João Silva",
+          name: "Paciente 1",
+          value: "Dados do formulário",
           date: "2023-01-10T10:00:00Z"
         },
         {
           id: 2,
-          name: "Lorem",
-          value: "Ipsum",
-          unit: "",
+          name: "Paciente 2",
+          value: "Dados do formulário",
           date: "2023-01-10T11:00:00Z"
         }
       ]
-    },
-  ];
+    }
 
   return (
     <Layout titlePage="Formulários Recebidos de pacientes">
