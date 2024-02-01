@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../../../components/layout/index";
 import "../../../constants/colors.css";
-import { formHistoryCistoPat } from "../../../services/dentista/index";
-import EmptyHistory from "../patients/components/emptyPatient/index";
-import ContentHistory from "../patients/components/contentPatient/index";
-import LoadingHistory from "../patients/components/loadingPatient/index";
-//import FirstLogin from "../firstLogin/index";
+import EmptyHistory from "./components/emptyHistory/index";
+import ContentHistory from "./components/contentHistory/index";
+import LoadingHistory from "./components/loadingHistory/index";
 import { Subtitle } from "../../../components/texts";
 
 

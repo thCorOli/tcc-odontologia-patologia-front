@@ -17,7 +17,7 @@ const Layout = (props) => {
           <React.Fragment>
           <div>
             <MakeSide>
-              <SideMenuLaboratory />
+              <SideMenu />
               <H1sistem>{props.titlePage}</H1sistem>
             </MakeSide>
             <Content>{props.children} </Content>

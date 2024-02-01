@@ -1,39 +1,38 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../../../components/layout/index";
 import "../../../constants/colors.css";
-import { listPatient } from "../../../services/dentista/index";
-import EmptyPatient from "./components/emptyPatient/index";
-import ContentPatient from "./components/contentPatient/index";
-import LoadingPatient from "./components/loadingPatient/index";
-//import FirstLogin from "../firstLogin/index";
-//import SemAcesso from "../semAcesso/index";
-import { Subtitle } from "../../../components/texts";
-
+import { Subtitle, Text, SubtitleSection} from "../../../components/texts";
+import { useHistory } from "react-router-dom";
+import { Card, Img, CardContainer } from "./components/index";
+import ListPatientsIcon from "../../../assets/imgs/icones/ListPatientsIcon.png";
+import RegisterPatientsIcon from "../../../assets/imgs/icones/RegisterPatientsIcon.png";
+import { ContentContainer } from "../../../constants/containers/index";
 
 const Patients = () => {
-    const [Patients, setPatients] = useState([]);
+    const history = useHistory();
 
-    const user = JSON.parse(localStorage.getItem("user"));
-    /*
-      useEffect(() => {
-        listPatient((response) => {
-            setPatients(Array.from(response.data.user.reverse()));
-        });
-      }, []);
-    */
-   
+    const handleFormSelection = (path) => {
+        history.push(path);
+    }
+
     return (
-        <Layout titlePage="Lista de pacientes">
-            {Patients === 0 ? (
-                <LoadingPatient />
-            ) : Patients.length === 0 ? (
-                <EmptyPatient />
-            ) : (
-                <div>
-                    <Subtitle>Confira aqui os seus pacientes</Subtitle>
-                    <ContentPatient Patients={Patients} />
-                </div>
-            )}
+        <Layout titlePage="Seus Pacientes">
+            <Subtitle>Escolha um formulário</Subtitle>
+            <ContentContainer
+                backgroundColor={"var(--white)"}
+                borderRadius={"2%"}
+            >
+                <CardContainer>
+                    <Card onClick={() => handleFormSelection("/dentista/listarPacientes")}>
+                        <Img src={ListPatientsIcon} />
+                        <SubtitleSection>Lista de pacientes</SubtitleSection>
+                    </Card>
+                    <Card onClick={() => handleFormSelection("/dentista/cadastrarPaciente")}>
+                        <Img src={RegisterPatientsIcon} /> 
+                        <SubtitleSection>Registrar Paciente</SubtitleSection>
+                    </Card>
+                </CardContainer>
+            </ContentContainer>
         </Layout>
     );
 };

@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import {
   ListCardContainer,
   AlignContent,
-} from "../../../../../constants/containers/index";
-import { TextCard } from "../../../../../components/texts";
-import styled from "styled-components";
-import "../../../../../constants/colors.css";
-import Pagination from "../../../../../components/pagination/index";
+} from "../../../../../../../constants/containers/index";
+import { TextCard } from "../../../../../../../components/texts/index"; 
+import "../../../../../../../constants/colors.css";
+import Pagination from "../../../../../../../components/pagination/index";
 
 
 
