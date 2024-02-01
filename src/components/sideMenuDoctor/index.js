@@ -124,7 +124,7 @@ const SideMenuLaboratory= () => {
       <ItensSideMenu as={Link} to="laboratorio/recebidos" data-tip="Relatórios recebidos">
         <Img  src={ReceiveIcon}/>
       </ItensSideMenu>
-      <ItensSideMenu as={Link} to="/acompanhamentoMedicacao" data-tip="Historico">
+      <ItensSideMenu as={Link} to="laboratorio/historico" data-tip="Historico">
         <Img src={HistoryIcon}/>
       </ItensSideMenu>
       <ItensSideMenu 

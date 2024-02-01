@@ -61,7 +61,7 @@ const ContentPatients = (props) => {
   const paginationClick = (pg) => {
     setCurrentPage(pg);
   };
-
+  
   const arrowClick = (dir) => {
     if (dir === "left" && currentPage > 1) {
       setCurrentPage(currentPage - 1);
@@ -88,7 +88,7 @@ const ContentPatients = (props) => {
                         fontWeight: "bold",
                         fontFamily: "Roboto Condensed",
                         fontSize: "1.5em",
-                        width:"50%"
+                        width:"100%"
                       }}
                     >
                       {eachMeasurement.name}<br/>
@@ -105,7 +105,9 @@ const ContentPatients = (props) => {
                 </AccordionSummary>
                 <ContentAccordion>
                   <EachElement key={eachMeasurement.id}>
-                    <TextCard>{eachMeasurement.value}</TextCard>
+                    <TextCard>Idade: {eachMeasurement.age}</TextCard>
+                    <TextCard>Sexo: {eachMeasurement.sex}</TextCard>
+                    <TextCard>Respostas do Formulário: {eachMeasurement.value}</TextCard>
                   </EachElement>
                 </ContentAccordion>
               </Accordion>
