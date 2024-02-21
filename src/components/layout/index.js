@@ -11,20 +11,21 @@ const Layout = (props) => {
   const laboratory = JSON.parse(localStorage.getItem("laboratory"));
   const history = useHistory();
 
-  if (isAuthenticated()) {
+  //if (isAuthenticated()) {
+  if(true){  
     if(user){
         return (
           <React.Fragment>
           <div>
             <MakeSide>
-              <SideMenu />
+              <SideMenuLaboratory />
               <H1sistem>{props.titlePage}</H1sistem>
             </MakeSide>
             <Content>{props.children} </Content>
           </div>
         </React.Fragment>
       );
-    } else if(laboratory){
+    } else if(true){
       return (
           <React.Fragment>
           <div>
@@ -38,7 +39,10 @@ const Layout = (props) => {
       );
     }
   } else {
-    history.push("/NotFound")
+    return (
+      history.push("/NotFound")
+    )
+    
   }
 };
 

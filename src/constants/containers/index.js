@@ -51,6 +51,10 @@ export const AlignContent = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+
+   ${({ backgroundColor }) => css`
+    background-color: ${backgroundColor};
+  `};
 `;
 
 export const AlignContentHistory = styled.div`

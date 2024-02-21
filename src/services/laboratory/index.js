@@ -1,5 +1,5 @@
 import axios from "axios";
-import {logout} from "../general/acess";
+import {logout} from "../general/auth/index";
 import { saveAs } from "file-saver";
 
 const URL = "/laboratory";
@@ -48,6 +48,18 @@ export const listSelectPatient = (_callback) => {
     });
 };
 
+export const getPatientById = (id,_callback) =>{
+  api
+  .get(`/${id}`)
+  .then((response) => {
+    _callback(response);
+  })
+  .catch((errors) => {
+    _callback(errors.response);
+  });
+
+}
+
 
 export const resendEmail = (email,_callback) => {
     const config = {
@@ -61,53 +73,7 @@ export const resendEmail = (email,_callback) => {
         .then(_callback)
         .catch((err) => {
         _callback(err); //ver tratamento de erro
-        });
-
+  });
 } 
 
  
-
-/*  
-export const downloadMeasurements = (_callback) => {
-  const measurementsConfig = {
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${admin().token}`,
-    },
-    responseType: "blob",
-  };
-
-  api
-    .get("/admins/download_excel_measurements", measurementsConfig)
-    .then((response) => {
-      var blob = new Blob([response.data], {
-        type: "application/zip",
-      });
-      //provavel gambiarra, talvez seja melhor criar o nome pelo proprio javascript
-      const filename = response.headers["content-disposition"].split(
-        "UTF-8''"
-      )[1];
-      saveAs(blob, filename);
-    })
-    .catch((err) => _callback(err.response));
-};
-
-export const history = (_callback) => {
-    const measurementsConfig = {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${user().token}`,
-      },
-    };
-    return api
-      .get('/patients/history_measurements', measurementsConfig)
-      .then((response) => _callback(response))
-      .catch((err) => {
-        _callback(err.response);
-      });
-  };
-
-
-*/

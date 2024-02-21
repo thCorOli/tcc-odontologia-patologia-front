@@ -113,6 +113,7 @@ const SideMenu = () => {
 
   const logoutPatient = () => {
     logout();
+    localStorage.removeItem("user");
     history.push("/");
   };
 

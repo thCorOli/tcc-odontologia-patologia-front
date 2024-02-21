@@ -112,6 +112,7 @@ const SideMenuLaboratory= () => {
 
   const logout = () => {
     logout();
+    localStorage.removeItem("laboratory");
     history.push("/");
   };
 

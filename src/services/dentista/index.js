@@ -13,9 +13,40 @@ export const register = (credentials, _callback) => {
     });
 }
 
-export const registerPatient = () => {
+export const registerPatient = (Patient,_callback) => {
+  api
+  .post(`/`, Patient)
+  .then((response) => {
+    _callback(response);
+  })
+  .catch((errors) => {
+    _callback(errors.response);
+  });
   
 }
+
+export const getPatientById = (id,_callback) =>{
+  api
+  .get(`/${id}`)
+  .then((response) => {
+    _callback(response);
+  })
+  .catch((errors) => {
+    _callback(errors.response);
+  });
+
+}
+
+export const listPatient = (_callback) => {
+  api
+  .get("/")
+  .then((response) => {
+    _callback(response);
+  }).catch((errors) => {
+    _callback(errors.response);
+  });
+}
+
 
 export const MedicationHistoryById = (id, _callback) => {
     api
@@ -26,9 +57,6 @@ export const MedicationHistoryById = (id, _callback) => {
       });
 };
 
-export const listPatient = (_callback) => {
-
-}
 
 export const submitExam = (FormAnswer, _callback) => {
    api

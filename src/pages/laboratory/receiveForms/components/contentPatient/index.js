@@ -14,6 +14,9 @@ const SizeAccordion = styled.div`
   width: 400px;
   height: 20%;
   margin-bottom: 3%;
+  opacity: ${(props) => (props.isSearching && !props.isMatch ? 0 : 1)};
+  transition: opacity 0.3s ease-in-out;
+  
   @media screen and (max-width: 640px) {
     width: 60%;
     font-size: 0.75em;
@@ -50,13 +53,13 @@ const BdToDateElements = (dateElement) => {
 }
 
 const ContentPatients = (props) => {
-  const vector = props.Patients;
+  const { Patients, isSearching, searchTerm  } = props;
   const [currentPage, setCurrentPage] = useState(1);
   const postPerPage = 8;
   const lastIndex = currentPage * postPerPage;
   const firstIndex = lastIndex - postPerPage;
-  const currentHistories = vector.form_measurement.slice(firstIndex, lastIndex);
-  const itemsCeil = Math.ceil(vector.form_measurement.length / postPerPage);
+  //const currentHistories = vector.form_measurement.slice(firstIndex, lastIndex);
+  const itemsCeil = Math.ceil(Patients.length/ postPerPage);
 
   const paginationClick = (pg) => {
     setCurrentPage(pg);
@@ -74,8 +77,10 @@ const ContentPatients = (props) => {
     <React.Fragment>
       <ListCardContainer id="seuhistorico">
         <AlignContent>
-          {currentHistories.map((eachMeasurement) => (
-            <SizeAccordion key={eachMeasurement.id}>
+          { Patients.map((eachMeasurement) => {
+           const isMatch = eachMeasurement.name.toLowerCase().includes(searchTerm.toLowerCase());
+            return (
+             <SizeAccordion key={eachMeasurement.id} isSearching={isSearching} isMatch={isMatch}>
               <Accordion>
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
@@ -112,7 +117,7 @@ const ContentPatients = (props) => {
                 </ContentAccordion>
               </Accordion>
             </SizeAccordion>
-          ))}
+          )})}
         </AlignContent>
       </ListCardContainer>
       <Pagination
@@ -127,3 +132,4 @@ const ContentPatients = (props) => {
 };
 
 export default ContentPatients;
+

@@ -16,7 +16,7 @@ import FormOsseo from "./pages/dentista/formOsseo/index";
 import ReceiveForm from "./pages/laboratory/receiveForms/index";
 import ListPatients from "./pages/dentista/patients/pages/listaPatients/index";
 import RegisterPatients from "./pages/dentista/patients/pages/registerPatients/index";
-
+import LaboratoryEachPatient from "./pages/laboratory/eachPatient/index";
 import LoginLaboratory from "./pages/laboratory/loginLaboratorio/index";
 import HistoryLaboratory from "./pages/laboratory/historyLaboratory/index";
 
@@ -36,6 +36,7 @@ ReactDOM.render(
       <Route path={"/loginLaboratio"} component={LoginLaboratory} exact />
       <Route path={"/laboratorio/recebidos"} component={ReceiveForm} exact />
       <Route path={"/laboratorio/historico"} component={HistoryLaboratory} exact />
+      <Route path={"/laboratorio/recebidos/detalhesPaciente/:id"} component={LaboratoryEachPatient} />
       <Redirect from="/" to="/login" exact/>
       <Route component={NotFound} />
     </Switch>
