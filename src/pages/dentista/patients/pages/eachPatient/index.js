@@ -1,23 +1,29 @@
-import React from "react";
-import Layout from "../../../components/layout/index";
-import "../../../constants/colors.css";
-import { Subtitle, SubtitleSection} from "../../../components/texts";
+import React, { useState, useEffect } from "react";
+import Layout from "../../../../../components/layout/index";
+import "../../../../../constants/colors.css";
+import { Subtitle, SubtitleSection} from "../../../../../components/texts";
 import { useHistory } from "react-router-dom";
-import { Card, Img, CardContainer } from "./components/index";
-import ListPatientsIcon from "../../../assets/imgs/icones/ListPatientsIcon.png";
-import RegisterPatientsIcon from "../../../assets/imgs/icones/RegisterPatientsIcon.png";
-import { ContentContainer } from "../../../constants/containers/index";
+import ListPatientsIcon from "../../../../../assets/imgs/icones/ListPatientsIcon.png";
+import RegisterPatientsIcon from "../../../../../assets/imgs/icones/RegisterPatientsIcon.png";
+import { ContentContainer } from "../../../../../constants/containers/index";
+import { useParams } from "react-router-dom";
+import {getPatientById} from "../../../../../services/dentista/index"
 
 const EachPatient = () => {
-    const pacienteId = match.params.id;
-    //const paciente = obterDetalhesDoPaciente(pacienteId);
-    /*if (!paciente) {
-        return <div>Paciente não encontrado.</div>;
-    }*/
+    const { id } = useParams(); // Use useParams para acessar o ID da rota
+    const [Patient, setPatient] = useState({});
+    const [formSubmissions, setFormSubmissions] = useState([]);
+
+    useEffect(() => {
+        getPatientById(id,(response) => {
+            setPatient(response.data.patient)
+            setFormSubmissions(response.data.form_submissions)
+        });
+      }, []);
 
     return (
         <Layout titlePage="Detalhes do Paciente">
-
+            <Subtitle>{Patient.name} - {Patient.cpf}</Subtitle>
 
         </Layout>
         );

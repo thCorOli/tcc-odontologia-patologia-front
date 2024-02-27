@@ -3,7 +3,7 @@ import { setTokenCookie, removeTokenCookie, getTokenCookie } from "../utils/cook
 
 export const loginDentist = async (credentials, _callback) => {
     api
-      .post(`patients/login`, credentials)
+      .post(`dentists/login`, credentials)
       .then((response) => {
         logout();
         setTokenCookie(response.data.token);

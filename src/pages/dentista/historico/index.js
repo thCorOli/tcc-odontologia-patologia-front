@@ -10,14 +10,13 @@ import { Subtitle } from "../../../components/texts";
 const History = () => {
   const [History, setHistory] = useState([]);
   
-  /*
-    useEffect(() => {
+    /*useEffect(() => {
       formHistoryCistoPat((response) => {
         setHistory(Array.from(response.data.user.reverse()));
       });
-    }, []);
+    }, []);*/
 
-    */
+    
   return (
     <Layout titlePage="Histórico">
       {History === 0 ? (

@@ -1,10 +1,15 @@
 import { saveAs } from "file-saver";
 import api from "../general/utils/api";
-import {} from "../general/auth/index";
+import jwt_decode from "jwt-decode";
+import { getTokenCookie } from "../general/utils/cookie";
+
+const token = getTokenCookie("token");
+const decodedToken = jwt_decode(token);
+const dentistId = decodedToken.dentist_id;
 
 export const register = (credentials, _callback) => {
     api
-    .post(`/`, credentials)
+    .post(`/dentists`, credentials)
     .then((response) => {
       _callback(response);
     })
@@ -13,9 +18,10 @@ export const register = (credentials, _callback) => {
     });
 }
 
-export const registerPatient = (Patient,_callback) => {
+export const registerPatient = (patient,_callback) => {
+  
   api
-  .post(`/`, Patient)
+  .post(`dentists/${dentistId}/register_patients`, patient)
   .then((response) => {
     _callback(response);
   })
@@ -27,7 +33,7 @@ export const registerPatient = (Patient,_callback) => {
 
 export const getPatientById = (id,_callback) =>{
   api
-  .get(`/${id}`)
+  .get(`dentists/${dentistId}/patients/${id}`)
   .then((response) => {
     _callback(response);
   })
@@ -39,7 +45,7 @@ export const getPatientById = (id,_callback) =>{
 
 export const listPatient = (_callback) => {
   api
-  .get("/")
+  .get(`dentists/${dentistId}/patients`)
   .then((response) => {
     _callback(response);
   }).catch((errors) => {
@@ -47,20 +53,9 @@ export const listPatient = (_callback) => {
   });
 }
 
-
-export const MedicationHistoryById = (id, _callback) => {
-    api
-      .get(`patients/history_medications/${id}`)
-      .then((response) => response.data)
-      .catch((err) => {
-        _callback(err.response);
-      });
-};
-
-
-export const submitExam = (FormAnswer, _callback) => {
+export const submitForm = (FormAnswer, _callback) => {
    api
-    .post("measurements", FormAnswer)
+    .post(`dentists/${dentistId}/form_submissions`, FormAnswer)
     .then((response) => {
       _callback(response);
     })

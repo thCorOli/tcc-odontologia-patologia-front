@@ -68,7 +68,7 @@ const Login = () => {
     e.preventDefault();
     setAnimationData(true);
     if (!hasEmptyFields(value) && !hasSqlStrings(value)) {
-      loginDentist({ patient: value }, (response) => {
+      loginDentist({ dentist: value }, (response) => {
         if (response.status >= 200 && response.status <= 299) {
           setAnimationData(false);
           setTitle("Logado com sucesso!");

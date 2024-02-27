@@ -83,7 +83,7 @@ const performValidation = (user) => {
      case "valid":
        value.birthday = value.birthday.split('/').reverse().join('-');
        setAnimationData(true);
-       register({ patient: value }, (response) => {
+       register({ dentist: value }, (response) => {
          if (response.status >= 200 && response.status <= 299) {
            setTitle("Confirme o seu email para finalizar o cadastro!");
            handleClickOpen();

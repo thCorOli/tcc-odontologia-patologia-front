@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-import ButtonPage from "../../../components/button/index";
+import ButtonPage from "../../../../components/button/index";
 import form from "./form.json"
-import useFormOptions from "../../../hooks/useFormOptions/index"
-import { Option, SubtitleSection, TitleSectionForm } from "../../../components/texts/index"
-import { MakeSideContainer, ContentContainer } from "../../../constants/containers/index";
-import Layout from "../../../components/layout";
-import InputFile from "../../../components/inputFile";
-import { submitExam } from "../../../services/dentista/index"
+import useFormOptions from "../../../../hooks/useFormOptions/index"
+import { Option, SubtitleSection, TitleSectionForm } from "../../../../components/texts/index"
+import { MakeSideContainer, ContentContainer } from "../../../../constants/containers/index";
+import Layout from "../../../../components/layout";
+import InputFile from "../../../../components/inputFile";
+import { submitForm } from "../../../../services/dentista/index"
 import Dialog from "@material-ui/core/Dialog";
 import Button from "@material-ui/core/Button";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import { isObjectEmpty } from '../../../services/general/security'
-import { CheckBox, TextArea } from "../../../components/inputs/index";
+import { isObjectEmpty } from '../../../../services/general/security'
+import { CheckBox, TextArea } from "../../../../components/inputs/index";
 
 
 const FormOsseo = () => {
@@ -58,7 +58,7 @@ const FormOsseo = () => {
   }
 
   const handleConfirmSubmit = () => {
-    submitExam({ form_measurement: value, file, patient: selectedPatient, laboratory: selectedLaboratory }, (response) => {
+    submitForm({ form_measurement: value, file, patient: selectedPatient, laboratory: selectedLaboratory }, (response) => {
       if (response.status >= 200 && response.status <= 299) {
         handleOpenSuccessModal();
         clearForm();

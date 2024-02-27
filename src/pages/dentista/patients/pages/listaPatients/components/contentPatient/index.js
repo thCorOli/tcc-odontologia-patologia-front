@@ -3,20 +3,32 @@ import {
   ListCardContainer,
   AlignContent,
 } from "../../../../../../../constants/containers/index";
-import { TextCard } from "../../../../../../../components/texts/index"; 
 import "../../../../../../../constants/colors.css";
 import Pagination from "../../../../../../../components/pagination/index";
-
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { TextCard } from "../../../../../../../components/texts/index";
 
 
 const ContentPatient= (props) => {
-  const vector = props.History;
+  const { Patients, isSearching, searchTerm  } = props;
   const [currentPage, setCurrentPage] = useState(1);
   const postPerPage = 8;
   const lastIndex = currentPage * postPerPage;
   const firstIndex = lastIndex - postPerPage;
-  const currentHistories = vector.slice(firstIndex, lastIndex);
-  const itemsCeil = Math.ceil(vector.length / postPerPage);
+  const currentPatients = Patients.slice(firstIndex, lastIndex);
+  const itemsCeil = Math.ceil(Patients.length / postPerPage);
+
+
+  const Card = styled.div`
+    background-color: var(--white);
+    width: 200%;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    text-decoration: none;
+    border-radius: 2%;
+    padding-left: 5%;
+`;
 
   const paginationClick = (pg) => {
     setCurrentPage(pg);
@@ -31,24 +43,25 @@ const ContentPatient= (props) => {
   };
   return (
     <React.Fragment>
-      <ListCardContainer id="listaPaciente">
-        <AlignContent>
-          {currentHistories.map((eachPacient) => (
-            <div key={eachPacient.id}>
-              <p>eachPacient.name</p>
-              <p>eachPacient.birthday</p>
-            </div>
-          ))}
-        </AlignContent>
-      </ListCardContainer>
-      <Pagination
-        size={itemsCeil}
-        postPerPage={postPerPage}
-        arrowfunction={arrowClick}
-        onItemClick={paginationClick}
-        href="#listaPaciente"
-      />
-    </React.Fragment>
+    <ListCardContainer id="listPatients">
+      <AlignContent>
+        { Patients.map((eachPatient) => {
+          return (
+              <Card as={Link} to={`/dentista/detalhesPaciente/${eachPatient.id}`} key={eachPatient.id}>
+                  <TextCard>Nome: {eachPatient.name}</TextCard>
+                  <TextCard>CPF: {eachPatient.cpf}</TextCard>
+              </Card>
+        )})}
+      </AlignContent>
+    </ListCardContainer>
+    <Pagination
+      size={itemsCeil}
+      postPerPage={postPerPage}
+      arrowfunction={arrowClick}
+      onItemClick={paginationClick}
+      href="#listPatients"
+    />
+  </React.Fragment>
   );
 };
 

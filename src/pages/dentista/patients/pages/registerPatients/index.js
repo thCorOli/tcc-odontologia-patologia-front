@@ -6,7 +6,6 @@ import useForm from "../../../../../hooks/useForm/index";
 import "../../../../../constants/colors.css";
 import "./components/form.css";
 import {
-  ContentContainer,
   Text,
   TextContainer,
   Input,
@@ -23,6 +22,11 @@ import {
   isCpfValid,
   isDateValid,
 } from "../../../../../services/general/security";
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogTitle from "@material-ui/core/DialogTitle";
+
 
 const RegisterPatient = () => {
 
@@ -31,7 +35,6 @@ const RegisterPatient = () => {
     email: "",
     birthday: "",
     cpf: "",
-    idDentist: ""
   });
 
   const performValidation = (user) => {
@@ -43,9 +46,8 @@ const RegisterPatient = () => {
 
   const [animationData, setAnimationData] = useState(false);
 
-  const [open, setOpen] = React.useState(false);
-
-  const [title, setTitle] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [title, setTitle] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -63,15 +65,16 @@ const RegisterPatient = () => {
     e.preventDefault();
     switch (performValidation(value)) {
       case "valid":
-        value.birthday = value.birthday.split("/").reverse().join("-");
-        setAnimationData(true);
         registerPatient({ patient: value }, (response) => {
           if (response.status >= 200 && response.status <= 299) {
-            setTitle("Confirme o seu email para finalizar o cadastro!");
+            setTitle("Paciente cadastrado com sucesso!");
             handleClickOpen();
+            handleSuccess();
           } else {
-            setTitle(response.data.errors);
+            const errorMessage = response.data.errors.join("\n"); 
+            setTitle(errorMessage);
             handleClickOpen();
+            console.log(response)
             setAnimationData(false);
           }
           if (response.status >= 500) {
@@ -162,6 +165,19 @@ const RegisterPatient = () => {
           </ButtonPage>
         </form>
       </AlignContent>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary" autoFocus>
+            OK
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Layout>
   );
 };
