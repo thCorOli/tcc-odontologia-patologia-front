@@ -33,8 +33,8 @@ const Login = () => {
   });
 
   const history = useHistory();
-  const [open, setOpen] = React.useState(false);
-  const [title, setTitle] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [title, setTitle] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -67,11 +67,11 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!hasEmptyFields(value) && !hasSqlStrings(value)) {
-      loginLaboratory({ patient: value }, (response) => {
+      loginLaboratory({ lab: value }, (response) => {
         if (response.status >= 200 && response.status <= 299) {
           setTitle("Logado com sucesso!");
           handleClickOpen();
-          history.push("/cistoPatologico");
+          history.push("/laboratorio/recebidos");
         } else {
           setAnimationData(false);
           setTitle("Erro ao efetuar login. Verifique suas credenciais.");

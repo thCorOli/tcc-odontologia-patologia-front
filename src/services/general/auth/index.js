@@ -15,9 +15,9 @@ export const loginDentist = async (credentials, _callback) => {
       });
 };
 
-export const loginLaboratory = (Patient, _callback) => {
+export const loginLaboratory = (lab, _callback) => {
   api
-    .post(`laboratory/login`, Patient)
+    .post(`labs/login`, lab)
     .then((response) => {
       logout();
       setTokenCookie(response.data.token);

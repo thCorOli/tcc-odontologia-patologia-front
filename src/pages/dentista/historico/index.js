@@ -5,18 +5,18 @@ import EmptyHistory from "./components/emptyHistory/index";
 import ContentHistory from "./components/contentHistory/index";
 import LoadingHistory from "./components/loadingHistory/index";
 import { Subtitle } from "../../../components/texts";
+import {getHistoryForms} from "../../../services/dentista/index";
 
 
 const History = () => {
   const [History, setHistory] = useState([]);
   
-    /*useEffect(() => {
-      formHistoryCistoPat((response) => {
-        setHistory(Array.from(response.data.user.reverse()));
+    useEffect(() => {
+      getHistoryForms((response) => {
+        setHistory(Array.from(response.data.reverse()));
       });
-    }, []);*/
+    }, []);
 
-    
   return (
     <Layout titlePage="Histórico">
       {History === 0 ? (
@@ -25,7 +25,7 @@ const History = () => {
         <EmptyHistory />
       ) : (
         <div>
-          <Subtitle>Confira aqui o histórico de envio</Subtitle>
+          <Subtitle>Confira aqui o histórico de submissão</Subtitle>
           <ContentHistory History={History} />
         </div>
     )}
@@ -33,4 +33,4 @@ const History = () => {
       );
 };
 
-      export default History;
+export default History;

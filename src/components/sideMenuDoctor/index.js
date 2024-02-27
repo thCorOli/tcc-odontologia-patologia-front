@@ -110,7 +110,7 @@ const SideMenuLaboratory= () => {
     setOpen(false);
   };
 
-  const logout = () => {
+  const logoutLabs = () => {
     logout();
     localStorage.removeItem("laboratory");
     history.push("/");
@@ -155,7 +155,7 @@ const SideMenuLaboratory= () => {
           <Button onClick={handleClose} color="primary">
             Não
           </Button>
-          <Button onClick={logout} color="primary" autoFocus>
+          <Button onClick={logoutLabs} color="primary" autoFocus>
             Sim
           </Button>
         </DialogActions>

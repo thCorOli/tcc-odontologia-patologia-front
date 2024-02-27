@@ -42,17 +42,16 @@ const BdToDateElements = (dateElement) => {
 }
 
 const ContentHistory = (props) => {
-  const vector = props.History;
+  const { History } = props
   const [currentPage, setCurrentPage] = useState(1);
   const postPerPage = 8;
   const lastIndex = currentPage * postPerPage;
   const firstIndex = lastIndex - postPerPage;
-  const currentHistories = vector.slice(firstIndex, lastIndex);
-  const itemsCeil = Math.ceil(vector.length / postPerPage);
+  const currentHistories = History.slice(firstIndex, lastIndex);
+  const itemsCeil = Math.ceil(History.length / postPerPage);
 
   const paginationClick = (pg) => {
     setCurrentPage(pg);
-    
   };
 
   const arrowClick = (dir) => {
@@ -86,12 +85,6 @@ const ContentHistory = (props) => {
                   </Typography>
                 </AccordionSummary>
                 <ContentAccordion>
-                  {eachHistory.form_measurement.map((eachMeasurement)=>(
-                    <EachElement key={eachMeasurement.id}>
-                      <TextCard>{eachMeasurement.name}: {eachMeasurement.value} {eachMeasurement.unit}</TextCard>
-                      <TextCard>Data do Exame: {BdToDateElements(eachMeasurement.date)}</TextCard>
-                    </EachElement>
-                  ))}     
                 </ContentAccordion>
               </Accordion>
             </SizeAccordion>

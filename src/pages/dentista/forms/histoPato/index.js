@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ButtonPage from "../../../../components/button/index";
 import form from "./form.json"
 import useFormOptions from "../../../../hooks/useFormOptions/index"
@@ -6,32 +6,49 @@ import { Option, SubtitleSection, TitleSectionForm } from "../../../../component
 import { MakeSideContainer, ContentContainer } from "../../../../constants/containers/index";
 import Layout from "../../../../components/layout";
 import InputFile from "../../../../components/inputFile";
-import { submitForm } from "../../../../services/dentista/index"
+import { submitForm, listLabs, listPatient, getId } from "../../../../services/dentista/index"
 import Dialog from "@material-ui/core/Dialog";
 import Button from "@material-ui/core/Button";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { isObjectEmpty } from '../../../../services/general/security'
 import { CheckBox, TextArea } from "../../../../components/inputs/index";
+import SelectBox from "../components/selectBox/index"
 
 
 const FormHistoPato = () => {
   const initialValues = Object.values(form.Form).reduce((acc, field) => {
     return { ...acc, [field.title]: [] };
   }, {});
-  let file = ''
-  const handleFileChange = (event) => {
-    file = event.target.files[0];
-  };
 
+  const [files, setFiles] = useState([]);
 
+  const [Patients, setPatients] = useState([]);
+  const [Labs, setLabs] = useState([]);
   const { value, onChangeHandler, clearForm, onChangeHandlerTextArea } = useFormOptions(initialValues);
   const [open, setOpen] = React.useState(false);
   const [successModal, setSuccessModal] = useState(false);
-  const [selectedPatient, setSelectedPatient] = useState("");
-  const [selectedLaboratory, setSelectedLaboratory] = useState("");
+  const [selectedPatient, setSelectedPatient] = useState(null);
+  const [selectedLaboratory, setSelectedLaboratory] = useState(null);
   const [error, setError] = useState(false);
+  const [title, setTitle] = useState("");
 
+   useEffect(() => {
+      (listLabs((response)=> {
+        setLabs(Array.from(response.data));
+        setSelectedLaboratory(Labs[0])
+      }));
+      (listPatient((response)=> {
+        setPatients(Array.from(response.data));
+        setSelectedPatient(Patients[0])
+      }));
+    },[]);
+
+  const handleFileChange = (event) => {
+    const selectedFiles = event.target.files;
+    setFiles(Array.from(selectedFiles));
+  };
+  
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -57,22 +74,52 @@ const FormHistoPato = () => {
     setError(false);
   }
 
-  const handleConfirmSubmit = () => {
-    submitForm({ form_measurement: value, file, patient: selectedPatient, laboratory: selectedLaboratory }, (response) => {
-      if (response.status >= 200 && response.status <= 299) {
-        handleOpenSuccessModal();
-        clearForm();
-      } else {
-        console.log(response.data.errors);
-      }
-    });
-  }
+  const handlePatientChange = (e) => {
+    setSelectedPatient(e.target.value);
+  };
+
+  const handleLabChange = (e) => {
+    setSelectedLaboratory(e.target.value);
+  };
+
+  const handleConfirmSubmit = (e) => {
+    if (selectedPatient !== null && selectedLaboratory !== null) {
+      submitForm(
+        {
+          file: files,
+          patient_id: selectedPatient.id,
+          lab_id: selectedLaboratory.id,
+          form_id: 1,
+          dentist_id: getId(),
+          form_values: value
+        },
+        (response) => {
+          if (response.status >= 200 && response.status <= 299) {
+            handleOpenSuccessModal();
+            clearForm();
+            setFiles([]);
+          } else {
+            setTitle(response.data.errors);
+            handleOpenError(true);
+           }
+         if(response.status >= 500){
+           setTitle(`Erro ${ response.status }:Erro Interno de Servidor` );
+           handleOpenError(true);
+         }
+        }
+      );
+    } else {
+      setTitle("Erro ao selecionar o Paciente ou o Laboratorio");
+      handleOpenError(true);
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!isObjectEmpty(value)) {
       handleClickOpen();
     } else {
+      setTitle("Preencha ao menos 1 campo!")
       handleOpenError();
     }
   }
@@ -135,26 +182,16 @@ const FormHistoPato = () => {
         >
           <DialogTitle id="alert-dialog-title">Selecione Paciente e Laboratório</DialogTitle>
           <div>
-            <div>
-              <select
-                value={selectedPatient}
-                onChange={(e) => setSelectedPatient(e.target.value)}
-              >
-                <option value="patient1">Paciente 1</option >
-                <option value="patient2">Paciente 2</option >
-                {/* Adicione mais opções de paciente conforme necessário */}
-              </select>
-            </div>
-            <div>
-              <select
-                value={selectedLaboratory}
-                onChange={(e) => setSelectedLaboratory(e.target.value)}
-              >
-                <option value="lab1">Laboratório 1</option >
-                <option value="lab2">Laboratório 2</option >
-                {/* Adicione mais opções de laboratório conforme necessário */}
-              </select>
-            </div>
+            <SelectBox
+                  options={Patients} 
+                  value={selectedPatient}
+                  onChange={handlePatientChange} 
+                />
+            <SelectBox
+                  options={Labs}
+                  value={selectedLaboratory} 
+                  onChange={handleLabChange} 
+                />
           </div>
           <DialogActions>
             <Button onClick={handleClose} color="primary">
@@ -184,7 +221,7 @@ const FormHistoPato = () => {
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
-          <DialogTitle id="alert-dialog-title">Preencha ao menos 1 campo</DialogTitle>
+          <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
           <DialogActions>
             <button onClick={handleCloseError} color="primary" autoFocus>
               Ok
