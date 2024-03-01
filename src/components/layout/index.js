@@ -11,8 +11,7 @@ const Layout = (props) => {
   const laboratory = JSON.parse(localStorage.getItem("laboratory"));
   const history = useHistory();
 
-  //if (isAuthenticated()) {
-  if(true){  
+  if (isAuthenticated()) {
     if(user){
         return (
           <React.Fragment>

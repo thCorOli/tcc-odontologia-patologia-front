@@ -11,43 +11,39 @@ const EachPatient = (props) => {
         getPatientById(id, (response) => {
             setPaciente(response.data);
         });
+        
     }, []);
 
     if (!paciente) {
         return <div>Carregando informações do paciente...</div>;
     }
 
-    // Renderiza cada campo do paciente
-    const renderPatientFields = () => {
-        return Object.entries(paciente).map(([key, value]) => {
-            if (typeof value === "object") {
-                // Se for um objeto, iterar sobre suas propriedades
-                return (
-                    <div key={key}>
-                        <strong>{key}:</strong>{" "}
-                        {Object.entries(value).map(([subKey, subValue]) => (
-                            <div key={subKey}>
-                                <strong>{subKey}:</strong> {subValue}
-                            </div>
-                        ))}
-                    </div>
-                );
-            } else {
-                // Renderizar diretamente se for um valor primitivo
-                return (
-                    <div key={key}>
-                        <strong>{key}:</strong> {value}
+
+    const renderFormsPatient = paciente.map((eachFormPatient) => {
+        console.log(eachFormPatient);
+        const formElements = [];
+        formElements.push(<div>{eachFormPatient.created_at}</div>)
+        for (const [key, value] of Object.entries(eachFormPatient.form_values)) {
+            if (value.length != 0) {
+                console.log(key,value)
+                formElements.push(
+                    <div>
+
+                    
+                <div key={key}> {key}: {value}</div>
                     </div>
                 );
             }
-        });
-    };
+        }
+        return formElements;
+    });
+
+
+ 
 
     return (
         <Layout titlePage="Detalhes do Paciente">
-            <div>
-                {renderPatientFields()}
-            </div>
+         {renderFormsPatient}
         </Layout>
     );
 };

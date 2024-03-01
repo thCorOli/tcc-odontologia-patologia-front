@@ -42,7 +42,6 @@ const ContentPatients = (props) => {
       <ListCardContainer id="listaPacientes">
         <AlignContent>
           {patients && patients.map((eachPatient) => {
-            console.log("AQUI BUGA",eachPatient)
             return (
               <Card as={Link} to={`/laboratorio/recebidos/detalhesPaciente/${eachPatient.id}`} key={eachPatient.id}>
                 <TextCard>Nome: {eachPatient.details ? eachPatient.details.name : 'Detalhes indisponíveis'}</TextCard>
