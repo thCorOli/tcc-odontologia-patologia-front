@@ -122,10 +122,10 @@ const SideMenuLaboratory= () => {
       <ItensSideLogo style={{ flex: 0.5 }}>
         <Logo src={LogoIcon}/>
       </ItensSideLogo>
-      <ItensSideMenu as={Link} to="laboratorio/recebidos" data-tip="Relatórios recebidos">
+      <ItensSideMenu as={Link} to="/laboratorio/recebidos" data-tip="Relatórios recebidos">
         <Img  src={ReceiveIcon}/>
       </ItensSideMenu>
-      <ItensSideMenu as={Link} to="laboratorio/historico" data-tip="Historico">
+      <ItensSideMenu as={Link} to="/laboratorio/historico" data-tip="Historico">
         <Img src={HistoryIcon}/>
       </ItensSideMenu>
       <ItensSideMenu 

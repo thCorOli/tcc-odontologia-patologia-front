@@ -22,13 +22,13 @@ const Forms = () => {
                 borderRadius={"2%"}
             >
                 <CardContainer>
-                    <Card onClick={() => handleFormSelection("/dentista/cistoPatologico")}>
+                    <Card onClick={() => handleFormSelection("/dentista/citoPatologico")}>
                         <Img src={CitologiaFormIcon} />
-                        <SubtitleSection>Formulário CistoPatologico</SubtitleSection>
+                        <SubtitleSection>Formulário Citopatológico</SubtitleSection>
                     </Card>
                     <Card onClick={() => handleFormSelection("/dentista/odontoOsseo")}>
                         <Img src={OdontoOsseoIcon} /> 
-                        <SubtitleSection>Formulário ÓsseoOdontológico</SubtitleSection>
+                        <SubtitleSection>Formulário Histopatológico</SubtitleSection>
                     </Card>
                 </CardContainer>
             </ContentContainer>

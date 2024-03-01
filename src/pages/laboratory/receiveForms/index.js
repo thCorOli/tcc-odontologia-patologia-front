@@ -5,107 +5,40 @@ import EmptyPatients from "./components/emptyPatient/index";
 import ContentPatients from "./components/contentPatient/index2";
 import LoadingPatient from "./components/loadingPatient/index";
 import { Subtitle } from "../../../components/texts";
-
+import { getListForms, getPatientInfo } from "../../../services/laboratory/index";
 
 const ReceiveForms = () => {
-  const [Patients, setPatient] = useState([]);
+  const [patients, setPatients] = useState([]);
+  const [patientsLoaded, setPatientsLoaded] = useState(false); // Novo estado para controlar se os pacientes foram carregados
   const [searchTerm, setSearchTerm] = useState("");
   const [isSearching, setIsSearching] = useState(false);
 
   useEffect(() => {
-    setPatient([
-    {
-      "id": 1,
-      "name": "João Silva",
-      "age": 30,
-      "sex": "Masculino",
-      "value": "Hipertensão",
-      "date": "2023-01-10T11:00:00Z"
-    },
-    {
-      "id": 2,
-      "name": "Maria Oliveira",
-      "age": 45,
-      "sex": "Feminino",
-      "value": "Diabetes tipo 2",
-      "date": "2023-01-10T11:00:00Z"
-    },
-    {
-      "id": 3,
-      "name": "Carlos Ferreira",
-      "age": 60,
-      "sex": "Masculino",
-      "value": "Doença cardíaca",
-      "date": "2023-01-10T11:00:00Z"
-    },
-    {
-      "id": 4,
-      "name": "Ana Souza",
-      "age": 28,
-      "sex": "Feminino",
-      "value": "Asma",
-      "date": "2023-01-10T11:00:00Z"
-    },
-    {
-      "id": 5,
-      "name": "Pedro Lima",
-      "age": 50,
-      "sex": "Não informado",
-      "value": "Artrite",
-      "date": "2023-01-10T11:00:00Z"
-    }
-  ]);
-  }, []);
-  
-  const novoVector = {
-      form_measurement: [
-        {
-          "id": 1,
-          "name": "João Silva",
-          "age": 30,
-          "sex": "Masculino",
-          "value": "Hipertensão",
-          "cpf":"123456789",
-          "date": "2023-01-10T11:00:00Z"
-        },
-        {
-          "id": 2,
-          "name": "Maria Oliveira",
-          "age": 45,
-          "sex": "Feminino",
-          "value": "Diabetes tipo 2",
-          "cpf":"123456789",
-          "date": "2023-01-10T11:00:00Z"
-        },
-        {
-          "id": 3,
-          "name": "Carlos Ferreira",
-          "age": 60,
-          "sex": "Masculino",
-          "value": "Doença cardíaca",
-          "cpf":"123456789",
-          "date": "2023-01-10T11:00:00Z"
-        },
-        {
-          "id": 4,
-          "name": "Ana Souza",
-          "age": 28,
-          "sex": "Feminino",
-          "value": "Asma",
-          "cpf":"123456789",
-          "date": "2023-01-10T11:00:00Z"
-        },
-        {
-          "id": 5,
-          "name": "Pedro Lima",
-          "age": 50,
-          "sex": "Não informado",
-          "value": "Artrite",
-          "cpf":"123456789",
-          "date": "2023-01-10T11:00:00Z"
-        }
-      ]
-    }
+  getListForms((response) => {
+    const uniquePatients = {};
+    response.data.forEach((form) => {
+      if (!uniquePatients[form.patient_id]) {
+        uniquePatients[form.patient_id] = form;
+        getPatientInfo(form.patient_id, (patientResponse) => {
+          setPatients(prevPatients => {
+            const updatedPatients = prevPatients.map((patient) => {
+              if (patient.id === form.patient_id) {
+                return {
+                  ...patient,
+                  details: patientResponse.data, 
+                };
+              }
+              return patient;
+            });
+            setPatientsLoaded(true);
+            return updatedPatients;
+          });
+        });
+      }
+    });
+    setPatients(Object.values(uniquePatients));
+  });
+}, []);
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
@@ -116,28 +49,35 @@ const ReceiveForms = () => {
     setIsSearching(false);
   };
 
-  const filteredPatients = novoVector.form_measurement.filter((patient) =>
-    patient.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  console.log(patients.length);
+  console.log(patientsLoaded)
 
   return (
     <Layout titlePage="Formulários Recebidos de pacientes">
-      <input placeholder="Pesquisar por nome"
+      <input
+        placeholder="Pesquisar por nome"
         value={searchTerm}
         onChange={handleSearchChange}
-        onBlur={handleSearchEnd}/>
-      {Patients === 0 ? (
+        onBlur={handleSearchEnd}
+      />
+      {!patientsLoaded ? ( // Verifica se os pacientes foram carregados
         <LoadingPatient />
-      ) : Patients.length === 0 ? (
-        <EmptyPatients />
       ) : (
-        <div>
+        <>
           <Subtitle>Lista de formulários recebidos</Subtitle>
-          <ContentPatients Patients={filteredPatients} isSearching={isSearching} searchTerm={searchTerm}/>
-        </div>
-    )}
-        </Layout>
-      );
+          {patients.length === 0 ? (
+            <EmptyPatients />
+          ) : (
+            <ContentPatients
+              patients={patients}
+              isSearching={isSearching}
+              searchTerm={searchTerm}
+            />
+          )}
+        </>
+      )}
+    </Layout>
+  );
 };
 
 export default ReceiveForms;

@@ -11,21 +11,19 @@ import Pagination from "../../../../../components/pagination/index";
 
 const Card = styled.div`
     background-color: var(--white);
-    width: 200%;
+    width: 25%;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     margin-bottom: 10px;
     text-decoration: none;
     border-radius: 2%;
-    padding-left: 5%;
+    padding-left: 1%;
 `;
 
 const ContentPatients = (props) => {
-  const { Patients, isSearching, searchTerm  } = props;
+  const { patients, isSearching, searchTerm  } = props;
   const [currentPage, setCurrentPage] = useState(1);
   const postPerPage = 8;
-  const lastIndex = currentPage * postPerPage;
-  const firstIndex = lastIndex - postPerPage;
-  const itemsCeil = Math.ceil(Patients.length/ postPerPage);
+  const itemsCeil = Math.ceil(patients?.length / postPerPage) || 1;
 
   const paginationClick = (pg) => {
     setCurrentPage(pg);
@@ -41,16 +39,17 @@ const ContentPatients = (props) => {
 
   return (
     <React.Fragment>
-      <ListCardContainer id="seuhistorico">
+      <ListCardContainer id="listaPacientes">
         <AlignContent>
-          { Patients.map((eachMeasurement) => {
-           const isMatch = eachMeasurement.name.toLowerCase().includes(searchTerm.toLowerCase());
+          {patients && patients.map((eachPatient) => {
+            console.log("AQUI BUGA",eachPatient)
             return (
-                <Card as={Link} to={`/laboratorio/recebidos/detalhesPaciente/${eachMeasurement.id}`} isSearching={isSearching} isMatch={isMatch} key={eachMeasurement.id}>
-                    <TextCard>Nome: {eachMeasurement.name}</TextCard>
-                    <TextCard>CPF: {eachMeasurement.cpf}</TextCard>
-                </Card>
-          )})}
+              <Card as={Link} to={`/laboratorio/recebidos/detalhesPaciente/${eachPatient.id}`} key={eachPatient.id}>
+                <TextCard>Nome: {eachPatient.details ? eachPatient.details.name : 'Detalhes indisponíveis'}</TextCard>
+                <TextCard>CPF: {eachPatient.details ? eachPatient.details.cpf : 'Detalhes indisponíveis'}</TextCard>
+              </Card>
+            );
+          })}
         </AlignContent>
       </ListCardContainer>
       <Pagination
@@ -58,11 +57,11 @@ const ContentPatients = (props) => {
         postPerPage={postPerPage}
         arrowfunction={arrowClick}
         onItemClick={paginationClick}
-        href="#seuhistorico"
+        href="#listaPacientes"
       />
     </React.Fragment>
   );
-};
+  
+}
 
 export default ContentPatients;
-

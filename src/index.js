@@ -27,7 +27,7 @@ ReactDOM.render(
     <Switch>
       <Route path={"/login"} component={Login} exact />
       <Route path={"/cadastro"} component={Cadastro} exact />
-      <Route path={"/dentista/cistoPatologico"} component={FormHistoPato} exact />
+      <Route path={"/dentista/citoPatologico"} component={FormHistoPato} exact />
       <Route path={"/dentista/historico"} component={History} exact/>
       <Route path={"/dentista/meusPacientes"} component={Patients} exact/>
       <Route path={"/dentista/formulários"} component={Forms} exact />
