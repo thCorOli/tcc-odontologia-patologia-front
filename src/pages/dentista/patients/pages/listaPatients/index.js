@@ -24,9 +24,22 @@ const ListPatients = () => {
     
       useEffect(() => {
         listPatient((response) => {
-            setPatients(Array.from(response.data.reverse()));
+            const sortedPatients = Array.from(response.data).sort((a, b) => {
+                // Converta os nomes para minúsculas antes de comparar para garantir uma ordenação sem distinção entre maiúsculas e minúsculas
+                const nameA = a.name.toLowerCase();
+                const nameB = b.name.toLowerCase();
+    
+                if (nameA < nameB) {
+                    return -1;
+                }
+                if (nameA > nameB) {
+                    return 1;
+                }
+                return 0;
+            });
+            setPatients(sortedPatients);
         });
-      }, []);
+    }, []);
     
 
     const filteredPatients = Patients.filter((patient) =>

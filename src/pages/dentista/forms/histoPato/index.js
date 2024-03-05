@@ -97,7 +97,6 @@ const FormHistoPato = () => {
 
   const handleConfirmSubmit = (e) => {
     if (selectedPatient !== null && selectedLaboratory !== null) {
-      
       submitForm(formSubmissionData,(response) => {
           if (response.status >= 200 && response.status <= 299) {
             handleOpenSuccessModal();
@@ -130,7 +129,7 @@ const FormHistoPato = () => {
   }
 
   return (
-    <Layout titlePage="Formulário HistoPatologico">
+    <Layout titlePage="Formulário Citopatológico">
       <ContentContainer
         backgroundColor={"var(--white)"}
         borderRadius={"2%"}

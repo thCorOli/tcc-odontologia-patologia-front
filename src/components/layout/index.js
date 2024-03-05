@@ -24,7 +24,7 @@ const Layout = (props) => {
           </div>
         </React.Fragment>
       );
-    } else if(true){
+    } else if(laboratory){
       return (
           <React.Fragment>
           <div>

@@ -42,7 +42,7 @@ const FormOsseo = () => {
         setPatients(Array.from(response.data));
         setSelectedPatient(Patients[0])
       }));
-    },[]);
+    },[Labs,Patients]);
 
   const handleFileChange = (event) => {
     const selectedFiles = event.target.files;
@@ -127,7 +127,7 @@ const FormOsseo = () => {
   }
 
   return (
-    <Layout titlePage="Formulário Ósseo Odontológico">
+    <Layout titlePage="Formulário Histopatológico">
       <ContentContainer
         backgroundColor={"var(--white)"}
         borderRadius={"2%"}
@@ -223,7 +223,7 @@ const FormOsseo = () => {
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
-          <DialogTitle id="alert-dialog-title">Preencha ao menos 1 campo</DialogTitle>
+          <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
           <DialogActions>
             <button onClick={handleCloseError} color="primary" autoFocus>
               Ok

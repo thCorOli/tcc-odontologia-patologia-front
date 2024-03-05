@@ -2,7 +2,7 @@ import styled from "styled-components";
 import "../../constants/colors.css";
 
 export const Content = styled.div`
-  height: 100vh;
+  height: auto;
   background-color: var(--gray);
   display: flex;
   justify-content: center;

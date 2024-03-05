@@ -71,6 +71,12 @@ export const MakeSideContainer = styled.div`
   padding: 0.5rem;
 `;
 
+export const LineContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem;
+`;
+
 export const Card = styled.div`
   background-color: var(--white);
   border-radius: 10px;

@@ -8,7 +8,7 @@ import NotFound from "./pages/general/404/index";
 import Login from "./pages/dentista/login/index";
 import Patients from "./pages/dentista/patients";
 import Cadastro from "./pages/dentista/cadastro/index"
-import History from "./pages/dentista/historico/index";
+import Laudo from "./pages/dentista/laudo/index";
 import FormHistoPato  from "./pages/dentista/forms/histoPato/index";
 import ResetPassword from "./pages/dentista/resetPassword/index";
 import Forms from "./pages/dentista/forms/index";
@@ -28,13 +28,14 @@ ReactDOM.render(
       <Route path={"/login"} component={Login} exact />
       <Route path={"/cadastro"} component={Cadastro} exact />
       <Route path={"/dentista/citoPatologico"} component={FormHistoPato} exact />
-      <Route path={"/dentista/historico"} component={History} exact/>
+      <Route path={"/dentista/laudo"} component={Laudo} exact/>
       <Route path={"/dentista/meusPacientes"} component={Patients} exact/>
       <Route path={"/dentista/formulários"} component={Forms} exact />
       <Route path={"/dentista/odontoOsseo"} component={FormOsseo} exact/>
       <Route path={"/dentista/cadastrarPaciente"} component={RegisterPatients} exact/>
       <Route path={"/dentista/listarPacientes"} component={ListPatients} exact/>
       <Route path={"/dentista/detalhesPaciente/:id"} component={EachPatient} />
+      <Route path={"/patologista/reenvioDeSenha" } component={ResetPassword} />
       <Route path={"/loginLaboratio"} component={LoginLaboratory} exact />
       <Route path={"/laboratorio/recebidos"} component={ReceiveForm} exact />
       <Route path={"/laboratorio/historico"} component={HistoryLaboratory} exact />
