@@ -35,12 +35,14 @@ const RegisterPatient = () => {
     email: "",
     birthday: "",
     cpf: "",
+    prontuario: "",
   });
 
   const performValidation = (user) => {
     if (hasEmptyFields(user)) return "isEmpty";
-    if (!isCpfValid(user.cpf)) return "CpfInvalid";
+   // if (!isCpfValid(user.cpf)) return "CpfInvalid";
     if (!isDateValid(user.birthday)) return "DateInvalid";
+    console.log(user)
     return "valid";
   };
 
@@ -88,10 +90,11 @@ const RegisterPatient = () => {
         setTitle("Preencha todos os campos");
         handleClickOpen();
         break;
+        /*
       case "CpfInvalid":
         setTitle("CPF Inválido!");
         handleClickOpen();
-        break;
+        break;*/
       case "DateInvalid":
         setTitle("Data Inválida!");
         handleClickOpen();
@@ -124,6 +127,15 @@ const RegisterPatient = () => {
             value={value.email}
             onChange={onChangeHandler}
           />
+            <FormField
+              label={"Prontuário:"}
+              name={"prontuario"}
+              value={value.prontuario}
+              maxLength={5}
+              minLength={5}
+              onChange={onChangeHandler}
+              alert={"Somente números"}
+            />
           <TextContainer>
             <Text>Data de Nascimento:</Text>
           </TextContainer>

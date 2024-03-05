@@ -19,8 +19,7 @@ export const Card = styled.div`
         background-color: var(--medium-purple);
         transition: 0.4s;
         font-size: 1.2em;
-        width: 240px; /* Aumentando a largura no hover */
-        height: 240px; /* Ajustando a altura no hover */
+      
     }
 
     @media only screen and (max-width: 640px) {

@@ -11,7 +11,7 @@ import { TextCard } from "../../../../../../../components/texts/index";
 
 
 const ContentPatient= (props) => {
-  const { Patients, isSearching, searchTerm  } = props;
+  const { Patients } = props;
   const [currentPage, setCurrentPage] = useState(1);
   const postPerPage = 8;
   const lastIndex = currentPage * postPerPage;
@@ -49,6 +49,7 @@ const ContentPatient= (props) => {
           return (
               <Card as={Link} to={`/dentista/detalhesPaciente/${eachPatient.id}`} key={eachPatient.id}>
                   <TextCard>Nome: {eachPatient.name}</TextCard>
+                  <TextCard>Prontuário: {eachPatient.prontuario}</TextCard>
                   <TextCard>CPF: {eachPatient.cpf}</TextCard>
               </Card>
         )})}

@@ -30,12 +30,13 @@ const ListPatients = () => {
     
 
     const filteredPatients = Patients.filter((patient) =>
-      patient.name.toLowerCase().includes(searchTerm.toLowerCase())
+      patient.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      patient.prontuario.includes(searchTerm) 
     );
 
     return (
         <Layout titlePage="Lista de pacientes">
-            <input placeholder="Pesquisar por nome"
+            <input placeholder="Pesquisar por nome ou pelo prontuário"
             value={searchTerm}
             onChange={handleSearchChange}
             onBlur={handleSearchEnd}/>

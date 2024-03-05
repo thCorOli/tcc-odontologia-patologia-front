@@ -28,21 +28,23 @@ const FormHistoPato = () => {
   const { value, onChangeHandler, clearForm, onChangeHandlerTextArea } = useFormOptions(initialValues);
   const [open, setOpen] = React.useState(false);
   const [successModal, setSuccessModal] = useState(false);
-  const [selectedPatient, setSelectedPatient] = useState(null);
-  const [selectedLaboratory, setSelectedLaboratory] = useState(null);
+  const [selectedPatient, setSelectedPatient] = useState({});
+  const [selectedLaboratory, setSelectedLaboratory] = useState({});
   const [error, setError] = useState(false);
   const [title, setTitle] = useState("");
 
    useEffect(() => {
       (listLabs((response)=> {
         setLabs(Array.from(response.data));
-        setSelectedLaboratory(Labs[0])
+        setSelectedLaboratory(response.data[0] || '');
       }));
       (listPatient((response)=> {
         setPatients(Array.from(response.data));
-        setSelectedPatient(Patients[0])
+        setSelectedPatient(response.data[0] || '');
       }));
     },[]);
+
+    console.log("AAAAAAAAAAAAAAAAAAAAAAAA",selectedLaboratory)
 
   const handleFileChange = (event) => {
     const selectedFiles = event.target.files;
@@ -82,24 +84,27 @@ const FormHistoPato = () => {
     setSelectedLaboratory(e.target.value);
   };
 
+  const formSubmissionData = {
+    form_submission: {
+      files: files,
+      patient_id: selectedPatient.id,
+      lab_id: selectedLaboratory.id,
+      form_id: 1,
+      dentist_id: getId(),
+      form_values: value
+    }
+  };
+
   const handleConfirmSubmit = (e) => {
     if (selectedPatient !== null && selectedLaboratory !== null) {
-      submitForm(
-        {
-          file: files,
-          patient_id: selectedPatient.id,
-          lab_id: selectedLaboratory.id,
-          form_id: 1,
-          dentist_id: getId(),
-          form_values: value
-        },
-        (response) => {
+      
+      submitForm(formSubmissionData,(response) => {
           if (response.status >= 200 && response.status <= 299) {
             handleOpenSuccessModal();
             clearForm();
             setFiles([]);
           } else {
-            setTitle(response.data.errors);
+            setTitle(`${response.status} : ${response.statusText}`);
             handleOpenError(true);
            }
          if(response.status >= 500){

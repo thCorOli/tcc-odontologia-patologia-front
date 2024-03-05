@@ -35,7 +35,8 @@ const FormOsseo = () => {
    useEffect(() => {
       (listLabs((response)=> {
         setLabs(Array.from(response.data));
-        setSelectedLaboratory(Labs[0])
+        setSelectedLaboratory(Labs[0]);
+      
       }));
       (listPatient((response)=> {
         setPatients(Array.from(response.data));
@@ -48,6 +49,8 @@ const FormOsseo = () => {
     setFiles(Array.from(selectedFiles));
   };
   
+  
+
   const handleClickOpen = () => {
     setOpen(true);
   };

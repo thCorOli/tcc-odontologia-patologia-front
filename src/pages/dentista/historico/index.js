@@ -5,14 +5,14 @@ import EmptyHistory from "./components/emptyHistory/index";
 import ContentHistory from "./components/contentHistory/index";
 import LoadingHistory from "./components/loadingHistory/index";
 import { Subtitle } from "../../../components/texts";
-import {getHistoryForms} from "../../../services/dentista/index";
+import {getHistoryFormsPatient} from "../../../services/dentista/index";
 
 
 const History = () => {
   const [History, setHistory] = useState([]);
   
     useEffect(() => {
-      getHistoryForms((response) => {
+      getHistoryFormsPatient((response) => {
         setHistory(Array.from(response.data.reverse()));
       });
     }, []);

@@ -59,6 +59,7 @@ export const listPatient = (_callback) => {
 
 export const submitForm = (FormAnswer, _callback) => {
   let dentistId = getId();
+  console.log("FORMANSWER",FormAnswer)
    api
     .post(`dentists/${dentistId}/form_submissions`, FormAnswer)
     .then((response) => {
@@ -66,6 +67,7 @@ export const submitForm = (FormAnswer, _callback) => {
     })
     .catch((err) => {
       _callback(err.response);
+      console.log(err.response)
     });
 };
 
@@ -78,10 +80,10 @@ export const listLabs = (_callback) => {
     });
 };
 
-export const getHistoryForms = (_callback) => {
+export const getHistoryFormsPatient = (id,_callback) => {
   let dentistId = getId();
   api
-  .get(`dentists/${dentistId}/list_form_submissions`)
+  .get(`dentists/${dentistId}/patients/${id}/form_submissions`)
   .then((response) => _callback(response))
   .catch((err) => {
     _callback(err.response);
