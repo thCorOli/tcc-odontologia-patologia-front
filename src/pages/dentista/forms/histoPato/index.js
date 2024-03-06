@@ -107,9 +107,12 @@ const FormHistoPato = () => {
     return formSubmissionData
   }
 
-  const handleConfirmSubmit = (e) => {
-    if (selectedPatient !== null && selectedLaboratory !== null) {
-      submitForm(objectControy,(response) => {
+  const handleConfirmSubmit = async (e) => {
+    try {
+      const form_submission = await objectControy();
+      
+      if (selectedPatient !== null && selectedLaboratory !== null) {
+        submitForm(form_submission, (response) => {
           if (response.status >= 200 && response.status <= 299) {
             handleOpenSuccessModal();
             clearForm();
@@ -117,22 +120,23 @@ const FormHistoPato = () => {
           } else {
             setTitle(`${response.status} : ${response.statusText}`);
             handleOpenError(true);
-           }
-         if(response.status >= 500){
-           setTitle(`Erro ${ response.status }:Erro Interno de Servidor` );
-           handleOpenError(true);
-         }
-        }
-      ).catch(error => {
-        console.error('Erro ao enviar formulário:', error);
-        setTitle('Ocorreu um erro ao enviar o formulário. Por favor, tente novamente mais tarde.');
+          }
+          
+          if(response.status >= 500){
+            setTitle(`Erro ${response.status}: Erro Interno de Servidor`);
+            handleOpenError(true);
+          }
+        });
+      } else {
+        setTitle("Erro ao selecionar o Paciente ou o Laboratorio");
         handleOpenError(true);
-    });
-    }else {
-      setTitle("Erro ao selecionar o Paciente ou o Laboratorio");
+      }
+    } catch (error) {
+      console.error('Erro ao enviar formulário:', error);
+      setTitle('Ocorreu um erro ao enviar o formulário. Por favor, tente novamente mais tarde.');
       handleOpenError(true);
     }
-  };
+  };  
 
     const validateForm = () => {
       if(isObjectEmpty(value)) {

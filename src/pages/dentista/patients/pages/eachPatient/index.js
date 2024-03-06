@@ -11,6 +11,8 @@ import {
     LineContainer
 } from "../../../../../constants/containers/index";
 import "../../../../../constants/colors.css";
+import {downloadFiles } from "../../../../../services/general/utils/utils" ;
+
 
 const EachPatient = () => {
 
@@ -58,9 +60,7 @@ const EachPatient = () => {
 
     const renderFormsPatient = formSubmissions.map((eachFormPatient, index) => {
         const selectedFormIdInt = selectedFormId !== null ? parseInt(selectedFormId) : null;
-
         if (selectedFormId === null || eachFormPatient.form_id === selectedFormIdInt) {
-            console.log("AAAAA")
             const formElements = [];
             formElements.push(<div key={index}><TextCard>{BdToDateElements(eachFormPatient.created_at)}</TextCard></div>);
             for (const [key, value] of Object.entries(eachFormPatient.form_values)) {
@@ -70,7 +70,11 @@ const EachPatient = () => {
                     );
                 }
             }
-            return <Card key={index}>{formElements} <button>Gerar Laudo</button></Card>;
+            if(eachFormPatient.files.length > 0){
+                console.log(eachFormPatient.files)
+                formElements.push(<button onClick={() => downloadFiles(eachFormPatient.files)}>Download arquivos</button>)
+            }
+            return <Card key={index}>{formElements} <button style={{marginBottom:"2%"}}>Gerar Laudo</button></Card>;
         }
         return null;
     });
