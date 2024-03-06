@@ -14,6 +14,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { isObjectEmpty } from '../../../../services/general/security'
 import { CheckBox, TextArea } from "../../../../components/inputs/index";
 import SelectBox from "../components/selectBox/index"
+import {fileToBase64} from "../../../../services/general/utils/utils";
 
 
 const FormHistoPato = () => {
@@ -43,8 +44,6 @@ const FormHistoPato = () => {
         setSelectedPatient(response.data[0] || '');
       }));
     },[]);
-
-    console.log("AAAAAAAAAAAAAAAAAAAAAAAA",selectedLaboratory)
 
   const handleFileChange = (event) => {
     const selectedFiles = event.target.files;
@@ -84,20 +83,33 @@ const FormHistoPato = () => {
     setSelectedLaboratory(e.target.value);
   };
 
-  const formSubmissionData = {
-    form_submission: {
-      files: files,
-      patient_id: selectedPatient.id,
-      lab_id: selectedLaboratory.id,
-      form_id: 1,
-      dentist_id: getId(),
-      form_values: value
+  const transformFiles = async (files) => {
+    try {
+        const base64Array = await Promise.all(files.map(fileToBase64));
+        return base64Array
+    } catch (error) {
+        console.error("Erro ao transformar arquivos:", error);
     }
-  };
+};
+
+  const objectControy = async () => {
+    const base64Files = await transformFiles(files);
+      const formSubmissionData = {
+      form_submission: {
+        files: base64Files,
+        patient_id: selectedPatient.id,
+        lab_id: selectedLaboratory.id,
+        form_id: 1,
+        dentist_id: getId(),
+        form_values: value
+      }
+    };
+    return formSubmissionData
+  }
 
   const handleConfirmSubmit = (e) => {
     if (selectedPatient !== null && selectedLaboratory !== null) {
-      submitForm(formSubmissionData,(response) => {
+      submitForm(objectControy,(response) => {
           if (response.status >= 200 && response.status <= 299) {
             handleOpenSuccessModal();
             clearForm();
@@ -111,22 +123,36 @@ const FormHistoPato = () => {
            handleOpenError(true);
          }
         }
-      );
-    } else {
+      ).catch(error => {
+        console.error('Erro ao enviar formulário:', error);
+        setTitle('Ocorreu um erro ao enviar o formulário. Por favor, tente novamente mais tarde.');
+        handleOpenError(true);
+    });
+    }else {
       setTitle("Erro ao selecionar o Paciente ou o Laboratorio");
       handleOpenError(true);
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!isObjectEmpty(value)) {
+    const validateForm = () => {
+      if(isObjectEmpty(value)) {
+        setTitle('Preencha ao menos 1 campo!');
+        handleOpenError();
+        return false;
+      }
+      return true;
+    };
+
+    const openConfirmationDialog = () => {
       handleClickOpen();
-    } else {
-      setTitle("Preencha ao menos 1 campo!")
-      handleOpenError();
-    }
-  }
+    };
+
+  const handleSubmit = (e) => {
+      e.preventDefault();
+      if (validateForm()) {
+          openConfirmationDialog();
+      }
+  };
 
   return (
     <Layout titlePage="Formulário Citopatológico">
