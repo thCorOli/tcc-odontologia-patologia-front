@@ -2,8 +2,8 @@ import styled, { css } from "styled-components";
 import "../../../../constants/colors.css";
 
 export const Card = styled.div`
-    width: 220px; /* Aumentando a largura para acomodar ambos os elementos */
-    height: 220px; /* Ajustando a altura também */
+    width: 220px; 
+    height: 220px; 
     display: flex;
     transition: 0.4s;
     flex-direction: column; 
@@ -13,7 +13,8 @@ export const Card = styled.div`
     border-radius: 10%;
     margin-right: 20px;
     background-color: var(--ligth-purple);
-    padding: 20px; /* Adicionando padding para dar espaço entre a imagem e o texto */
+    padding: 20px; 
+    text-align: center;
 
     :hover {
         background-color: var(--medium-purple);
@@ -39,5 +40,6 @@ export const Img = styled.img`
 export const CardContainer = styled.div`
     display: flex;                        
     padding: 20px;          
-    flex-wrap: wrap;         
+    flex-wrap: wrap;
+    flex-direction: row;         
 `;

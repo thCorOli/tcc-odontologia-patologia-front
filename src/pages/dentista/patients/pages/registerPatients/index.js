@@ -36,6 +36,8 @@ const RegisterPatient = () => {
     birthday: "",
     cpf: "",
     prontuario: "",
+    sex: "",
+    cor:""
   });
 
   const performValidation = (user) => {
@@ -127,15 +129,27 @@ const RegisterPatient = () => {
             value={value.email}
             onChange={onChangeHandler}
           />
-            <FormField
-              label={"Prontuário:"}
-              name={"prontuario"}
-              value={value.prontuario}
-              maxLength={5}
-              minLength={5}
-              onChange={onChangeHandler}
-              alert={"Somente números"}
-            />
+          <FormField
+            label={"Sexo:"}
+            name={"sex"}
+            value={value.sex}
+            onChange={onChangeHandler}
+          />
+          <FormField
+            label={"Etnia:"}
+            name={"cor"}
+            value={value.cor}
+            onChange={onChangeHandler}
+          />
+          <FormField
+            label={"Prontuário:"}
+            name={"prontuario"}
+            value={value.prontuario}
+            maxLength={5}
+            minLength={5}
+            onChange={onChangeHandler}
+            alert={"Somente números"}
+          />
           <TextContainer>
             <Text>Data de Nascimento:</Text>
           </TextContainer>

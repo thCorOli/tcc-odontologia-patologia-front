@@ -6,25 +6,38 @@ export default function useFormOptions(defaultCategoryValues) {
   const setValues = (key, inValue) => {
     setValue((prevValue) => ({
       ...prevValue,
-      [key]: inValue
+      [key]: inValue,
     }));
   };
 
   const toggleCheckboxValue = (key, option) => {
     if (value[key].includes(option)) {
-      setValues(key, value[key].filter(item => item !== option));
+      setValues(
+        key,
+        value[key].filter((item) => item !== option)
+      );
     } else {
       setValues(key, [...value[key], option]);
     }
   };
 
-  const onChangeHandler = (eventName) => {
-    const { name, value: checkedValue, type, checked } = eventName.target;
-    
-    if (type === 'checkbox') {
-      toggleCheckboxValue(name, checkedValue);
+  const onChangeHandler = (e) => {
+    const { name, value, checked } = e.target;
+
+    if (checked && value === "Outro") {
+      setValue((prevState) => ({
+        ...prevState,
+        [name]: [value],
+        [name + "_outro"]: "",
+      }));
     } else {
-      setValues(name, checked ? checkedValue : '');
+      setValue((prevState) => ({
+        ...prevState,
+        [name]: checked
+          ? [...(prevState[name] || []), value]
+          : prevState[name]?.filter((item) => item !== value),
+        [name + "_outro"]: "",
+      }));
     }
   };
 
@@ -32,14 +45,14 @@ export default function useFormOptions(defaultCategoryValues) {
     setValue(defaultCategoryValues);
   };
 
-  const onChangeHandlerTextArea = (eventName) => {
+  const onChangeHandlerText = (eventName) => {
     setValues(eventName.target.getAttribute("name"), eventName.target.value);
-  }
+  };
 
   return {
     onChangeHandler,
     value,
     clearForm,
-    onChangeHandlerTextArea
+    onChangeHandlerText,
   };
 }

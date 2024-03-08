@@ -15,6 +15,7 @@ const ReceiveForms = () => {
 
   useEffect(() => {
   getListForms((response) => {
+    console.log(response)
     const uniquePatients = {};
     response.data.forEach((form) => {
       if (!uniquePatients[form.patient_id]) {
@@ -39,6 +40,8 @@ const ReceiveForms = () => {
     setPatients(Object.values(uniquePatients));
   });
 }, []);
+
+  console.log(patients)
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);

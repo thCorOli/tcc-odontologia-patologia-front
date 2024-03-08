@@ -12,7 +12,7 @@ import {
 } from "../../../../../constants/containers/index";
 import "../../../../../constants/colors.css";
 import {downloadFiles } from "../../../../../services/general/utils/utils" ;
-
+import { useHistory } from "react-router-dom";
 
 const EachPatient = () => {
 
@@ -30,6 +30,7 @@ const EachPatient = () => {
     const [Patient, setPatient] = useState({});
     const [formSubmissions, setFormSubmissions] = useState([]);
     const [selectedFormId, setSelectedFormId] = useState(null);
+    const history = useHistory();
 
     useEffect(() => {
         getPatientById(id, (response) => {
@@ -40,7 +41,9 @@ const EachPatient = () => {
         });
     }, [id]);
 
-    console.log(formSubmissions)
+    const handleOnClick = () => {
+        history.push("dentista/laudo")
+    }
 
     const BdToDateElements = (dateElement) => {
         const date = new Date(dateElement);
@@ -55,9 +58,25 @@ const EachPatient = () => {
         setSelectedFormId(event.target.value); 
     }
 
+    const calcularIdade = (dataNascimento) => {
+        const hoje = new Date();
+        const nascimento = new Date(dataNascimento);
+        
+        let idade = hoje.getFullYear() - nascimento.getFullYear();
+        const mesAtual = hoje.getMonth() + 1;
+        const diaAtual = hoje.getDate();
+        const mesNascimento = nascimento.getMonth() + 1;
+        const diaNascimento = nascimento.getDate();
+        
+        if (mesAtual < mesNascimento || (mesAtual === mesNascimento && diaAtual < diaNascimento)) {
+            idade--;
+        }
+        
+        return idade;
+    }
    
+    const age = calcularIdade(Patient.birthday);
     
-
     const renderFormsPatient = formSubmissions.map((eachFormPatient, index) => {
         const selectedFormIdInt = selectedFormId !== null ? parseInt(selectedFormId) : null;
         if (selectedFormId === null || eachFormPatient.form_id === selectedFormIdInt) {
@@ -74,7 +93,7 @@ const EachPatient = () => {
                 console.log(eachFormPatient.files)
                 formElements.push(<button onClick={() => downloadFiles(eachFormPatient.files)}>Download arquivos</button>)
             }
-            return <Card key={index}>{formElements} <button style={{marginBottom:"2%"}}>Gerar Laudo</button></Card>;
+            return <Card key={index}>{formElements} <button onClick={()=> handleOnClick} style={{marginBottom:"2%"}}>Gerar Laudo</button></Card>;
         }
         return null;
     });
@@ -83,7 +102,7 @@ const EachPatient = () => {
 
     return (
         <Layout titlePage="Detalhes do Paciente">
-            <Subtitle>Nome: {Patient.name} - CPF: {Patient.cpf} - Prontuário: {Patient.prontuario}</Subtitle>
+            <Subtitle>Nome: {Patient.name} - CPF: {Patient.cpf} - Prontuário: {Patient.prontuario} - Idade:{age} </Subtitle>
             <Subtitle>Lista de formulários preenchidos</Subtitle>
             <LineContainer style={{width: "50%", alignSelf:"center"}}>
                 <input style={{margin: 0, marginBottom: "2%", marginRight: "2%"}} type="radio" id="form_id_1" name="form_id" value="1" onChange={handleFormIdChange} />

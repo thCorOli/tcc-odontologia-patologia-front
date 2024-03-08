@@ -23,8 +23,9 @@ export const register = (User, _callback) => {
 
 export const getListForms = (_callback) => {
   const lab_id = getId();
+  console.log("LAB_ID",lab_id)
   api
-    .get(`labs/${lab_id}/list_form_submissions`)
+    .get(`labs/1/list_form_submissions`)
     .then((response) => {
       _callback(response)
     })

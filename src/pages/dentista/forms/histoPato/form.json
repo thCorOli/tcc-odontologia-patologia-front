@@ -1,56 +1,100 @@
 {
     "Form": {
-        "0": {
-            "title": "Tipo Material A",
-            "options": ["Biópsia incisional", "Biópsia excisional", "Curetagem", "Exodontia", "Raspado", "Outro"]
+        "Section1": {
+            "titleSection": "Tipo Material",
+            "Questions":{
+                "0": {
+                    "title": "Tipo Material A",
+                    "options": ["Biópsia incisional", "Biópsia excisional", "Curetagem", "Exodontia", "Raspado", "Outro"],
+                    "type": "checkbox"
+                },
+                "1": {
+                    "title": "Tipo Material B",
+                    "options": ["Mucosa", "Semimucosa", "Intraósseo", "Dente", "Glândulas salivares labiais", "Outro"],
+                    "type": "checkbox"
+                },
+                "2": {
+                    "title": "Lado",
+                    "options": ["Direito", "Esquerdo"],
+                    "type": "checkbox"
+                },
+                "3": {
+                    "title": "Número",
+                    "options": ["Única", "Dupla", "Múltipla"],
+                    "type": "checkbox"
+                },
+                "4": {
+                    "title": "Lesão",
+                    "options": ["Mácula", "Placa", "Pápula", "Nódulo", "Vesícula", "Bolha", "Úlcera", "Crosta"],
+                    "type": "checkbox"
+                },
+                "5": {
+                    "title": "Base",
+                    "options": ["Sésil", "Pediculada"],
+                    "type": "checkbox"
+                },
+                "6": {
+                    "title": "Formato",
+                    "options": ["Irregular", "Esférico", "Oval", "Outro"],
+                    "type": "checkbox"
+                },
+                "7": {
+                    "title": "Consistência",
+                    "options": ["Firme", "Pétrea", "Mole", "Borrachoide"],
+                    "type": "checkbox"
+                },
+                "8": {
+                    "title": "Cor",
+                    "options": ["Rosa/Normal", "Branca", "Preta", "Vermelha", "Amarela", "Outro"],
+                    "type": "checkbox"
+                }
+            }
         },
-        "1": {
-            "title": "Tipo Material B",
-            "options": ["Mucosa", "Semimucosa", "Intraósseo", "Dente", "Glândulas salivares labiais", "Outro"]
-        },
-        "2": {
-            "title": "Lado",
-            "options": ["Direito", "Esquerdo"]
-        },
-        "3": {
-            "title": "Número",
-            "options": ["Única", "Dupla", "Múltipla"]
-        },
-        "4": {
-            "title": "Lesão",
-            "options": ["Mácula", "Placa", "Pápula", "Nódulo", "Vesícula", "Bolha", "Úlcera", "Crosta"]
-        },
-        "5": {
-            "title": "Base",
-            "options": ["Sésil", "Pediculada"]
-        },
-        "6": {
-            "title": "Formato",
-            "options": ["Irregular", "Esférico", "Oval", "Outro"]
-        },
-        "7": {
-            "title": "Consistência",
-            "options": ["Firme", "Pétrea", "Mole", "Borrachoide"]
-        },
-        "8": {
-            "title": "Cor",
-            "options": ["Rosa/Normal", "Branca", "Preta", "Vermelha", "Amarela", "Outro"]
-        },
-        "9": {
-            "title": "Limites",
-            "options": ["Precisos", "Imprecisos", "Circinado"]
-        },
-        "10": {
-            "title": "Superfície",
-            "options": ["Lisa", "Ulcerada", "Lobulada", "Irregular", "Outro"]
-        },
-        "11": {
-            "title": "Sintoma",
-            "options": ["Ausente", "Com dor", "Com ardor", "Outro"]
-        },
-        "12": {
-            "title": "Observações",
-            "textarea": true
-          }
+        "Section2":{
+            "titleSection": "Características Clínicas",
+            "Questions":{
+                "9": {
+                    "title": "Limites",
+                    "options": ["Precisos", "Imprecisos", "Circinado"],
+                    "type": "checkbox"
+                },
+                "10": {
+                    "title": "Superfície",
+                    "options": ["Lisa", "Ulcerada", "Lobulada", "Irregular", "Outro"],
+                    "type": "checkbox"
+                },
+                "11": {
+                    "title": "Sintoma",
+                    "options": ["Ausente", "Com dor", "Com ardor", "Outro"],
+                    "type": "checkbox"
+                },
+                "12": {
+                    "title": "Localização",
+                    "type": "text"
+                },
+                "13": {
+                    "title": "Tamanho",
+                    "type": "mixed",
+                    "options": ["variavel", "Outro"]
+                },
+                "14": {
+                    "title": "Duração",
+                    "type": "text",
+                    "options": ["Congenita", "Desconhecida"]
+                },
+                "15": {
+                    "title": "História da doença atual",
+                    "textarea": true
+                },
+                "16": {
+                    "title": "Observações",
+                    "textarea": true
+                },
+                "17": {
+                    "title": "Hipótese diagnóstica",
+                    "textarea": true
+                }
+            }
+        }
     }
 }

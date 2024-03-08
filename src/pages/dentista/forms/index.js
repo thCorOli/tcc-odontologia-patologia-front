@@ -24,11 +24,11 @@ const Forms = () => {
                 <CardContainer>
                     <Card onClick={() => handleFormSelection("/dentista/citoPatologico")}>
                         <Img src={CitologiaFormIcon} />
-                        <SubtitleSection>Formulário Citopatológico</SubtitleSection>
+                        <SubtitleSection>Formulário Histopatológico Tecidos Moles</SubtitleSection>
                     </Card>
                     <Card onClick={() => handleFormSelection("/dentista/odontoOsseo")}>
                         <Img src={OdontoOsseoIcon} /> 
-                        <SubtitleSection>Formulário Histopatológico</SubtitleSection>
+                        <SubtitleSection>Formulário Histopatológico Tecidos Duros</SubtitleSection>
                     </Card>
                 </CardContainer>
             </ContentContainer>
