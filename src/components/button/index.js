@@ -20,7 +20,7 @@ export const Button = styled.button `
 
   @media screen and (max-width: 960px) {
     font-size: 1em;
-    height: 30px;
+    height: 60px;
   }
   :active {
     transition: 0.2s;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Link, useHistory } from "react-router-dom";
 import "../../constants/colors.css";
@@ -18,43 +18,37 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
 const SideMenuUser = styled.div`
-  width: 110px;
-  height: 100vh;
   background-color: var(--white);
-  position: fixed;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
+  position: fixed;
   top: 0;
   left: 0;
+  width: 110px;
+  height: 100vh;
+  transition: width 0.3s ease;
+  z-index: 1;
 
-  @media only screen and (max-width: 640px) {
-    width: 100%;
-    height: 10%;
-    position: fixed;
-    top: auto;
-    bottom: 0;
-    flex-direction: row;
-    z-index: 10;
+  @media screen and (max-width: 640px) {
+    width: ${({ open }) => (open ? "100%" : "0px")}
   }
+`;
+
+const MenuToggle = styled.div`
+  cursor: pointer;
+  padding: 20px;
 `;
 
 const ItensSideMenu = styled.div`
   width: 100%;
-  height: 10%;
+  height: 20%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  flex: 1 1;
   background-color: ${props => props.backgroundColor};
-  filter: grayscale(100%) ;
+  filter: grayscale(100%);
   transition: 0.5s;
-
-  @media only screen and (max-width: 640px) {
-    height: 100%;
-  }
 
   &:hover {
     filter: grayscale(0%);
@@ -71,7 +65,6 @@ const ItensSideMenu = styled.div`
     height: 55%; 
     transition: 0.5s;
   }
- 
 `;
 
 const ItensSideLogo = styled.div`
@@ -80,6 +73,11 @@ const ItensSideLogo = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media only screen and (max-width: 640px) {
+    width: 0%;
+  }
+  
 `;
 
 const Img = styled.img`
@@ -97,10 +95,8 @@ const Logo = styled.img`
   height: 50px;
 `;
 
-
 const SideMenu = () => {
-  const [open, setOpen] = React.useState(false);
-
+  const [open, setOpen] = useState(false);
   const history = useHistory();
 
   const handleClickOpen = () => {
@@ -112,59 +108,68 @@ const SideMenu = () => {
   };
 
   const logoutPatient = () => {
+    setOpen(false);
     logout();
     localStorage.removeItem("user");
     history.push("/");
   };
 
+  const handleToggleMenu = () => {
+    setOpen(!open);
+  };
+  console.log(open)
+
   return (
-    <SideMenuUser>
-      <ReactTooltip place="right" type="dark" effect="solid" />
-      <ItensSideLogo >
-        <Logo  src={LogoIcon}/>
-      </ItensSideLogo>
-      <ItensSideMenu as={Link}  data-tip="Formulários" to="/dentista/formulários">
-        <Img  src={FormIcon} />
-      </ItensSideMenu>
-      <ItensSideMenu as={Link}  data-tip="Laudo Médico" to="/dentista/laudo">
-        <Img src={HistoryIcon}/>
-      </ItensSideMenu>
-      <ItensSideMenu data-tip="Meus Pacientes" as={Link} to="/dentista/meusPacientes">
-        <Img src={PatientIcon} />
-      </ItensSideMenu>
+    <>
+      <MenuToggle onClick={handleToggleMenu}>☰</MenuToggle>
+      <SideMenuUser open={open}>
+        <ReactTooltip place="right" type="dark" effect="solid" />
+        <ItensSideLogo >
+          <Logo src={LogoIcon}/>
+        </ItensSideLogo>
+        <ItensSideMenu as={Link} data-tip="Formulários" to="/dentista/formulários">
+          <Img src={FormIcon} />
+        </ItensSideMenu>
+        <ItensSideMenu as={Link} data-tip="Laudo Médico" to="/dentista/laudo">
+          <Img src={HistoryIcon}/>
+        </ItensSideMenu>
+        <ItensSideMenu data-tip="Meus Pacientes" as={Link} to="/dentista/meusPacientes">
+          <Img src={PatientIcon} />
+        </ItensSideMenu>
 
-      <ItensSideMenu 
-      backgroundColor ="var(--recuse)"
-      hoverColor = "var(--recuse)"
-      onClick={handleClickOpen} 
-      data-tip="Sair">
-        <Img src={ExitIcon}/>
-      </ItensSideMenu>
+        <ItensSideMenu 
+          backgroundColor ="var(--recuse)"
+          hoverColor = "var(--recuse)"
+          onClick={handleClickOpen} 
+          data-tip="Sair">
+          <Img src={ExitIcon}/>
+        </ItensSideMenu>
 
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-          {"Gostaria de sair do sistema?"}
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Caso tenha certeza que queira sair do sitema clique em "Sim".
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Não
-          </Button>
-          <Button onClick={logoutPatient} color="primary" autoFocus>
-            Sim
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </SideMenuUser>
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">
+            {"Gostaria de sair do sistema?"}
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              Caso tenha certeza que queira sair do sitema clique em "Sim".
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} color="primary">
+              Não
+            </Button>
+            <Button onClick={logoutPatient} color="primary" autoFocus>
+              Sim
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </SideMenuUser>
+    </>
   );
 };
 

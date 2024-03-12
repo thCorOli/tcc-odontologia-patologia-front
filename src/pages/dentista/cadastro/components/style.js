@@ -12,15 +12,27 @@ export const SideBySide = styled.div`
 `;
 
 export const LinkLogo = styled.div`
-  height: 20%;
+  height: 25%;
+  width: 100%;
   display: flex;
   justify-content: center;
   opacity: 0;
-  
+  ${({ backgroundImage }) => css`
+    background-image: url(${backgroundImage});
+  `};
+  background-repeat: no-repeat;
   transition: opacity 1s ease, transform 1s ease;
   &.animate {
     opacity: 1;
   }
+
+  @media screen and (max-width: 640px) {
+    background-position: center;
+    ${({ backgroundImageRespon }) => css`
+    background-image: url(${backgroundImageRespon});
+  `};
+  }
+
 `;
 
 export const LogoFullLogin = styled.img`
@@ -47,7 +59,6 @@ export const ContentContainer = styled.div`
   `};
   @media only screen and (max-width: 640px) {
     width: 90%;
-    padding: 50px;
     margin: 0 auto;
   }
 

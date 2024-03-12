@@ -19,14 +19,13 @@ import InputMask from "react-input-mask";
 import { registerPatient } from "../../../../../services/dentista";
 import {
   hasEmptyFields,
-  isCpfValid,
   isDateValid,
 } from "../../../../../services/general/security";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogTitle from "@material-ui/core/DialogTitle";
-
+import SelectBox from "./components/selectBox/index"
 
 const RegisterPatient = () => {
 
@@ -52,6 +51,18 @@ const RegisterPatient = () => {
 
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState(false);
+  const [selectedSex,setSelectedSex] = useState(0);
+
+  const options = [
+    {
+      id: 0,
+      name: "Feminino"
+    }, 
+    {
+      id: 1,
+      name: "Masculino"
+    }
+  ]
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -65,8 +76,13 @@ const RegisterPatient = () => {
     clearForm();
   };
 
+  const handleSexChange = (e) => {
+    setSelectedSex(e.target.value);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    value.sex = selectedSex;
     switch (performValidation(value)) {
       case "valid":
         registerPatient({ patient: value }, (response) => {
@@ -89,6 +105,7 @@ const RegisterPatient = () => {
         });
         break;
       case "isEmpty":
+        console.log(value)
         setTitle("Preencha todos os campos");
         handleClickOpen();
         break;
@@ -129,11 +146,13 @@ const RegisterPatient = () => {
             value={value.email}
             onChange={onChangeHandler}
           />
-          <FormField
-            label={"Sexo:"}
-            name={"sex"}
-            value={value.sex}
-            onChange={onChangeHandler}
+          <TextContainer>
+            <Text>Sexo:</Text>
+          </TextContainer>
+          <SelectBox
+            value={selectedSex}
+            options={options}
+            onChange={handleSexChange}
           />
           <FormField
             label={"Etnia:"}

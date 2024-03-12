@@ -23,9 +23,11 @@ export const Card = styled.div`
       
     }
 
-    @media only screen and (max-width: 640px) {
+    @media only screen and (max-width: 960px) {
         width: 120px;
         height: 120px;
+        margin-right: 0;
+        margin-bottom: 5%;
     }
 `;
 
@@ -41,5 +43,10 @@ export const CardContainer = styled.div`
     display: flex;                        
     padding: 20px;          
     flex-wrap: wrap;
-    flex-direction: row;         
+    flex-direction: row; 
+    @media only screen and (max-width: 960px) {
+        flex-direction: column; 
+        justify-content: space-between;
+    }    
+        
 `;

@@ -32,13 +32,14 @@ Label.Text = styled.span`
   font-weight: bolder;
   transition: 0.1s ease-in-out;
   color: var(--black);
+
 `;
 
 const Input = styled.input`
   display: block;
   width: 100%;
   height: 15px;
-  font-size: 18px;
+  font-size: 1.2em;
   outline: 0;
   border: 0;
   border-top: 4px solid transparent;
@@ -58,6 +59,12 @@ const Input = styled.input`
   &:focus:not([type="color"]) + ${Label.Text} {
     transform: scale(0.6) translateY(-10px);
   }
+
+  @media screen and (max-width: 960px) {
+    font-size: 1em;
+    height: 10px;
+  }
+
   ${({ value }) => {
     const hasValue = value.length > 0;
     return (
@@ -76,6 +83,10 @@ const Alert = styled.p`
   font-family: "Roboto Condensed";
   color:var(--black);
   font-weight: bold;
+
+   @media screen and (max-width: 960px) {
+    font-size: 0.75em;
+  }
 `;
 
 function FormField({

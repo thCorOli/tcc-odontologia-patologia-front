@@ -26,6 +26,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import LogoFull from "../../../assets/imgs/logos/LogoFull-semFundo.png";
 import { register } from "../../../services/dentista";
 import { hasEmptyFields,isCpfValid,isDateValid,isEqual } from "../../../services/general/security";
+import LogoMini from "../../../assets/imgs/logos/Logo.png";
 
 const Cadastro = () => {
   const { value, onChangeHandler, filterText, cpfMask  } = useForm({
@@ -125,8 +126,8 @@ const performValidation = (user) => {
   return (
     <Background overflow={"auto"}>
       <MainContainer>
-        <LinkLogo as={Link} to="/" className={shouldAnimate ? 'animate' : ''}>
-          <img src={LogoFull}></img>
+        <LinkLogo as={Link} to="/" className={shouldAnimate ? 'animate' : ''} backgroundImage={LogoFull} backgroundImageRespon={LogoMini}>
+          
           </LinkLogo>
           <ContentContainer
           backgroundColor={"var(--white)"}

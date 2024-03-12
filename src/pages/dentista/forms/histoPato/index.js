@@ -109,6 +109,7 @@ const FormHistoPato = () => {
   };
 
   const objectControy = async () => {
+    console.log(files)
     const base64Files = await transformFiles(files);
     const formSubmissionData = {
       form_submission: {
@@ -176,6 +177,8 @@ const FormHistoPato = () => {
     }
   };
 
+  
+
   return (
     <Layout titlePage="Formulário Citopatológico">
         <ContentContainer
@@ -220,12 +223,10 @@ const FormHistoPato = () => {
                               type="checkbox"
                               name={field.title}
                               value={option}
-                              checked={
-                                value[field.title]?.includes(option) || false
-                              }
-                              onChange={onChangeHandler}
+                              checked={value[field.title]?.includes(option) || false}
+                              onChange={onChangeHandler} // Use o novo evento onChange
                             />
-                            <Option> {option} </Option>
+                            <Option>{option}</Option>
                           </MakeSideContainer>
                         ))}
                         {value[field.title]?.includes("Outro") && (
@@ -236,7 +237,7 @@ const FormHistoPato = () => {
                             onChange={onChangeHandlerText}
                           />
                         )}
-                      </>
+                      </>                    
                     ) : (
                       <TextInput
                         type="text"
