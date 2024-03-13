@@ -63,7 +63,7 @@ const ReceiveForms = () => {
         onChange={handleSearchChange}
         onBlur={handleSearchEnd}
       />
-      {!patientsLoaded ? ( // Verifica se os pacientes foram carregados
+      {patients === 0 ? (
         <LoadingPatient />
       ) : (
         <>

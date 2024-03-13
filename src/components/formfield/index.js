@@ -32,6 +32,14 @@ Label.Text = styled.span`
   font-weight: bolder;
   transition: 0.1s ease-in-out;
   color: var(--black);
+  
+  
+  @media screen and (max-width: 960px) {
+    font-size: 15px;
+    height: 10px;
+    left: 0;
+    top: 20px;
+  }
 
 `;
 

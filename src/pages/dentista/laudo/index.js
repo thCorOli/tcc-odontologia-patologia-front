@@ -16,9 +16,7 @@ import {
 } from "../../../constants/containers/index";
 import "../../../components/loader/loader.css";
 import {
-  hasEmptyFields,
-  isCpfValid,
-  isDateValid,
+  hasEmptyFields
 } from "../../../services/general/security";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -34,10 +32,13 @@ const Laudo = () => {
 
   const { value, onChangeHandler, filterText, cpfMask, clearForm } = useForm({
     name: "",
-    email: "",
-    birthday: "",
-    cpf: "",
-    prontuario: "",
+    registro: "",
+    macroscopia:"",
+    diagnostico:"",
+    nota:"",
+    localLesao:"",
+    procedimento: "",
+    material:"",
   });
 
   const handleClickOpen = () => {
@@ -68,15 +69,14 @@ const Laudo = () => {
 
           <FormField
             label={"Registro:"}
-            name={"email"}
-            type={"email"}
-            value={value.email}
+            name={"registro"}
+            value={value.registro}
             onChange={onChangeHandler}
           />
             <FormField
               label={"Tipo do material:"}
-              name={"prontuario"}
-              value={value.prontuario}
+              name={"material"}
+              value={value.material}
               maxLength={5}
               minLength={5}
               onChange={onChangeHandler}
@@ -85,28 +85,17 @@ const Laudo = () => {
           <div style={{ width: "100%" }}>
             <FormField
               label={"Tipo de procedimento:"}
-              name={"cpf"}
-              value={cpfMask(value.cpf)}
-              maxLength={14}
-              minLength={14}
+              name={"procedimento"}
+              value={value.procedimento}
               type={"text"}
-              onChange={(e) => filterText("cpf", e.target.value)}
+              onChange={onChangeHandler}
               
             />
 
             <FormField
-              label={"Tipo de procedimento:"}
-              name={"prontuario"}
-              value={value.prontuario}
-              maxLength={5}
-              minLength={5}
-              onChange={onChangeHandler}
-            />
-
-            <FormField
               label={"Local da lesão:"}
-              name={"prontuario"}
-              value={value.prontuario}
+              name={"localLesao"}
+              value={value.localLesao}
               maxLength={5}
               minLength={5}
               onChange={onChangeHandler}
@@ -114,26 +103,21 @@ const Laudo = () => {
 
             <FormField
               label={"Macroscopia:"}
-              name={"prontuario"}
-              value={value.prontuario}
-              maxLength={5}
-              minLength={5}
+              name={"macroscopia"}
+              value={value.macroscopia}
               onChange={onChangeHandler}
             />
             <FormField
               label={"Diagnostico:"}
-              name={"prontuario"}
-              value={value.prontuario}
-              maxLength={5}
-              minLength={5}
+              name={"diagnostico"}
+              value={value.diagnostico}
               onChange={onChangeHandler}
             />
             <FormField
               label={"Nota:"}
-              name={"prontuario"}
-              value={value.prontuario}
-              maxLength={5}
-              minLength={5}
+              name={"nota"}
+              type={"textarea"}
+              value={value.nota}
               onChange={onChangeHandler}
             />
           </div>

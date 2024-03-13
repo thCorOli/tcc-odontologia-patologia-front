@@ -23,6 +23,13 @@ export const CheckBox = styled.input.attrs({ type: "checkbox" })`
     border: 2px solid var(--dark-purple);
     border-radius: 50%;
   }
+
+  @media only screen and (max-width: 960px) {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+  }  
+  
 `;
 
 export const TextArea = styled.textarea`

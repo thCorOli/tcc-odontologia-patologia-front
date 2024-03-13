@@ -30,6 +30,7 @@ import {
   TextInput,
 } from "../../../../components/inputs/index";
 import SelectBox from "../components/selectBox/index";
+import {Form} from "../components/index"
 import { fileToBase64 } from "../../../../services/general/utils/utils";
 
 const FormHistoPato = () => {
@@ -184,9 +185,9 @@ const FormHistoPato = () => {
         <ContentContainer
         backgroundColor={"var(--white)"}
         borderRadius={"2%"}
-        style={{ padding: "2%", width: "70%" }}
+        style={{ padding: "2%"}}
       >
-        <form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
         {Object.entries(form.Form).map(([sectionKey, section]) => (
           <div key={sectionKey}>
             <TitleSectionForm>{section.titleSection}</TitleSectionForm>
@@ -262,7 +263,7 @@ const FormHistoPato = () => {
           >
           Enviar
         </ButtonPage>
-        </form>
+        </Form>
         
         
         <Dialog

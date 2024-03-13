@@ -19,7 +19,8 @@ export const ContentContainer = styled.div`
   ${({ borderRadius }) => css`
     border-radius: ${borderRadius};
   `};
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 960px) {
+    width: 100%
   }
 `;
 
@@ -69,6 +70,10 @@ export const MakeSideContainer = styled.div`
   justify-content: start;
   align-items: center;
   padding: 0.5rem;
+  
+  @media only screen and (max-width: 960px) {
+    padding: 0.25rem;
+}  
 `;
 
 export const LineContainer = styled.div`

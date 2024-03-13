@@ -73,10 +73,6 @@ const ItensSideLogo = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
-  @media only screen and (max-width: 640px) {
-    width: 0%;
-  }
   
 `;
 
@@ -90,14 +86,11 @@ const Img = styled.img`
   }
 `;
 
-const Logo = styled.img`
-  width: 50px;
-  height: 50px;
-`;
 
 const SideMenu = () => {
   const [open, setOpen] = useState(false);
   const history = useHistory();
+  const [openSideMenu, setOpenSideMenu] = useState(false)
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -115,25 +108,34 @@ const SideMenu = () => {
   };
 
   const handleToggleMenu = () => {
-    setOpen(!open);
+    setOpenSideMenu(!openSideMenu);
   };
-  console.log(open)
+
+  const handleMenuClick = () => {
+    setOpenSideMenu(false); // Fechar o menu ao clicar em um item
+  };
+
+  const handleBackgroundClick = (e) => {
+    if (e.target === e.currentTarget) {
+      setOpenSideMenu(false); // Fechar o menu ao clicar fora dele
+    }
+  };
 
   return (
-    <>
+    <React.Fragment>
       <MenuToggle onClick={handleToggleMenu}>☰</MenuToggle>
-      <SideMenuUser open={open}>
+      <SideMenuUser open={openSideMenu} onClick={handleBackgroundClick}>
         <ReactTooltip place="right" type="dark" effect="solid" />
         <ItensSideLogo >
-          <Logo src={LogoIcon}/>
+          <Img src={LogoIcon}/>
         </ItensSideLogo>
-        <ItensSideMenu as={Link} data-tip="Formulários" to="/dentista/formulários">
+        <ItensSideMenu as={Link} data-tip="Formulários" to="/dentista/formulários" onClick={handleMenuClick}>
           <Img src={FormIcon} />
         </ItensSideMenu>
-        <ItensSideMenu as={Link} data-tip="Laudo Médico" to="/dentista/laudo">
+        <ItensSideMenu as={Link} data-tip="Laudo Médico" to="/dentista/laudo" onClick={handleMenuClick}>
           <Img src={HistoryIcon}/>
         </ItensSideMenu>
-        <ItensSideMenu data-tip="Meus Pacientes" as={Link} to="/dentista/meusPacientes">
+        <ItensSideMenu data-tip="Meus Pacientes" as={Link} to="/dentista/meusPacientes" onClick={handleMenuClick}>
           <Img src={PatientIcon} />
         </ItensSideMenu>
 
@@ -141,7 +143,8 @@ const SideMenu = () => {
           backgroundColor ="var(--recuse)"
           hoverColor = "var(--recuse)"
           onClick={handleClickOpen} 
-          data-tip="Sair">
+          data-tip="Sair"
+        >
           <Img src={ExitIcon}/>
         </ItensSideMenu>
 
@@ -169,7 +172,7 @@ const SideMenu = () => {
           </DialogActions>
         </Dialog>
       </SideMenuUser>
-    </>
+    </React.Fragment>
   );
 };
 

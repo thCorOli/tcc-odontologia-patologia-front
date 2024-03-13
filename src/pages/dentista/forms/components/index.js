@@ -50,3 +50,11 @@ export const CardContainer = styled.div`
     }    
         
 `;
+
+export const Form = styled.form`
+    width: 100%;
+
+    @media only screen and (max-width: 960px) {
+        width: 60%;
+    }    
+`;
