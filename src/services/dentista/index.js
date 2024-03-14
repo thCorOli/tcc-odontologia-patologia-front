@@ -59,7 +59,6 @@ export const listPatient = (_callback) => {
 
 export const submitForm = (FormAnswer, _callback) => {
   let dentistId = getId();
-  console.log("FORMANSWER",FormAnswer)
    api
     .post(`dentists/${dentistId}/form_submissions`, FormAnswer)
     .then((response) => {

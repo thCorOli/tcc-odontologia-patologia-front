@@ -121,7 +121,6 @@ const FormHistoPato = () => {
         form_values: value,
       },
     };
-    console.log("AAAAAA",value)
     return formSubmissionData;
   };
 
@@ -181,7 +180,7 @@ const FormHistoPato = () => {
   
 
   return (
-    <Layout titlePage="Formulário Citopatológico">
+    <Layout titlePage="Formulário Histopatológico de Tecidos Moles">
         <ContentContainer
         backgroundColor={"var(--white)"}
         borderRadius={"2%"}

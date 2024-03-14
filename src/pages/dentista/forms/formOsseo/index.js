@@ -127,7 +127,7 @@ const FormOsseo = () => {
   }
 
   return (
-    <Layout titlePage="Formulário Histopatológico">
+    <Layout titlePage="Formulário Histopatológico Tecidos Duros">
       <ContentContainer
         backgroundColor={"var(--white)"}
         borderRadius={"2%"}

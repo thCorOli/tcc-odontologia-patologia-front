@@ -10,6 +10,7 @@ export const fileToBase64 = (file) => {
 
 export const downloadFile = (base64Data, fileName) => {
     // Converte o base64 em um blob
+    console.log(base64Data)
     const byteCharacters = atob(base64Data);
     const byteNumbers = new Array(byteCharacters.length);
     for (let i = 0; i < byteCharacters.length; i++) {
@@ -28,7 +29,7 @@ export const downloadFile = (base64Data, fileName) => {
 
 export const downloadFiles = (filesArray) => {
     filesArray.forEach((base64Data, index) => {
-        const fileName = `file_${index + 1}`; 
+        const fileName = `file_${index + 1}.png`; 
         downloadFile(base64Data, `${fileName}`);
     });
 };
