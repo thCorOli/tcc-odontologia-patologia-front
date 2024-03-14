@@ -110,7 +110,6 @@ const FormHistoPato = () => {
   };
 
   const objectControy = async () => {
-    console.log(files)
     const base64Files = await transformFiles(files);
     const formSubmissionData = {
       form_submission: {
@@ -122,6 +121,7 @@ const FormHistoPato = () => {
         form_values: value,
       },
     };
+    console.log("AAAAAA",value)
     return formSubmissionData;
   };
 

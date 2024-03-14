@@ -4,7 +4,6 @@ import "../../../../../constants/colors.css";
 import { Subtitle, TextCard} from "../../../../../components/texts/index";
 import { useParams } from "react-router-dom";
 import {getPatientById, getHistoryFormsPatient} from "../../../../../services/dentista/index"
-import styled from "styled-components";
 import {
     ListCardContainer,
     AlignContent,
@@ -13,18 +12,9 @@ import {
 import "../../../../../constants/colors.css";
 import {downloadFiles } from "../../../../../services/general/utils/utils" ;
 import { useHistory } from "react-router-dom";
+import {DowloadLaudoButton, Card} from "./components/style"
 
 const EachPatient = () => {
-
-    const Card = styled.div`
-        background-color: var(--white);
-        width: 50%;
-        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-        margin-bottom: 2%;
-        text-decoration: none;
-        border-radius: 2%;
-        padding-left: 5%;
-    `;
 
     const { id } = useParams(); 
     const [Patient, setPatient] = useState({});
@@ -91,9 +81,9 @@ const EachPatient = () => {
             }
             if(eachFormPatient.files.length > 0){
                 console.log(eachFormPatient.files)
-                formElements.push(<button onClick={() => downloadFiles(eachFormPatient.files)}>Download arquivos</button>)
+                formElements.push(<DowloadLaudoButton onClick={() => downloadFiles(eachFormPatient.files)}>Download arquivos</DowloadLaudoButton>)
             }
-            return <Card key={index}>{formElements} <button onClick={()=> handleOnClick} style={{marginBottom:"2%"}}>Gerar Laudo</button></Card>;
+            return <Card key={index}>{formElements} <DowloadLaudoButton onClick={()=> handleOnClick} style={{marginBottom:"2%"}}>Gerar Laudo</DowloadLaudoButton></Card>;
         }
         return null;
     });

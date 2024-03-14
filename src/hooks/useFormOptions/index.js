@@ -11,33 +11,23 @@ export default function useFormOptions(defaultCategoryValues) {
   };
 
   const toggleCheckboxValue = (key, option) => {
-    if (value[key].includes(option)) {
+    if (Array.isArray(value[key]) && value[key].includes(option)) {
       setValues(
         key,
         value[key].filter((item) => item !== option)
       );
     } else {
-      setValues(key, [...value[key], option]);
+      setValues(key, [...(value[key] || []), option]);
     }
   };
 
-  const onChangeHandler = (e) => {
-    const { name, value, checked } = e.target;
+  const onChangeHandler = (eventName) => {
+    const { name, value: checkedValue, type, checked } = eventName.target;
 
-    if (checked && value === "Outro") {
-      setValue((prevState) => ({
-        ...prevState,
-        [name]: [value],
-        [name + "_outro"]: "",
-      }));
+    if (type === 'checkbox') {
+      toggleCheckboxValue(name, checkedValue);
     } else {
-      setValue((prevState) => ({
-        ...prevState,
-        [name]: checked
-          ? [...(prevState[name] || []), value]
-          : prevState[name]?.filter((item) => item !== value),
-        [name + "_outro"]: "",
-      }));
+      setValues(name, checked ? checkedValue : '');
     }
   };
 
