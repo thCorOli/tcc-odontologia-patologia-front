@@ -89,7 +89,7 @@ const performValidation = (user) => {
            setTitle("Confirme o seu email para finalizar o cadastro!");
            handleClickOpen();
          } else {
-           setTitle(response.data.errors);
+           setTitle(response.errors);
            handleClickOpen();
            setAnimationData(false);
           }

@@ -2,10 +2,10 @@ import axios from "axios";
 import { getTokenCookie } from "./cookie";
 
 const API_URL_LOCAL ="http://127.0.0.1:3001/api/"; 
-const API_URL = "https://back-hurryup.onrender.com/api/";
+const API_URL = "https://back-hurryup-iw94.onrender.com/api/";
 
 const api = axios.create({
-  baseURL: API_URL_LOCAL,
+  baseURL: API_URL,
 });
 
 api.interceptors.request.use((config) => {
